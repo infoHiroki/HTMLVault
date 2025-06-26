@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APScheduler概要</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #4ca8af;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #4ca8af;
+            padding-bottom: 10px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        h2 {
+            color: #4ca8af;
+            margin-top: 0;
+            border-left: 4px solid #4ca8af;
+            padding-left: 10px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        ul ul {
+            margin-left: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .summary {
+            background-color: #e6f3f4;
+            border-left: 4px solid #4ca8af;
+            padding: 15px;
+            margin-top: 30px;
+        }
+        .summary h2 {
+            border-left: none;
+            padding-left: 0;
+            margin-top: 0;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #4ca8af;
+        }
+    </style>
+</head>
+<body>
+    <h1>Python APScheduler ライブラリの概要</h1>
+    
+    <div class="container">
+        <div class="card">
+            <h2>1. APSchedulerライブラリの紹介</h2>
+            <ul>
+                <li>Pythonで定期的にジョブを実行できるライブラリ</li>
+                <li>作業効率を向上させるために活用可能</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>2. APSchedulerでできること</h2>
+            <ul>
+                <li>PCで定期的に様々なジョブを実行
+                    <ul>
+                        <li>例：10分ごとにウェブページをスクレイピングしてExcelにデータを書き込む</li>
+                        <li>例：1時間ごとに休憩通知を表示する</li>
+                    </ul>
+                </li>
+                <li>PCの電源が入っている間のみジョブが実行される</li>
+                <li>PC電源オフ時にもジョブを実行したい場合はクラウドサービスが必要</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3. APSchedulerの使い方</h2>
+            <ul>
+                <li>インストール: <code>pip install apscheduler</code></li>
+                <li>実行したいジョブの関数を作成</li>
+                <li>BlockingSchedulerを使用してジョブのスケジュールを設定</li>
+                <li>"interval"トリガーで特定の間隔でジョブを実行
+                    <ul>
+                        <li>間隔は秒、分、時間で指定可能</li>
+                    </ul>
+                </li>
+                <li>"cron"トリガーで特定の時刻にジョブを実行可能</li>
+                <li>複数のジョブを登録して同時に実行可能</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>4. 実践例 - 休憩通知</h2>
+            <ul>
+                <li>notify-pyライブラリを使用して通知を表示</li>
+                <li>インストール: <code>pip install notify-py</code></li>
+                <li>通知を表示する関数の作成</li>
+                <li>定期的に通知が表示されるようにスケジュール設定</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>5. バックグラウンドでのジョブ実行</h2>
+            <ul>
+                <li>問題：Pythonコンソールを閉じるとプロセスが終了する</li>
+                <li>解決策：プロセスをシェルから切り離す
+                    <ul>
+                        <li>Mac: <code>nohup python ファイルパス > ログファイル 2>&1 &</code>を使用</li>
+                        <li>Windows: PowerShellで<code>Start-Process</code>を使用</li>
+                    </ul>
+                </li>
+                <li>終了方法: 
+                    <ul>
+                        <li>Mac: <code>kill [プロセスID]</code></li>
+                        <li>Windows: <code>Stop-Process -Id [プロセスID]</code></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="summary">
+        <h2>要約</h2>
+        <p>
+            APSchedulerはPythonで定期的にジョブを実行できるライブラリで、PCの電源が入っている間、様々な自動化タスクを実行できます。使用方法は簡単で、まず実行したい処理を関数として定義し、BlockingSchedulerを使ってスケジュールを設定します。ジョブは一定間隔（秒、分、時間単位）または特定の時刻に実行するよう設定でき、複数のジョブを同時に登録することも可能です。実践例として、notify-pyライブラリを使った休憩通知の実装方法が紹介されています。Pythonプロセスをシェルから切り離してバックグラウンドで実行する方法も解説されており、これによりコンソールを閉じてもジョブが継続して実行されます。APSchedulerは作業効率化に役立つ便利なツールです。
+        </p>
+    </div>
+</body>
+</html>

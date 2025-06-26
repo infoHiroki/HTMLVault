@@ -1,0 +1,283 @@
+{
+  "files": [
+    {
+      "id": "education-training",
+      "path": "2025-06-26-system-education-training.html",
+      "title": "専門実践教育訓練給付制度",
+      "description": "プログラミング学習で最大80％の費用が戻ってくる国の制度",
+      "tags": ["給付金", "教育訓練", "補助金", "プログラミング学習", "厚生労働省"],
+      "created": "2025-06-26",
+      "category": "制度・補助金"
+    },
+    {
+      "id": "education-ai-summary",
+      "path": "2025-06-26-edu-ai-summary.html",
+      "title": "教育AI要約",
+      "description": "教育分野におけるAI活用の要約情報",
+      "tags": ["AI", "教育", "要約", "テクノロジー"],
+      "created": "2025-06-26",
+      "category": "教育・AI"
+    },
+    {
+      "id": "llmo-checklist",
+      "path": "2025-06-26-tech-llmo-checklist.html",
+      "title": "LLMOの対策チェックリスト",
+      "description": "LLMOアプリケーション開発における重要な対策事項のチェックリスト",
+      "tags": ["LLMO", "チェックリスト", "開発", "対策", "セキュリティ"],
+      "created": "2025-06-26",
+      "category": "技術・開発"
+    },
+    {
+      "id": "claude-code",
+      "path": "2025-06-26-tech-claude-code.html",
+      "title": "Claude Codeがエンジニアの働き方を変える",
+      "description": "AIペアプログラミングツールClaude Codeによる開発効率化の解説",
+      "tags": ["Claude Code", "AI", "プログラミング", "開発効率化", "ペアプログラミング"],
+      "created": "2025-06-26",
+      "category": "技術・開発"
+    },
+    {
+      "id": "go-tutorial",
+      "path": "2025-06-26-tech-go-tutorial.html",
+      "title": "Go言語入門チュートリアル",
+      "description": "Go言語の基礎から実践までを学ぶ総合的なチュートリアル",
+      "tags": ["Go", "プログラミング", "チュートリアル", "入門", "言語学習"],
+      "created": "2025-06-26",
+      "category": "技術・開発"
+    },
+    {
+      "id": "react-libraries-complete-guide",
+      "path": "2025-04-19-react-libraries-complete-guide.html",
+      "title": "React ライブラリ完全ガイド",
+      "description": "React開発に必要なライブラリとツールの包括的な解説",
+      "tags": ["React", "ライブラリ", "フロントエンド", "JavaScript", "開発ツール"],
+      "created": "2025-04-19",
+      "category": "技術・開発"
+    },
+    {
+      "id": "python-fastapi-basic-guide",
+      "path": "2025-04-22-python-fastapi-basic-guide.html",
+      "title": "FastAPI 基本ガイド",
+      "description": "FastAPIの基本概念から実装まで、WebAPI開発の解説",
+      "tags": ["Python", "FastAPI", "WebAPI", "バックエンド", "REST"],
+      "created": "2025-04-22",
+      "category": "技術・開発"
+    },
+    {
+      "id": "python-frameworks-comprehensive-guide",
+      "path": "2025-04-23-python-frameworks-comprehensive-guide.html",
+      "title": "Python フレームワーク包括ガイド",
+      "description": "Pythonフレームワークと便利ツールの総合的な解説",
+      "tags": ["Python", "フレームワーク", "Django", "Flask", "開発ツール"],
+      "created": "2025-04-23",
+      "category": "技術・開発"
+    },
+    {
+      "id": "obsidian-directory-structure-example",
+      "path": "2025-05-06-tool-obsidian-directory-structure-example.html",
+      "title": "Obsidian ディレクトリ構造の例",
+      "description": "Obsidianの効果的なディレクトリ構造設計の具体例",
+      "tags": ["Obsidian", "ディレクトリ構造", "情報整理", "ノートテイキング"],
+      "created": "2025-05-06",
+      "category": "その他"
+    },
+    {
+      "id": "whisper-implementation-guide",
+      "path": "2025-05-13-ai-whisper-implementation-guide.html",
+      "title": "Whisper AI 実装ガイド",
+      "description": "Whisper AIを使った音声認識システムの実装方法",
+      "tags": ["AI", "Whisper", "音声認識", "Python", "機械学習"],
+      "created": "2025-05-13",
+      "category": "教育・AI"
+    },
+    {
+      "id": "framer-figma-guide",
+      "path": "2025-05-14-design-figma-to-framer-guide.html",
+      "title": "Figma to Framer ガイド",
+      "description": "FigmaデザインをFramerにインポートするための実践ガイド",
+      "tags": ["Figma", "Framer", "デザイン", "プロトタイピング", "UI/UX"],
+      "created": "2025-05-14",
+      "category": "デザイン"
+    },
+    {
+      "id": "framer-html-extension-guide",
+      "path": "2025-05-14-design-framer-html-extension-guide.html",
+      "title": "Framer HTML拡張ガイド",
+      "description": "FramerのHTML取り込み拡張機能の使い方",
+      "tags": ["Framer", "HTML", "拡張機能", "コンポーネント", "デザイン"],
+      "created": "2025-05-14",
+      "category": "デザイン"
+    },
+    {
+      "id": "framer-practical-manual",
+      "path": "2025-05-14-design-framer-practical-manual.html",
+      "title": "Framer 実践マニュアル",
+      "description": "Framerの実践的な操作方法とショートカット集",
+      "tags": ["Framer", "マニュアル", "操作方法", "ショートカット", "デザインツール"],
+      "created": "2025-05-14",
+      "category": "デザイン"
+    },
+    {
+      "id": "aseprite-basic-manual",
+      "path": "2025-05-15-design-aseprite-basic-manual.html",
+      "title": "Aseprite 基本マニュアル",
+      "description": "Asepriteを使ったピクセルアート作成の基本マニュアル",
+      "tags": ["Aseprite", "ピクセルアート", "ドット絵", "デザイン", "アニメーション"],
+      "created": "2025-05-15",
+      "category": "デザイン"
+    },
+    {
+      "id": "aseprite-pixel-art-guide",
+      "path": "2025-05-15-design-aseprite-pixel-art-guide.html",
+      "title": "Aseprite ピクセルアートガイド",
+      "description": "Asepriteでのピクセルアート作成特化ガイド",
+      "tags": ["Aseprite", "ピクセルアート", "ドット絵", "アート", "クリエイティブ"],
+      "created": "2025-05-15",
+      "category": "デザイン"
+    },
+    {
+      "id": "aseprite-reference-image-guide",
+      "path": "2025-05-15-design-aseprite-reference-image-guide.html",
+      "title": "Aseprite 参照画像ガイド",
+      "description": "Asepriteで下絵・参照画像を使用する方法",
+      "tags": ["Aseprite", "参照画像", "下絵", "ワークフロー", "デザイン"],
+      "created": "2025-05-15",
+      "category": "デザイン"
+    },
+    {
+      "id": "lazygit-cheatsheet",
+      "path": "2025-05-15-tech-lazygit-cheatsheet.html",
+      "title": "LazyGit チートシート",
+      "description": "LazyGitの基本操作とショートカット集",
+      "tags": ["LazyGit", "Git", "チートシート", "ショートカット", "バージョン管理"],
+      "created": "2025-05-15",
+      "category": "技術・開発"
+    },
+    {
+      "id": "figma-responsive-web-guide",
+      "path": "2025-05-16-design-figma-to-responsive-web-guide.html",
+      "title": "Figma レスポンシブウェブガイド",
+      "description": "Figmaからレスポンシブウェブサイトを作成する最簡単方法",
+      "tags": ["Figma", "レスポンシブ", "ウェブサイト", "デザイン", "フロントエンド"],
+      "created": "2025-05-16",
+      "category": "デザイン"
+    },
+    {
+      "id": "python-apscheduler-overview",
+      "path": "2025-05-16-python-apscheduler-overview.html",
+      "title": "APScheduler ライブラリ概要",
+      "description": "APSchedulerによる定期実行・自動化システムの解説",
+      "tags": ["Python", "APScheduler", "定期実行", "自動化", "スケジュール"],
+      "created": "2025-05-16",
+      "category": "技術・開発"
+    },
+    {
+      "id": "ai-terminology-comprehensive-guide",
+      "path": "2025-05-19-ai-terminology-comprehensive-guide.html",
+      "title": "AI用語包括ガイド",
+      "description": "生成AI基礎用語集（50パターン）",
+      "tags": ["AI", "用語集", "機械学習", "深層学習", "生成AI"],
+      "created": "2025-05-19",
+      "category": "教育・AI"
+    },
+    {
+      "id": "firebase-complete-guide",
+      "path": "2025-05-24-cloud-firebase-complete-guide.html",
+      "title": "Firebase 完全ガイド",
+      "description": "Firebaseの歴史・機能・開発フローの包括的解説",
+      "tags": ["Firebase", "クラウド", "バックエンド", "Google", "モバイル開発"],
+      "created": "2025-05-24",
+      "category": "技術・開発"
+    },
+    {
+      "id": "claude-code-30min-masterclass",
+      "path": "2025-05-24-tech-claude-code-30min-masterclass.html",
+      "title": "Claude Code 30分マスタークラス",
+      "description": "Claude Codeプレゼンテーション概要（Boris Cherny講演）",
+      "tags": ["Claude Code", "AI", "プレゼンテーション", "開発ツール", "マスタークラス"],
+      "created": "2025-05-24",
+      "category": "技術・開発"
+    },
+    {
+      "id": "serverside-programming-languages-guide",
+      "path": "2025-05-24-tech-serverside-programming-languages-guide.html",
+      "title": "サーバーサイドプログラミング言語ガイド",
+      "description": "サーバーサイドプログラミング言語12言語の完全ガイド",
+      "tags": ["サーバーサイド", "プログラミング言語", "バックエンド", "言語比較", "開発"],
+      "created": "2025-05-24",
+      "category": "技術・開発"
+    },
+    {
+      "id": "claude-code-comprehensive-guide",
+      "path": "2025-06-05-tech-claude-code-comprehensive-guide.html",
+      "title": "Claude Code 包括ガイド",
+      "description": "Claude Code解説インフォグラフィック",
+      "tags": ["Claude Code", "AI", "開発ツール", "インフォグラフィック", "ガイド"],
+      "created": "2025-06-05",
+      "category": "技術・開発"
+    },
+    {
+      "id": "python-uv-package-manager-guide",
+      "path": "2025-06-09-python-uv-package-manager-guide.html",
+      "title": "Python UV パッケージマネージャーガイド",
+      "description": "Rust製Pythonパッケージマネージャーの包括的解説",
+      "tags": ["Python", "UV", "パッケージマネージャー", "Rust", "開発ツール"],
+      "created": "2025-06-09",
+      "category": "技術・開発"
+    },
+    {
+      "id": "docker-virtualization-complete-guide",
+      "path": "2025-06-09-tech-docker-virtualization-complete-guide.html",
+      "title": "Docker 仮想化完全ガイド",
+      "description": "Docker・仮想化技術の包括的解説",
+      "tags": ["Docker", "仮想化", "コンテナ", "DevOps", "インフラ"],
+      "created": "2025-06-09",
+      "category": "技術・開発"
+    },
+    {
+      "id": "devops-mastering-roadmap-2025",
+      "path": "2025-06-10-tech-devops-mastering-roadmap-2025.html",
+      "title": "DevOps マスタリングロードマップ 2025",
+      "description": "DevOps学習のための4段階ロードマップ",
+      "tags": ["DevOps", "ロードマップ", "学習", "インフラ", "自動化"],
+      "created": "2025-06-10",
+      "category": "技術・開発"
+    },
+    {
+      "id": "ai-tools-practical-tips-presentation",
+      "path": "2025-06-18-ai-tools-practical-tips-presentation.html",
+      "title": "AIツール実践的コツ プレゼンテーション",
+      "description": "AIツール活用術・実践的7つのコツ（スライド形式）",
+      "tags": ["AI", "ツール", "活用術", "プレゼンテーション", "実践"],
+      "created": "2025-06-18",
+      "category": "教育・AI"
+    },
+    {
+      "id": "github-actions-cicd-guide",
+      "path": "2025-06-21-tech-github-actions-cicd-guide.html",
+      "title": "GitHub Actions CI/CD ガイド",
+      "description": "GitHub Actions CI/CDの完全解説",
+      "tags": ["GitHub Actions", "CI/CD", "自動化", "DevOps", "Git"],
+      "created": "2025-06-21",
+      "category": "技術・開発"
+    },
+    {
+      "id": "software-design-patterns-guide",
+      "path": "2025-06-21-tech-software-design-patterns-guide.html",
+      "title": "ソフトウェアデザインパターンガイド",
+      "description": "ソフトウェアデザインパターン解説（初心者向け・10パターン）",
+      "tags": ["デザインパターン", "ソフトウェア設計", "プログラミング", "アーキテクチャ", "初心者"],
+      "created": "2025-06-21",
+      "category": "技術・開発"
+    },
+    {
+      "id": "claude-code-features-summary",
+      "path": "2025-06-22-tech-claude-code-features-summary.html",
+      "title": "Claude Code 機能まとめ",
+      "description": "Claude Codeの機能をまとめたインフォグラフィック",
+      "tags": ["Claude Code", "機能", "まとめ", "インフォグラフィック", "AI"],
+      "created": "2025-06-22",
+      "category": "技術・開発"
+    }
+  ]
+}

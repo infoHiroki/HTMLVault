@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ソフトウェアデザインパターン解説【初心者向け】</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本設定 */
+        :root {
+            --accent-gradient: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            --bg-dark: #1a202c;
+            --bg-card: #2d3748;
+            --text-primary: #e2e8f0;
+            --text-secondary: #a0aec0;
+            --border-color: #4a5568;
+            --annotation-color: #8a99b0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        /* 全体を囲むコンテナ */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* メインヘッダー */
+        .main-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .main-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 10px 0;
+        }
+
+        .main-header p {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+        }
+
+        /* 各セクションを囲むカード */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* セクションタイトル */
+        .card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid;
+            border-image: var(--accent-gradient) 1;
+            color: var(--text-primary);
+        }
+
+        /* 箇条書きリスト */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding-left: 2em;
+            position: relative;
+            margin-bottom: 20px; /* 注釈スペース確保のため少し広げる */
+            font-size: 1.05em;
+        }
+
+        /* 箇条書きのカスタムマーカー */
+        li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(79, 172, 254, 0.5);
+        }
+
+        strong {
+            font-weight: 500;
+            color: #88d8ff;
+        }
+        
+        /* インデントされたリスト */
+        ul ul {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+        ul ul li {
+            font-size: 1em; /* 少し小さくして階層を分かりやすく */
+        }
+        ul ul li::before {
+            background: none;
+            border: 2px solid #00f2fe;
+            width: 8px;
+            height: 8px;
+            top: 11px;
+            left: 2px;
+        }
+        ul ul ul li::before {
+            background: var(--text-secondary);
+            border: none;
+            width: 6px;
+            height: 6px;
+            top: 13px;
+            left: 4px;
+            border-radius: 2px;
+            transform: rotate(45deg);
+        }
+
+        /* 注釈スタイル */
+        .annotation {
+            display: block;
+            font-size: 0.9em;
+            color: var(--annotation-color);
+            margin-top: 5px;
+            padding-left: 0.2em; /* 本文と少しずらす */
+            font-style: italic;
+        }
+
+        /* 要約文 */
+        .summary p {
+            font-size: 1.05em;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="main-header">
+            <h1>Software Design Patterns 🎨</h1>
+            <p>10の主要なソフトウェアデザインパターンの概念と実践【初心者向け解説】</p>
+        </header>
+
+        <div class="card">
+            <h2>重要なポイント 🎯</h2>
+            <ul>
+                <li><strong>ソフトウェアデザインパターン</strong>
+                    <span class="annotation">🖋️ プログラムの「設計図」のようなもの。過去の偉大なプログラマー達が見つけた、よくある問題に対するスマートな解決策集です。</span>
+                </li>
+                <li><strong>GoF (Gang of Four)</strong>
+                    <span class="annotation">👨‍💻👨‍💻👨‍💻👨‍💻 デザインパターンを世に広めた、4人の伝説的エンジニアたちのこと。彼らの本がすべての始まりです。</span>
+                </li>
+                <li><strong>デザインパターンの3つのカテゴリ</strong>
+                    <span class="annotation">🗂️ パターンは役割ごとに3つのグループに分けられます。</span>
+                    <ul>
+                        <li><strong>生成 (Creational) パターン</strong> ✨
+                            <span class="annotation">オブジェクト（モノ）を「どうやって作るか？」に関するパターン。</span>
+                            <ul>
+                                <li><strong>Singleton</strong> 🗝️ <span class="annotation">（シングルトン）「世界に一つだけ」を保証。アプリ全体の設定など。</span></li>
+                                <li><strong>Prototype</strong> 🐑 <span class="annotation">（プロトタイプ）クローンのように、すでにあるモノを複製して新しいモノを作る。</span></li>
+                                <li><strong>Builder</strong> 🍔 <span class="annotation">（ビルダー）ハンバーガーを注文するように、パーツを組み合わせて複雑なモノを作る。</span></li>
+                                <li><strong>Factory</strong> 🏭 <span class="annotation">（ファクトリー）モノ作りの専門工場。作るモノの種類に応じて適切な工程で製造してくれる。</span></li>
+                            </ul>
+                        </li>
+                        <li><strong>構造 (Structural) パターン</strong> 🧱
+                            <span class="annotation">モノとモノを「どうやって組み合わせるか？」に関するパターン。</span>
+                             <ul>
+                                <li><strong>Facade</strong> 🏢 <span class="annotation">（ファサード）複雑なシステムの「総合受付」。難しい内部処理を隠して、簡単な操作だけを提供。</span></li>
+                                <li><strong>Proxy</strong> 👤 <span class="annotation">（プロキシ）「代理人」。本人に代わって処理を行い、セキュリティチェックなどを追加できる。</span></li>
+                            </ul>
+                        </li>
+                        <li><strong>振る舞い (Behavioral) パターン</strong> ⚙️
+                             <span class="annotation">モノ同士が「どうやって連携・コミュニケーションするか？」に関するパターン。</span>
+                             <ul>
+                                <li><strong>Iterator</strong> 🚶‍♂️ <span class="annotation">（イテレータ）リストや配列の中身を「順番に見ていく」ための統一ルール。</span></li>
+                                <li><strong>Observer</strong> 📡 <span class="annotation">（オブザーバー）「お知らせ機能」。発信者の変化を、登録者全員に一斉に通知する。</span></li>
+                                <li><strong>Mediator</strong> 🤝 <span class="annotation">（メディエータ）「仲介役」。たくさんのモノ同士が直接やりとりせず、仲介役を通してコミュニケーションする。</span></li>
+                                <li><strong>State</strong> 🎭 <span class="annotation">（ステート）「気分」によって振る舞いが変わる。オブジェクトが内部の状態に応じて動作を切り替える。</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card summary">
+            <h2>要約 📝</h2>
+            <p>
+                この動画は、ソフトウェア開発における<strong>10種類の主要なデザインパターン</strong>を、初心者にも分かりやすく解説するものです。デザインパターンとは、よくある問題への賢い解決策集であり、大きく分けて<strong>「生成 ✨」「構造 🧱」「振る舞い ⚙️」</strong>の3つのカテゴリに分類されます。
+                <br><br>
+                動画では、世界に一つの存在を保証する「シングルトン」や、複雑なシステムを単純に見せる「ファサード」、オブジェクト間の交通整理を行う「メディエータ」などが、具体的なコード例と共に紹介されます。デザインパターンは単なる暗記ではなく、<strong>問題解決の引き出しを増やすための強力な思考ツール</strong>です。ただし、何でもかんでも使うと逆にコードが複雑になるため、状況に応じて適切に使い分けることが重要だと強調されています。
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

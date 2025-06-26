@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>infoHiroki</title>
+  <link rel="icon" type="image/svg+xml" href="assets/HirokiLOGO.svg">
+  <link rel="alternate icon" href="assets/HirokiLOGO.svg">
+  <style>
+    /* カラーパレット */
+    :root {
+      /* パープル - 60年代サイケデリック */
+      --purple-50: #faf5ff;
+      --purple-100: #f3e8ff;
+      --purple-200: #e9d5ff;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --purple-600: #9333ea;
+      --purple-700: #7c3aed;
+      --purple-800: #6b21a8;
+      --purple-900: #581c87;
+      
+      /* グレー */
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      
+      /* アクセントカラー - 60年代サイケデリック */
+      --fuchsia-400: #f472b6;
+      --fuchsia-500: #ec4899;
+      --fuchsia-600: #db2777;
+      --orange-400: #fb923c;
+      --orange-500: #f97316;
+      --orange-600: #ea580c;
+      --psychedelic-green-400: #4ade80;
+      --psychedelic-green-500: #22c55e;
+      --psychedelic-green-600: #16a34a;
+      --retro-cream-400: #fef3c7;
+      --retro-cream-500: #fde68a;
+      --retro-cream-600: #fbbf24;
+      
+      /* セマンティックカラー */
+      --bg-primary: var(--purple-50);
+      --bg-secondary: #ffffff;
+      --bg-tertiary: var(--retro-cream-400);
+      --text-primary: var(--gray-900);
+      --text-secondary: var(--gray-600);
+      --text-tertiary: var(--gray-500);
+      --text-inverse: #ffffff;
+      --border-primary: var(--purple-200);
+      --border-secondary: var(--purple-300);
+      --border-focus: var(--fuchsia-500);
+      --action-primary: var(--purple-600);
+      --action-primary-hover: var(--purple-700);
+      --action-secondary: var(--fuchsia-500);
+      --action-secondary-hover: var(--fuchsia-600);
+      
+      /* カテゴリー色 */
+      --category-system: var(--purple-600);
+      --category-education: var(--psychedelic-green-500);
+      --category-tech: var(--fuchsia-500);
+      --category-business: var(--orange-500);
+      --category-design: var(--retro-cream-600);
+      --category-other: var(--gray-500);
+      
+      /* 状態色 */
+      --state-hover: rgba(147, 51, 234, 0.05);
+      --state-active: rgba(147, 51, 234, 0.1);
+      --state-focus: rgba(236, 72, 153, 0.15);
+      
+      /* スペーシング */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      
+      /* タイポグラフィ */
+      --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+      --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+      --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+      --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    }
+    
+    /* リセット */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* ベース */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+                   "Hiragino Sans", "Noto Sans CJK JP", sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+    }
+    
+    /* レイアウト */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    
+    /* ヘッダー */
+    .header {
+      background-color: var(--bg-secondary);
+      border-bottom: 2px solid var(--border-primary);
+      padding: var(--space-md) 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--action-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo:hover {
+      color: var(--action-primary-hover);
+    }
+    
+    
+    /* 検索セクション */
+    .search-section {
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+    
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: var(--space-md) var(--space-lg);
+      font-size: 16px;
+      border: 2px solid var(--border-primary);
+      border-radius: 12px;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--state-focus);
+    }
+    
+    .search-input::placeholder {
+      color: var(--text-tertiary);
+    }
+    
+    /* タブナビゲーション */
+    .tab-nav {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+    
+    .tab-item {
+      background: none;
+      border: 1px solid var(--border-primary);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .tab-item:hover {
+      background-color: var(--state-hover);
+      border-color: var(--border-secondary);
+    }
+    
+    .tab-item.active {
+      background-color: var(--action-primary);
+      color: var(--text-inverse);
+      border-color: var(--action-primary);
+    }
+    
+    /* カードグリッド */
+    .main-content {
+      padding: var(--space-xl) 0;
+    }
+    
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    
+    /* ファイルカード */
+    .file-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-primary);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      transform: translateZ(0);
+      will-change: transform;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .file-card:hover {
+      transform: translateY(-4px) translateZ(0);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      border-color: var(--border-secondary);
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+    
+    .category-badge {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 6px;
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      color: var(--text-inverse);
+      background-color: var(--category-system);
+    }
+    
+    .category-badge.education {
+      background-color: var(--category-education);
+    }
+    
+    .card-date {
+      font-size: var(--font-size-xs);
+      color: var(--text-tertiary);
+    }
+    
+    .card-body {
+      flex: 1;
+    }
+    
+    .card-title {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      color: var(--text-primary);
+    }
+    
+    .card-description {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+      line-height: 1.5;
+    }
+    
+    .card-footer {
+      margin-top: auto;
+    }
+    
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    
+    .tag {
+      padding: var(--space-xs) var(--space-sm);
+      background-color: var(--state-hover);
+      color: var(--text-secondary);
+      border-radius: 4px;
+      font-size: var(--font-size-xs);
+      border: 1px solid var(--border-primary);
+    }
+    
+    /* 検索結果 */
+    .search-results {
+      margin-bottom: var(--space-lg);
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: var(--space-2xl);
+      color: var(--text-tertiary);
+    }
+    
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--space-md);
+      }
+      
+      .search-input {
+        font-size: 16px;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: stretch;
+      }
+      
+      .tab-nav {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .tab-item {
+        flex: 1;
+        min-width: 0;
+        font-size: var(--font-size-xs);
+        padding: var(--space-xs) var(--space-sm);
+      }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .container {
+        max-width: 1024px;
+        padding: 0 var(--space-lg);
+      }
+      
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+      }
+    }
+    
+    @media (min-width: 1025px) {
+      .container {
+        padding: 0 var(--space-xl);
+      }
+      
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-xl);
+      }
+      
+      body {
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <img src="assets/HirokiLOGO.svg" alt="Hiroki Logo" style="height: 2rem; width: auto; margin-right: 0.5rem; vertical-align: middle;">
+          <span>infoHiroki</span>
+        </a>
+        <nav class="tab-nav" id="tabNav">
+          <button class="tab-item" data-sort="date">📅 新着順</button>
+          <button class="tab-item" data-sort="title">🔤 名前順</button>
+          <button class="tab-item" id="refreshFiles">🔄 更新</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- 検索セクション -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-container">
+        <input 
+          type="search" 
+          class="search-input" 
+          id="searchInput"
+          placeholder="ファイルを検索... (タイトル、説明、タグから検索)"
+          aria-label="ファイル検索"
+          autocomplete="off"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content">
+    <div class="container">
+      <div class="search-results" id="searchResults"></div>
+      <div class="card-grid" id="cardGrid">
+        <!-- カードはJavaScriptで動的生成 -->
+      </div>
+      <div class="no-results" id="noResults" style="display: none;">
+        <p>該当するファイルが見つかりません</p>
+        <p><small>別のキーワードで検索してみてください</small></p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer style="margin-top: var(--space-2xl); padding: var(--space-sm) 0; text-align: center; color: var(--text-tertiary); font-size: var(--font-size-xs); opacity: 0.7;">
+    © 2022 infoHiroki. All rights reserved.
+  </footer>
+
+  <script src="auto-scan.js"></script>
+  <script>
+    // アプリケーション状態
+    let files = [];
+    let filteredFiles = [];
+    let currentSort = 'date';
+    let searchQuery = '';
+    let autoManager = null;
+
+    // DOM要素
+    const searchInput = document.getElementById('searchInput');
+    const cardGrid = document.getElementById('cardGrid');
+    const searchResults = document.getElementById('searchResults');
+    const noResults = document.getElementById('noResults');
+    const tabNav = document.getElementById('tabNav');
+    const refreshButton = document.getElementById('refreshFiles');
+
+    // 自動ファイル検出によるデータ読み込み
+    async function loadFiles() {
+      try {
+        if (!autoManager) {
+          autoManager = new AutoFileManager();
+        }
+        
+        files = await autoManager.refreshFileList();
+        filteredFiles = [...files];
+        
+        console.log('自動検出されたファイル:', files);
+        
+        renderFiles();
+        updateSearchResults();
+        
+        // デバッグ: 生成されたfiles.jsonを表示
+        console.log('Generated files.json:', autoManager.generateFilesJSON());
+        
+      } catch (error) {
+        console.error('ファイルの読み込みに失敗しました:', error);
+        // フォールバック: 元のfiles.jsonを試行
+        try {
+          const response = await fetch('files.json');
+          files = (await response.json()).files;
+          filteredFiles = [...files];
+          renderFiles();
+          updateSearchResults();
+        } catch (fallbackError) {
+          console.error('フォールバック読み込みも失敗しました:', fallbackError);
+        }
+      }
+    }
+
+
+    // ファイル描画
+    function renderFiles() {
+      if (filteredFiles.length === 0) {
+        cardGrid.style.display = 'none';
+        noResults.style.display = 'block';
+        return;
+      }
+
+      cardGrid.style.display = 'grid';
+      noResults.style.display = 'none';
+
+      cardGrid.innerHTML = filteredFiles.map(file => `
+        <div class="file-card" onclick="openFile('${file.path}')">
+          <div class="card-header">
+            <span class="category-badge ${getCategoryClass(file.category)}">${file.category}</span>
+            <time class="card-date">${file.created}</time>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${file.title}</h3>
+            <p class="card-description">${file.description}</p>
+          </div>
+          <div class="card-footer">
+            <div class="tag-list">
+              ${file.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
+              ${file.tags.length > 3 ? `<span class="tag">+${file.tags.length - 3}</span>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // カテゴリークラス取得
+    function getCategoryClass(category) {
+      const classMap = {
+        '教育・AI': 'education',
+        '技術・開発': 'tech',
+        'ビジネス': 'business',
+        'デザイン': 'design'
+      };
+      return classMap[category] || '';
+    }
+
+    // ファイルオープン
+    function openFile(path) {
+      window.open(path, '_blank');
+    }
+
+    // 検索
+    function search(query) {
+      searchQuery = query.toLowerCase().trim();
+      applyFilters();
+    }
+
+    // フィルター適用
+    function applyFilters() {
+      let result = [...files];
+
+      // 検索フィルター
+      if (searchQuery) {
+        result = result.filter(file => {
+          const searchFields = [
+            file.title,
+            file.description,
+            file.category,
+            ...file.tags
+          ].join(' ').toLowerCase();
+          return searchFields.includes(searchQuery);
+        });
+      }
+
+      // ソート
+      result.sort((a, b) => {
+        if (currentSort === 'date') {
+          return new Date(b.created) - new Date(a.created);
+        } else if (currentSort === 'title') {
+          return a.title.localeCompare(b.title, 'ja');
+        }
+        return 0;
+      });
+
+      filteredFiles = result;
+      renderFiles();
+      updateSearchResults();
+    }
+
+    // 検索結果表示更新
+    function updateSearchResults() {
+      const total = files.length;
+      const filtered = filteredFiles.length;
+      
+      if (searchQuery) {
+        searchResults.textContent = `${filtered}件 / 全${total}件`;
+        searchResults.style.display = 'block';
+      } else {
+        searchResults.style.display = 'none';
+      }
+    }
+
+    // イベントリスナー
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        search(e.target.value);
+      }, 300);
+    });
+
+    // タブナビゲーション
+    tabNav.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('tab-item')) return;
+
+      // ソート処理
+      if (e.target.dataset.sort) {
+        // アクティブ状態更新
+        document.querySelectorAll('[data-sort]').forEach(item => {
+          item.classList.remove('active');
+        });
+        e.target.classList.add('active');
+        
+        currentSort = e.target.dataset.sort;
+        applyFilters();
+      }
+    });
+
+
+    // ファイル再読み込み
+    refreshButton.addEventListener('click', async () => {
+      refreshButton.textContent = '🔄 読み込み中...';
+      refreshButton.disabled = true;
+      
+      try {
+        await loadFiles();
+        
+        // ソート状態をリセット
+        document.querySelectorAll('[data-sort]').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelector('[data-sort="date"]').classList.add('active');
+        
+        alert(`${files.length}個のHTMLファイルを検出しました！`);
+      } catch (error) {
+        alert('ファイルの再読み込みに失敗しました');
+      } finally {
+        refreshButton.textContent = '🔄 ファイル再読み込み';
+        refreshButton.disabled = false;
+      }
+    });
+
+    // キーボードショートカット
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        searchInput.blur();
+      }
+      if (e.key === '/' && !e.target.matches('input')) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+        e.preventDefault();
+        refreshButton.click();
+      }
+    });
+
+    // 初期化
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFiles();
+      // 初期ソート状態を設定
+      setTimeout(() => {
+        const dateButton = document.querySelector('[data-sort="date"]');
+        if (dateButton) dateButton.classList.add('active');
+      }, 100);
+    });
+  </script>
+</body>
+</html>

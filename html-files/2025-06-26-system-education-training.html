@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>専門実践教育訓練給付制度</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9ff;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2::before {
+            content: '▶';
+            margin-right: 10px;
+            color: #764ba2;
+        }
+        
+        .points {
+            margin-left: 20px;
+        }
+        
+        .point {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .sub-point {
+            margin-left: 20px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .money-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .money-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #667eea;
+        }
+        
+        .money-amount {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 15px 35px rgba(240, 147, 251, 0.3);
+        }
+        
+        .summary h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .accent {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            background: white;
+            padding: 20px;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            border: 3px solid #667eea;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>専門実践教育訓練給付制度</h1>
+            <p>プログラミング学習で最大80％の費用が戻ってくる国の制度</p>
+            <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                ソース：<a href="https://www.youtube.com/watch?v=sP90wTNKVwM" target="_blank" style="color: white; text-decoration: underline;">ランテック エンジニア転職チャンネル</a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>制度の概要</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>厚生労働大臣指定の教育訓練</strong>を修了した人に対し、費用の一部を支給する制度
+                        <div class="sub-point">ランテックも専門実践教育訓練給付金に認定済み</div>
+                        <div class="sub-point">最大80％の受講料が戻ってくる</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>対象者の条件</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>在職中の方</strong>
+                        <div class="sub-point">雇用保険加入中</div>
+                        <div class="sub-point">初回利用者：雇用保険加入期間 通算2年以上</div>
+                        <div class="sub-point">パート・アルバイト・派遣労働者も対象</div>
+                    </div>
+                    <div class="point">
+                        <strong>離職中の方</strong>
+                        <div class="sub-point">離職から1年以内</div>
+                        <div class="sub-point">雇用保険加入期間 通算2年以上</div>
+                        <div class="sub-point">教育訓練給付の初回利用者</div>
+                    </div>
+                    <div class="point">
+                        <strong>過去に利用経験がある方</strong>
+                        <div class="sub-point">必要な雇用保険加入期間を満たせば再度利用可能</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>給付金の受給タイミングと金額</h2>
+                <div class="money-flow">
+                    <div class="money-card">
+                        <div class="money-amount">50％</div>
+                        <div>受講中</div>
+                        <div>275,000円</div>
+                    </div>
+                    <div class="money-card">
+                        <div class="money-amount">+20％</div>
+                        <div>受講終了後</div>
+                        <div>110,000円</div>
+                    </div>
+                    <div class="money-card">
+                        <div class="money-amount">+10％</div>
+                        <div>賃金5％以上上昇時</div>
+                        <div>55,000円</div>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    最大44万円が戻ってくる！実質負担：月額約1万2千円
+                </div>
+                
+                <div class="points">
+                    <div class="point">
+                        <strong>在職継続の場合：70％（385,000円）</strong>が戻ってくる
+                        <div class="sub-point">転職しなくてもスキルアップ目的で利用可能</div>
+                    </div>
+                    <div class="point">
+                        <strong>転職成功+賃金アップの場合：80％（440,000円）</strong>が戻ってくる
+                        <div class="sub-point">受講前より5％以上賃金が上昇した場合のボーナス</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>失業給付の特別措置</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>通常の失業給付</strong>
+                        <div class="sub-point">自己都合退職：7日間の待機期間 + 2〜3ヶ月の給付制限</div>
+                        <div class="sub-point">令和7年4月以降の離職者：給付制限期間が1ヶ月に短縮</div>
+                    </div>
+                    <div class="point">
+                        <strong>リスキリング目的の教育訓練受講者</strong>
+                        <div class="sub-point">1ヶ月の給付制限が免除</div>
+                        <div class="sub-point">待機期間終了後すぐに失業給付の受給が可能</div>
+                        <div class="sub-point">教育訓練給付金と併用可能</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>申請手続きの流れ</h2>
+                <div class="process-steps">
+                    <div class="step">1. 訓練前キャリアコンサルティング予約</div>
+                    <div class="step">2. ジョブカード作成</div>
+                    <div class="step">3. キャリアコンサルティング受講</div>
+                    <div class="step">4. 受給資格確認手続き</div>
+                    <div class="step">5. 学習開始</div>
+                </div>
+                
+                <div class="points">
+                    <div class="point">
+                        <strong>ハローワークでの手続きが必要</strong>
+                        <div class="sub-point">全国どこのハローワークでも対応</div>
+                        <div class="sub-point">オンラインでの手続きも可能</div>
+                        <div class="sub-point">受講開始前に手続きを完了させる必要がある</div>
+                    </div>
+                    <div class="point">
+                        <strong>ジョブカード</strong>
+                        <div class="sub-point">キャリアプランを整理するシート</div>
+                        <div class="sub-point">自己分析や今後の目標設定に活用</div>
+                        <div class="sub-point">無料でキャリア相談を受けられる機会</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary">
+                <h2>まとめ</h2>
+                <div class="summary-text">
+                    専門実践教育訓練給付制度は、国がエンジニア転職やリスキリングを強力に支援する制度です。ランテックの場合、55万円の受講料に対して最大44万円（80％）が戻ってくるため、実質負担は月額約1万2千円となります。在職中でもスキルアップ目的で利用でき、転職せずに継続雇用の場合でも70％が給付されます。さらに、離職してリスキリング目的で受講する場合は、失業給付の待機期間が免除され、給付金と併用可能です。ハローワークでの事前手続きは必要ですが、これほどお得な制度は活用しない手はありません。国が「転職してください」と言っているようなもので、プログラミング学習を始める絶好のタイミングといえるでしょう。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
