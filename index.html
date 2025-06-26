@@ -321,6 +321,11 @@
       color: var(--text-tertiary);
     }
     
+    /* Buy Me a Coffee */
+    .buymeacoffee-btn:hover {
+      transform: translateY(-2px);
+    }
+
     /* レスポンシブ */
     @media (max-width: 768px) {
       .container {
@@ -430,8 +435,15 @@
   </main>
 
   <!-- フッター -->
-  <footer style="margin-top: var(--space-2xl); padding: var(--space-sm) 0; text-align: center; color: var(--text-tertiary); font-size: var(--font-size-xs); opacity: 0.7;">
-    © 2022 infoHiroki. All rights reserved.
+  <footer style="margin-top: var(--space-2xl); padding: var(--space-lg) 0; text-align: center; color: var(--text-tertiary); font-size: var(--font-size-xs);">
+    <div style="margin-bottom: var(--space-md);">
+      <a href="https://coff.ee/infohirokiq" target="_blank" rel="noopener noreferrer" style="display: inline-block; text-decoration: none;">
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" class="buymeacoffee-btn" style="height: 40px; width: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s ease;">
+      </a>
+    </div>
+    <div style="opacity: 0.7;">
+      © 2022 infoHiroki. All rights reserved.
+    </div>
   </footer>
 
   <script src="auto-scan.js"></script>
