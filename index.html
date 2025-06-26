@@ -410,14 +410,20 @@
   <section class="search-section">
     <div class="container">
       <div class="search-container">
-        <input 
-          type="search" 
-          class="search-input" 
-          id="searchInput"
-          placeholder="ファイルを検索... (タイトル、説明、タグから検索)"
-          aria-label="ファイル検索"
-          autocomplete="off"
-        >
+        <div style="display: flex; gap: var(--space-md); align-items: center; justify-content: center; flex-wrap: wrap;">
+          <input 
+            type="search" 
+            class="search-input" 
+            id="searchInput"
+            placeholder="ファイルを検索... (タイトル、説明、タグから検索)"
+            aria-label="ファイル検索"
+            autocomplete="off"
+            style="flex: 1; min-width: 300px; max-width: 500px;"
+          >
+          <a href="https://ofuse.me/ee8863f7" target="_blank" rel="noopener noreferrer" class="ofuse-btn" style="display: inline-block; padding: 8px 16px; background-color: #ff6b6b; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,107,107,0.3); transition: all 0.2s ease; white-space: nowrap;">
+            ☕ OFUSEで応援する
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -437,15 +443,8 @@
   </main>
 
   <!-- フッター -->
-  <footer style="margin-top: var(--space-2xl); padding: var(--space-lg) 0; text-align: center; color: var(--text-tertiary); font-size: var(--font-size-xs);">
-    <div style="margin-bottom: var(--space-md);">
-      <a href="https://ofuse.me/ee8863f7" target="_blank" rel="noopener noreferrer" class="ofuse-btn" style="display: inline-block; padding: 8px 16px; background-color: #ff6b6b; color: white; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 2px 8px rgba(255,107,107,0.3); transition: all 0.2s ease;">
-        ☕ OFUSEで応援する
-      </a>
-    </div>
-    <div style="opacity: 0.7;">
-      © 2022 infoHiroki. All rights reserved.
-    </div>
+  <footer style="margin-top: var(--space-2xl); padding: var(--space-sm) 0; text-align: center; color: var(--text-tertiary); font-size: var(--font-size-xs); opacity: 0.7;">
+    © 2022 infoHiroki. All rights reserved.
   </footer>
 
   <script src="auto-scan.js"></script>
