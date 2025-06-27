@@ -1,6 +1,21 @@
 {
   "files": [
     {
+      "id": "vscode-github-copilot",
+      "path": "2025-06-27-tech-vscode-github-copilot.html",
+      "title": "VSコード講座まとめ",
+      "description": "GitHubコパイロットと連携したVSコードの基本機能",
+      "tags": [
+        "VSCode",
+        "GitHub Copilot",
+        "IDE",
+        "エディター",
+        "開発環境"
+      ],
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
       "id": "education-training",
       "path": "2025-06-26-system-education-training.html",
       "title": "専門実践教育訓練給付制度",
