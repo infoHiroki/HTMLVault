@@ -261,8 +261,28 @@
       background-color: var(--category-system);
     }
     
+    .category-badge.system {
+      background-color: var(--category-system);
+    }
+    
     .category-badge.education {
       background-color: var(--category-education);
+    }
+    
+    .category-badge.tech {
+      background-color: var(--category-tech);
+    }
+    
+    .category-badge.business {
+      background-color: var(--category-business);
+    }
+    
+    .category-badge.design {
+      background-color: var(--category-design);
+    }
+    
+    .category-badge.other {
+      background-color: var(--category-other);
     }
     
     .card-date {
@@ -531,13 +551,19 @@
 
     // カテゴリークラス取得
     function getCategoryClass(category) {
-      const classMap = {
+      if (!category) return '';
+      // カテゴリ名を英数字とハイフンのみに変換し、CSSクラスとして安全な形式にする
+      // 例: "制度・補助金" -> "system-subsidy"
+      // このロジックは一例です。より良い変換方法があれば調整してください。
+      const enCategory = {
+        '制度・補助金': 'system',
         '教育・AI': 'education',
         '技術・開発': 'tech',
         'ビジネス': 'business',
-        'デザイン': 'design'
-      };
-      return classMap[category] || '';
+        'デザイン': 'design',
+        'その他': 'other'
+      }[category] || 'other';
+      return enCategory;
     }
 
     // ファイルオープン

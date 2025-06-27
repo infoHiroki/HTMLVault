@@ -129,24 +129,7 @@ class HTMLFileScanner {
     return filePath.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
   }
 
-  // html-files/フォルダ内のHTMLファイルをスキャン
-  async scanHTMLFilesFolder() {
-    const htmlFiles = [
-      'html-files/education_training_infographic.html',
-      'html-files/education_ai_summary.html',
-      'html-files/llmo_checklist_infographic.html'
-    ];
-
-    const promises = htmlFiles.map(path => this.extractMetadata(path));
-    const results = await Promise.all(promises);
-    
-    return results.filter(result => result !== null);
-  }
-
-  // 既知のHTMLファイルをスキャン（後方互換性のため）
-  async scanKnownFiles() {
-    return await this.scanHTMLFilesFolder();
-  }
+  
 
   // 拡張可能なファイルリスト生成
   async generateFileList() {
