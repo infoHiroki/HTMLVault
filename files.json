@@ -1,6 +1,87 @@
 {
   "files": [
     {
+      "id": "apscheduler",
+      "path": "2025-06-27-tech-apscheduler.html",
+      "title": "APScheduler概要",
+      "description": "APSchedulerはPythonで定期的にジョブを実行できるライブラリで、PCの電源が入...",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "whisper-ai-guide",
+      "path": "2025-06-27-tech-whisper-ai-guide.html",
+      "title": "Whisper AI 実装ガイド",
+      "description": "Pythonを使った音声認識AIの導入と活用方法",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "fastapibasicexplanation",
+      "path": "2025-06-27-tech-fastapibasicexplanation.html",
+      "title": "FastAPI基本解説",
+      "description": "URLのパスの一部を変数として使用",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "ai-practical7",
+      "path": "2025-06-27-edu-ai-practical7.html",
+      "title": "AIツール活用術 - 実践で学んだ7つのコツ",
+      "description": "実践で学んだ7つのコツ",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "教育・AI"
+    },
+    {
+      "id": "python",
+      "path": "2025-06-27-tech-python.html",
+      "title": "Python フレームワークと便利なツール",
+      "description": "Python フレームワークと便利なツール\n            \n        \n\n        Python エコシス...",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "uv-python-package-manager-completeguide",
+      "path": "2025-06-27-tech-uv-python-package-manager-comp.html",
+      "title": "UV - 超高速Python Package Manager 完全ガイド",
+      "description": "Rust製超高速Python Package Manager",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "firebase-explanation-summary",
+      "path": "2025-06-27-tech-firebase-explanation.html",
+      "title": "Firebase 解説動画 要約",
+      "description": "アプリ開発とインフラ管理のための包括的プラットフォーム",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "obsidian",
+      "path": "2025-06-27-tech-obsidian.html",
+      "title": "Obsidian ディレクトリ構造の例",
+      "description": "動画内で紹介されていた考え方（数字プレフィックス、階層化、indexフォ\ufffd\ufffd...",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
+    },
+    {
+      "id": "ai",
+      "path": "2025-06-27-edu-ai.html",
+      "title": "生成AI基礎用語集",
+      "description": "本資料では、生成AIに関する基本的な用語を50パターン紹介します。これか...",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "教育・AI"
+    },
+    {
       "id": "vscode-github-copilot",
       "path": "2025-06-27-tech-vscode-github-copilot.html",
       "title": "VSコード講座まとめ",
@@ -16,45 +97,25 @@
       "category": "技術・開発"
     },
     {
-      "id": "education-training",
-      "path": "2025-06-26-system-education-training.html",
-      "title": "専門実践教育訓練給付制度",
-      "description": "プログラミング学習で最大80％の費用が戻ってくる国の制度",
-      "tags": [
-        "給付金",
-        "教育訓練",
-        "補助金",
-        "プログラミング学習",
-        "厚生労働省"
-      ],
-      "created": "2025-06-26",
-      "category": "制度・補助金"
+      "id": "react",
+      "path": "2025-06-27-tech-react.html",
+      "title": "React ライブラリ・ツール インフォグラフィック",
+      "description": "ウェブサイトのナビゲーションを制御し、URLをカスタマイズするライブラ\ufffd...",
+      "tags": null,
+      "created": "2025-06-27",
+      "category": "技術・開発"
     },
     {
-      "id": "education-ai-summary",
-      "path": "2025-06-26-edu-ai-summary.html",
-      "title": "教育AI要約",
-      "description": "教育分野におけるAI活用の要約情報",
+      "id": "go-tutorial",
+      "path": "2025-06-26-tech-go-tutorial.html",
+      "title": "Go言語入門チュートリアル",
+      "description": "Go言語の基礎から実践までを学ぶ総合的なチュートリアル",
       "tags": [
-        "AI",
-        "教育",
-        "要約",
-        "テクノロジー"
-      ],
-      "created": "2025-06-26",
-      "category": "教育・AI"
-    },
-    {
-      "id": "llmo-checklist",
-      "path": "2025-06-26-tech-llmo-checklist.html",
-      "title": "LLMOの対策チェックリスト",
-      "description": "LLMOアプリケーション開発における重要な対策事項のチェックリスト",
-      "tags": [
-        "LLMO",
-        "チェックリスト",
-        "開発",
-        "対策",
-        "セキュリティ"
+        "Go",
+        "プログラミング",
+        "チュートリアル",
+        "入門",
+        "言語学習"
       ],
       "created": "2025-06-26",
       "category": "技術・開発"
@@ -75,16 +136,45 @@
       "category": "技術・開発"
     },
     {
-      "id": "go-tutorial",
-      "path": "2025-06-26-tech-go-tutorial.html",
-      "title": "Go言語入門チュートリアル",
-      "description": "Go言語の基礎から実践までを学ぶ総合的なチュートリアル",
+      "id": "education-ai-summary",
+      "path": "2025-06-26-edu-ai-summary.html",
+      "title": "教育AI要約",
+      "description": "教育分野におけるAI活用の要約情報",
       "tags": [
-        "Go",
-        "プログラミング",
-        "チュートリアル",
-        "入門",
-        "言語学習"
+        "AI",
+        "教育",
+        "要約",
+        "テクノロジー"
+      ],
+      "created": "2025-06-26",
+      "category": "教育・AI"
+    },
+    {
+      "id": "education-training",
+      "path": "2025-06-26-system-education-training.html",
+      "title": "専門実践教育訓練給付制度",
+      "description": "プログラミング学習で最大80％の費用が戻ってくる国の制度",
+      "tags": [
+        "給付金",
+        "教育訓練",
+        "補助金",
+        "プログラミング学習",
+        "厚生労働省"
+      ],
+      "created": "2025-06-26",
+      "category": "制度・補助金"
+    },
+    {
+      "id": "llmo-checklist",
+      "path": "2025-06-26-tech-llmo-checklist.html",
+      "title": "LLMOの対策チェックリスト",
+      "description": "LLMOアプリケーション開発における重要な対策事項のチェックリスト",
+      "tags": [
+        "LLMO",
+        "チェックリスト",
+        "開発",
+        "対策",
+        "セキュリティ"
       ],
       "created": "2025-06-26",
       "category": "技術・開発"
@@ -165,21 +255,6 @@
       "category": "技術・開発"
     },
     {
-      "id": "python-uv-package-manager-guide",
-      "path": "2025-06-09-python-uv-package-manager-guide.html",
-      "title": "Python UV パッケージマネージャーガイド",
-      "description": "Rust製Pythonパッケージマネージャーの包括的解説",
-      "tags": [
-        "Python",
-        "UV",
-        "パッケージマネージャー",
-        "Rust",
-        "開発ツール"
-      ],
-      "created": "2025-06-09",
-      "category": "技術・開発"
-    },
-    {
       "id": "docker-virtualization-complete-guide",
       "path": "2025-06-09-tech-docker-virtualization-complete-guide.html",
       "title": "Docker 仮想化完全ガイド",
@@ -190,6 +265,21 @@
         "コンテナ",
         "DevOps",
         "インフラ"
+      ],
+      "created": "2025-06-09",
+      "category": "技術・開発"
+    },
+    {
+      "id": "python-uv-package-manager-guide",
+      "path": "2025-06-09-python-uv-package-manager-guide.html",
+      "title": "Python UV パッケージマネージャーガイド",
+      "description": "Rust製Pythonパッケージマネージャーの包括的解説",
+      "tags": [
+        "Python",
+        "UV",
+        "パッケージマネージャー",
+        "Rust",
+        "開発ツール"
       ],
       "created": "2025-06-09",
       "category": "技術・開発"
@@ -210,16 +300,16 @@
       "category": "技術・開発"
     },
     {
-      "id": "firebase-complete-guide",
-      "path": "2025-05-24-cloud-firebase-complete-guide.html",
-      "title": "Firebase 完全ガイド",
-      "description": "Firebaseの歴史・機能・開発フローの包括的解説",
+      "id": "serverside-programming-languages-guide",
+      "path": "2025-05-24-tech-serverside-programming-languages-guide.html",
+      "title": "サーバーサイドプログラミング言語ガイド",
+      "description": "サーバーサイドプログラミング言語12言語の完全ガイド",
       "tags": [
-        "Firebase",
-        "クラウド",
+        "サーバーサイド",
+        "プログラミング言語",
         "バックエンド",
-        "Google",
-        "モバイル開発"
+        "言語比較",
+        "開発"
       ],
       "created": "2025-05-24",
       "category": "技術・開発"
@@ -240,16 +330,16 @@
       "category": "技術・開発"
     },
     {
-      "id": "serverside-programming-languages-guide",
-      "path": "2025-05-24-tech-serverside-programming-languages-guide.html",
-      "title": "サーバーサイドプログラミング言語ガイド",
-      "description": "サーバーサイドプログラミング言語12言語の完全ガイド",
+      "id": "firebase-complete-guide",
+      "path": "2025-05-24-cloud-firebase-complete-guide.html",
+      "title": "Firebase 完全ガイド",
+      "description": "Firebaseの歴史・機能・開発フローの包括的解説",
       "tags": [
-        "サーバーサイド",
-        "プログラミング言語",
+        "Firebase",
+        "クラウド",
         "バックエンド",
-        "言語比較",
-        "開発"
+        "Google",
+        "モバイル開発"
       ],
       "created": "2025-05-24",
       "category": "技術・開発"
@@ -315,19 +405,19 @@
       "category": "デザイン"
     },
     {
-      "id": "aseprite-pixel-art-guide",
-      "path": "2025-05-15-design-aseprite-pixel-art-guide.html",
-      "title": "Aseprite ピクセルアートガイド",
-      "description": "Asepriteでのピクセルアート作成特化ガイド",
+      "id": "lazygit-cheatsheet",
+      "path": "2025-05-15-tech-lazygit-cheatsheet.html",
+      "title": "LazyGit チートシート",
+      "description": "LazyGitの基本操作とショートカット集",
       "tags": [
-        "Aseprite",
-        "ピクセルアート",
-        "ドット絵",
-        "アート",
-        "クリエイティブ"
+        "LazyGit",
+        "Git",
+        "チートシート",
+        "ショートカット",
+        "バージョン管理"
       ],
       "created": "2025-05-15",
-      "category": "デザイン"
+      "category": "技術・開発"
     },
     {
       "id": "aseprite-reference-image-guide",
@@ -345,31 +435,31 @@
       "category": "デザイン"
     },
     {
-      "id": "lazygit-cheatsheet",
-      "path": "2025-05-15-tech-lazygit-cheatsheet.html",
-      "title": "LazyGit チートシート",
-      "description": "LazyGitの基本操作とショートカット集",
+      "id": "aseprite-pixel-art-guide",
+      "path": "2025-05-15-design-aseprite-pixel-art-guide.html",
+      "title": "Aseprite ピクセルアートガイド",
+      "description": "Asepriteでのピクセルアート作成特化ガイド",
       "tags": [
-        "LazyGit",
-        "Git",
-        "チートシート",
-        "ショートカット",
-        "バージョン管理"
+        "Aseprite",
+        "ピクセルアート",
+        "ドット絵",
+        "アート",
+        "クリエイティブ"
       ],
       "created": "2025-05-15",
-      "category": "技術・開発"
+      "category": "デザイン"
     },
     {
-      "id": "framer-figma-guide",
-      "path": "2025-05-14-design-figma-to-framer-guide.html",
-      "title": "Figma to Framer ガイド",
-      "description": "FigmaデザインをFramerにインポートするための実践ガイド",
+      "id": "framer-practical-manual",
+      "path": "2025-05-14-design-framer-practical-manual.html",
+      "title": "Framer 実践マニュアル",
+      "description": "Framerの実践的な操作方法とショートカット集",
       "tags": [
-        "Figma",
         "Framer",
-        "デザイン",
-        "プロトタイピング",
-        "UI/UX"
+        "マニュアル",
+        "操作方法",
+        "ショートカット",
+        "デザインツール"
       ],
       "created": "2025-05-14",
       "category": "デザイン"
@@ -390,16 +480,16 @@
       "category": "デザイン"
     },
     {
-      "id": "framer-practical-manual",
-      "path": "2025-05-14-design-framer-practical-manual.html",
-      "title": "Framer 実践マニュアル",
-      "description": "Framerの実践的な操作方法とショートカット集",
+      "id": "framer-figma-guide",
+      "path": "2025-05-14-design-figma-to-framer-guide.html",
+      "title": "Figma to Framer ガイド",
+      "description": "FigmaデザインをFramerにインポートするための実践ガイド",
       "tags": [
+        "Figma",
         "Framer",
-        "マニュアル",
-        "操作方法",
-        "ショートカット",
-        "デザインツール"
+        "デザイン",
+        "プロトタイピング",
+        "UI/UX"
       ],
       "created": "2025-05-14",
       "category": "デザイン"
