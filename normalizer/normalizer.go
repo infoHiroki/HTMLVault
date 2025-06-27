@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"time"
@@ -41,8 +42,11 @@ func NormalizeFile(path string) (*NormalizedFile, error) {
 	// カテゴリ判定
 	category := categorizeContent(meta.Title, meta.Content)
 
-	// ファイル名生成
-	newFileName := generateFileName(meta, category)
+	// 元の日付を抽出（優先順位順）
+	originalDate := extractOriginalDate(path)
+
+	// ファイル名生成（元の日付を使用）
+	newFileName := generateFileNameWithDate(meta, category, originalDate)
 
 	// 説明文生成（長すぎる場合は切り詰め）
 	description := meta.Description
@@ -58,14 +62,21 @@ func NormalizeFile(path string) (*NormalizedFile, error) {
 		description = content
 	}
 
+	// 既存のタグを保持（Git履歴から）
+	existingTags := getExistingTags(path)
+	keywords := meta.Keywords
+	if len(keywords) == 0 && len(existingTags) > 0 {
+		keywords = existingTags
+	}
+
 	return &NormalizedFile{
 		OldPath:     path,
 		NewPath:     newFileName,
 		Title:       meta.Title,
 		Category:    getCategoryName(category),
 		Description: description,
-		Keywords:    meta.Keywords,
-		CreatedDate: time.Now().Format("2006-01-02"),
+		Keywords:    keywords,
+		CreatedDate: originalDate,
 	}, nil
 }
 
@@ -159,14 +170,18 @@ func categorizeContent(title, content string) string {
 	return bestCategory
 }
 
-// ファイル名生成
-func generateFileName(meta *Metadata, category string) string {
-	date := time.Now().Format("2006-01-02")
-	
+// ファイル名生成（指定された日付を使用）
+func generateFileNameWithDate(meta *Metadata, category, date string) string {
 	// タイトルから安全な文字列を生成
 	safe := sanitizeTitle(meta.Title)
 	
 	return fmt.Sprintf("%s-%s-%s.html", date, category, safe)
+}
+
+// 元のファイル名生成（後方互換性のため）
+func generateFileName(meta *Metadata, category string) string {
+	date := time.Now().Format("2006-01-02")
+	return generateFileNameWithDate(meta, category, date)
 }
 
 // タイトルをファイル名用に正規化
@@ -220,6 +235,61 @@ func sanitizeTitle(title string) string {
 // Unicode正規化用のヘルパー関数
 func isMn(r rune) bool {
 	return unicode.Is(unicode.Mn, r)
+}
+
+// 元の作成日付を抽出
+func extractOriginalDate(filePath string) string {
+	// マッピング辞書（Git履歴から取得）
+	dateMapping := map[string]string{
+		"2025-06-27-tech-react.html":                     "2025-04-19",
+		"2025-06-27-tech-fastapibasicexplanation.html":  "2025-04-22",
+		"2025-06-27-tech-python.html":                    "2025-04-23",
+		"2025-06-27-tech-obsidian.html":                  "2025-05-06",
+		"2025-06-27-tech-whisper-ai-guide.html":          "2025-05-13",
+		"2025-06-27-tech-apscheduler.html":               "2025-05-16",
+		"2025-06-27-edu-ai.html":                         "2025-05-19",
+		"2025-06-27-tech-firebase-explanation.html":      "2025-05-24",
+		"2025-06-27-tech-uv-python-package-manager-comp.html": "2025-06-09",
+		"2025-06-27-edu-ai-practical7.html":              "2025-06-18",
+	}
+
+	// ファイル名から取得
+	fileName := filepath.Base(filePath)
+	if date, exists := dateMapping[fileName]; exists {
+		return date
+	}
+
+	// ファイル名から日付パターンを抽出
+	re := regexp.MustCompile(`(\d{4}-\d{2}-\d{2})`)
+	if matches := re.FindStringSubmatch(fileName); len(matches) > 1 {
+		return matches[1]
+	}
+
+	// フォールバック: 今日の日付
+	return time.Now().Format("2006-01-02")
+}
+
+// 既存のタグを取得
+func getExistingTags(filePath string) []string {
+	// Git履歴から既存タグを取得するマッピング
+	tagMapping := map[string][]string{
+		"2025-06-27-tech-react.html": {"React", "ライブラリ", "フロントエンド", "JavaScript", "開発ツール"},
+		"2025-06-27-tech-fastapibasicexplanation.html": {"Python", "FastAPI", "WebAPI", "バックエンド", "REST"},
+		"2025-06-27-tech-python.html": {"Python", "フレームワーク", "Django", "Flask", "開発ツール"},
+		"2025-06-27-tech-obsidian.html": {"Obsidian", "ディレクトリ構造", "情報整理", "ノートテイキング"},
+		"2025-06-27-tech-whisper-ai-guide.html": {"AI", "Whisper", "音声認識", "Python", "機械学習"},
+		"2025-06-27-tech-apscheduler.html": {"Python", "APScheduler", "定期実行", "自動化", "スケジュール"},
+		"2025-06-27-edu-ai.html": {"AI", "用語集", "機械学習", "深層学習", "生成AI"},
+		"2025-06-27-tech-firebase-explanation.html": {"Firebase", "クラウド", "バックエンド", "Google", "モバイル開発"},
+		"2025-06-27-tech-uv-python-package-manager-comp.html": {"Python", "UV", "パッケージマネージャー", "Rust", "開発ツール"},
+		"2025-06-27-edu-ai-practical7.html": {"AI", "ツール", "活用術", "プレゼンテーション", "実践"},
+	}
+
+	fileName := filepath.Base(filePath)
+	if tags, exists := tagMapping[fileName]; exists {
+		return tags
+	}
+	return []string{}
 }
 
 // カテゴリコードから表示名に変換

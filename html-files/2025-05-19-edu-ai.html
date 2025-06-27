@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成AI基礎用語集</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .category {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .category-header {
+            background-color: #1e40af;
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .category-content {
+            padding: 20px;
+        }
+        .term {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 15px;
+        }
+        .term:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .term-name {
+            color: #1e40af;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        .term-desc {
+            margin: 0;
+        }
+        .summary {
+            background-color: #dbeafe;
+            border-left: 5px solid #1e40af;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 0 8px 8px 0;
+        }
+        .summary h2 {
+            color: #1e40af;
+            margin-top: 0;
+        }
+        .summary p {
+            margin-bottom: 0;
+        }
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>生成AI基礎用語集</h1>
+    
+    <div class="intro">
+        <p>本資料では、生成AIに関する基本的な用語を50パターン紹介します。これからの時代に必要な一般教養として、AIの基礎知識を身につけましょう。</p>
+    </div>
+
+    <div class="category-container">
+        <!-- 基本概念とモデルの種別 -->
+        <div class="category">
+            <div class="category-header">基本概念とモデルの種別</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">生成AI</div>
+                    <p class="term-desc">画像や文章など新しいデータを作り出すAIの総称。ChatGPT、Claude、Midjourney、Geminiなどが該当する。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">モデル</div>
+                    <p class="term-desc">学習済みの脳そのもの。アルゴリズムと重みが詰まったファイル。アプリはこれを呼び出して答えを作る。GPT-4、Claude 3 Opusなど。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">LLM（大規模言語モデル）</div>
+                    <p class="term-desc">大量の文章を学習し、人の質問に答えたり文章を生み出したりできる巨大な言語AIモデル。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">AGI（汎用人工知能）</div>
+                    <p class="term-desc">人間と同等以上の全ての知的作業をこなす仮想ゴール。現状のAIはまだ達していないとされる。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- モデルの学習・最適化手法 -->
+        <div class="category">
+            <div class="category-header">モデルの学習・最適化手法</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">知識蒸留</div>
+                    <p class="term-desc">大きなモデルの知識を小さいモデルへ移し、軽量高速化する技術。GPT-4 Miniなどが例。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">機械学習・ディープラーニング</div>
+                    <p class="term-desc">データからパターンを学ぶAIの作り方。大規模モデルの土台となる技術。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ファインチューニング</div>
+                    <p class="term-desc">既存モデル全体を再学習し、特定分野に特化させる技術。企業独自のチャットボット開発などで重要。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">LoRA</div>
+                    <p class="term-desc">軽い追加パーツだけ学習し、低コストで微調整する技術。Stable Diffusionの画像生成などでよく使われる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">RLHF</div>
+                    <p class="term-desc">「人間からの強化学習」。人の評価でご褒美を与え、AIを訓練する方法。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ゼロショット・フューショット</div>
+                    <p class="term-desc">サンプル事例なしでAIとやり取り（ゼロショット）か、サンプル事例を見せてから行う（フューショット）か。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- プロンプト設計と制御技術 -->
+        <div class="category">
+            <div class="category-header">プロンプト設計と制御技術</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">プロンプト</div>
+                    <p class="term-desc">AIとの対話や操作のために、ユーザーが入力する指示や質問のこと。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">システムプロンプト</div>
+                    <p class="term-desc">AIに絶対守らせる最優先の指示書。敬語で答える、個人情報禁止などの指示。システムインストラクションとも呼ばれる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">プロンプトエンジニアリング</div>
+                    <p class="term-desc">望む振る舞いを引き出す入力設計技法。ロール設定や制約などを組み合わせ、最適な応答を得る方法。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">テンプレートプロンプティング</div>
+                    <p class="term-desc">固定ひな形に変数だけ入れて呼び出し、一貫した出力を得る運用方法。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">プロンプトインジェクション</div>
+                    <p class="term-desc">悪意ある質問でAIに秘密漏洩などをさせる攻撃手法。入力の検査が必須。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 思考フローと対話管理 -->
+        <div class="category">
+            <div class="category-header">思考フローと対話管理</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">トークン</div>
+                    <p class="term-desc">単語、句読点、部分単語などモデルが1単位として扱う文字列。AIの処理単位。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">コンテキストウィンドウ</div>
+                    <p class="term-desc">AIが1度の会話で覚えていられるトークン数の上限。長すぎると古い部分が切れる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ハルシネーション</div>
+                    <p class="term-desc">AIが事実確認をせず嘘の答えを自信満々で出す現象。根拠付きや人のチェックで軽減可能。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">チェインオブソート（CoT）</div>
+                    <p class="term-desc">AIに考えの途中経過を喋らせて正解率を上げる方法。GPT-3.5などの思考モデルに採用。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">エージェント</div>
+                    <p class="term-desc">LLMを目的達成の主体として扱う設計概念。目標を渡すと計画、ツール実行、振り返りを自動で回し結果を届ける。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">MCP（モデルコンテキストプロトコル）</div>
+                    <p class="term-desc">ルール、タスク、メモを区分けしてAIに渡す共通フォーマット。「USBCポート」とも表現される。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">バイブコーディング</div>
+                    <p class="term-desc">会話で要望しAIが生成、すぐ実行して出力を確認する高速PDCA型の開発スタイル。「雰囲気でコーディング」の意。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 検索・知識拡張・データ手法 -->
+        <div class="category">
+            <div class="category-header">検索・知識拡張・データ手法</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">ナレッジ</div>
+                    <p class="term-desc">AIが持つ一般知識プラス会社のマニュアルなど外部データをまとめた知識ベース。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ナレッジカットオフ</div>
+                    <p class="term-desc">AIが最後に学習した日付。それ以後の出来事は知らない。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ベクトル埋め込み</div>
+                    <p class="term-desc">言葉や画像を多次元の数字の点に変え、意味が近いほど近くに並べる表現手法。似たデータを高速に探せる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ベクトルデータベース</div>
+                    <p class="term-desc">画像や文章をベクトルに変えて保存し、似たデータをすぐ見つけられるデータの倉庫。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">RAG（検索拡張生成）</div>
+                    <p class="term-desc">ベクトル検索で取得した文章をプロンプトに連結し、根拠付き解答を生成する技術。ハルシネーション抑制に有効。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">AI検索</div>
+                    <p class="term-desc">AIがユーザーの意図や文脈を理解し、最適な検索結果を提供するシステム。自然な会話で直接的な回答が得られる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">ディープリサーチ</div>
+                    <p class="term-desc">生成AIがWebや論文を自立的に集めて分析し、引用付きレポートを作るAI調査アシスタント機能。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">LLMO</div>
+                    <p class="term-desc">生成AIに自分のサイトを正しく理解・引用してもらうためのコンテンツ最適化手法。SEOの次世代版。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- マルチモーダルとメディア生成 -->
+        <div class="category">
+            <div class="category-header">マルチモーダルとメディア生成</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">ビジョンランゲージモデル</div>
+                    <p class="term-desc">画像を見て文章を出すなど、視覚と言葉を合体させたモデル。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">T2I（テキストtoイメージ）</div>
+                    <p class="term-desc">テキストを入力すると、その内容に合致する画像を生成するモデル。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">I2I（イメージtoイメージ）</div>
+                    <p class="term-desc">既存画像を入力し、別の見え方へ変換・編集する仕組み。GPTのジブリ風変換などが例。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">T2V（テキストtoビデオ）</div>
+                    <p class="term-desc">テキストプロンプトだけで、秒単位の動画クリップを生成するモデル。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">TTS（テキストtoスピーチ）</div>
+                    <p class="term-desc">文字を読み上げにしてAIが声に変えて読み上げる仕組み。ElevenLabsなどが有名。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">音声認識（STT）</div>
+                    <p class="term-desc">マイクで拾った声をAIがリアルタイムで文字に変える技術。字幕表示や音声操作に活用。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">マルチモーダル</div>
+                    <p class="term-desc">文字、画像、音声など複数の情報をまとめて理解して生成できるAI。現在のAIの主流。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 運用・オペレーション -->
+        <div class="category">
+            <div class="category-header">運用・オペレーション</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">インテグレーション</div>
+                    <p class="term-desc">複数の異なる要素を組み合わせて統合・連携させるプロセス。アプリ接続機能など。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">LLMOps</div>
+                    <p class="term-desc">大規模言語モデルを社内サービスとして安定・安全に運用するためのノウハウとツール群。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">AIワークフロー</div>
+                    <p class="term-desc">AI技術を業務プロセスに組み込み、タスクの自動化や意思決定を支援する仕組み。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">API</div>
+                    <p class="term-desc">異なるアプリケーションやソフトウェア同士をつなぎ、データや機能を共有するための仕組み。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">JSON</div>
+                    <p class="term-desc">データを名前と値で表現する軽量ファイル形式。人が読めてコンピュータもすぐ理解できる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">YAML</div>
+                    <p class="term-desc">インデントとコロンだけで階層を表す、メモ書き風の設定ファイル。リスト形式のデータ表現に便利。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ハードウェアとプラットフォーム -->
+        <div class="category">
+            <div class="category-header">ハードウェアとプラットフォーム</div>
+            <div class="category-content">
+                <div class="term">
+                    <div class="term-name">NVIDIA</div>
+                    <p class="term-desc">GPUを主力とする米国企業。AI計算が得意な最新GPUを開発し、世界中のAIスーパーコンピューターを支える。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">NPU</div>
+                    <p class="term-desc">脳の仕組みを真似た回路で、1秒に何兆回も演算しAIの重たい計算を低電力でこなす専用チップ。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">AI PC</div>
+                    <p class="term-desc">NPUなどAI専用チップを搭載し、ネットに頼らず画像生成や翻訳を即実行できる新世代PC。コパイロットPCとも。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">コパイロット</div>
+                    <p class="term-desc">Microsoftが提供するAIアシスタントサービス。Wordなどで下書きを作ったり、PCを音声操作したりできる。</p>
+                </div>
+                <div class="term">
+                    <div class="term-name">チャットボット</div>
+                    <p class="term-desc">AIと会話するようにテキストや音声で応答するプログラム。ChatGPT、Claude、Geminiなど。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <h2>まとめ</h2>
+        <p>生成AIの進化は急速で、新しい概念やワードが次々と登場しています。本資料で紹介した50の基本用語は、これからのAI時代における一般教養として押さえておくべき知識です。東京都の学校でもAI学習が始まるなど、若い世代のAIリテラシーが高まる中、大人もAIの基礎知識を身につけることが重要になっています。企業の生成AI導入率は約40%と高まっており、今後もAIと共存する社会が加速していくでしょう。AIの知識は現代人の必須スキルとなりつつあります。</p>
+    </div>
+</body>
+</html>

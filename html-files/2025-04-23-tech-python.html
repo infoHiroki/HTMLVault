@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python フレームワークと便利なツール</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .python-logo {
+            width: 60px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+        .infographic {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+            justify-content: center;
+        }
+        .category {
+            width: calc(50% - 20px);
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .category-header {
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        .web {
+            background-color: #3498db;
+        }
+        .data {
+            background-color: #2ecc71;
+        }
+        .gui {
+            background-color: #e74c3c;
+        }
+        .testing {
+            background-color: #9b59b6;
+        }
+        .tools {
+            background-color: #f39c12;
+        }
+        .practices {
+            background-color: #1abc9c;
+        }
+        .content {
+            padding: 15px;
+            background-color: white;
+        }
+        .framework {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .framework:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .framework-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color: #444;
+        }
+        .framework-desc {
+            font-size: 0.95em;
+            color: #666;
+        }
+        .subcategory {
+            margin: 15px 0;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+        }
+        .subcategory-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 1.05em;
+        }
+        .connection-heading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.4em;
+            color: #666;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+        .ecosystem-diagram {
+            padding: 20px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        .ecosystem-container {
+            position: relative;
+            height: 550px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+        .ecosystem-title {
+            padding: 15px;
+            font-size: 1.5em;
+            color: #444;
+            background-color: #eee;
+            border-radius: 10px 10px 0 0;
+        }
+        .node {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .node:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        .core {
+            width: 120px;
+            height: 120px;
+            background-color: #306998;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            font-size: 1em;
+        }
+        .framework-node {
+            width: 90px;
+            height: 90px;
+            font-size: 0.85em;
+            z-index: 4;
+        }
+        .tool-node {
+            width: 70px;
+            height: 70px;
+            font-size: 0.75em;
+            z-index: 3;
+        }
+        .label {
+            position: absolute;
+            font-size: 0.75em;
+            color: #666;
+            text-align: center;
+            width: 100px;
+        }
+        .connection {
+            position: absolute;
+            background-color: #ddd;
+            z-index: 1;
+            transform-origin: 0 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <svg class="python-logo" viewBox="0 0 24 24">
+                    <path fill="#FFD43B" d="M14.31.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.83l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21V3.17l.05-.2.1-.26.14-.31.2-.33.25-.33.3-.31.35-.28.4-.24.42-.2.46-.14.48-.1.5-.04.52-.02.53.01.53.04.54.08.55.13.55.18.54.24.52.3.5.35.47.41.44.48.4.54.36.61.31.67.26.73.2.79.13.85.05.91.02.97z"></path>
+                    <path fill="#306998" d="M21.1 6.11l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.01h-6.62l-.18.03-.18.07-.17.12-.13.17-.1.21-.04.27-.02.32.03.38.08.42.14.45.2.47.28.46.36.43.44.38.54.31.63.21.72.11.8-.01.88-.14.94-.3.97-.46.97-.64.93-.82.86-1.03.75-1.24.6-1.46.43-1.7.23-1.97L21.1 6.11zM7.2 21.29l-.04.2-.1.25-.15.3-.2.33-.25.32-.31.31-.35.28-.4.24-.43.19-.46.13-.5.08-.51.04-.53-.01-.55-.05-.56-.1-.55-.16-.55-.22-.53-.29-.5-.36-.47-.42-.43-.48-.39-.55-.34-.61-.29-.67-.24-.73-.17-.8-.1-.85-.02-.92.05-.96.13-.89.22-.81.3-.72.36-.64.42-.55.46-.46.5-.38.53-.29.55-.22.56-.14.56-.09.55-.04.54-.01.52.04.5.07.46.1.44.14.4.17.37.19.34.21.3.22.26.23.21.23.17.22.13.2.09.19.06.16.02.14-.01.11-.04.09-.06.06-.09.04-.12.02H8.9l-.69.05-.62.13-.54.21-.45.3-.38.35-.29.41-.22.44-.15.46-.09.47-.04.45-.01.42.05.38.11.32.18.26.25.2.32.13.4.07.46.01.54-.06.59-.13.64-.2.66-.29.67-.37.66-.47.64-.58.59-.7.53-.81.45-.95.35-1.08.25-1.22.12-1.38L7.2 21.29z"></path>
+                </svg>
+                Python フレームワークと便利なツール
+            </h1>
+        </header>
+
+        <h3 class="connection-heading">Python エコシステム概観</h3>
+        <div class="ecosystem-diagram">
+            <div class="ecosystem-container">
+                <!-- Core Python -->
+                <div class="node core">Python<br>コア</div>
+                
+                <!-- Web Frameworks -->
+                <div class="node framework-node" style="background-color: #3498db; top: 20%; left: 30%;">Django</div>
+                <div class="node framework-node" style="background-color: #3498db; top: 15%; left: 45%;">Flask</div>
+                <div class="node framework-node" style="background-color: #3498db; top: 20%; left: 60%;">FastAPI</div>
+                
+                <!-- Data Science -->
+                <div class="node framework-node" style="background-color: #2ecc71; top: 40%; left: 15%;">NumPy</div>
+                <div class="node framework-node" style="background-color: #2ecc71; top: 55%; left: 15%;">pandas</div>
+                <div class="node framework-node" style="background-color: #2ecc71; top: 70%; left: 25%;">scikit-learn</div>
+                
+                <!-- GUI -->
+                <div class="node framework-node" style="background-color: #e74c3c; top: 70%; left: 60%;">Tkinter</div>
+                <div class="node framework-node" style="background-color: #e74c3c; top: 75%; left: 45%;">PyQt</div>
+                
+                <!-- Testing -->
+                <div class="node framework-node" style="background-color: #9b59b6; top: 40%; left: 80%;">pytest</div>
+                <div class="node framework-node" style="background-color: #9b59b6; top: 55%; left: 80%;">unittest</div>
+                
+                <!-- Tools -->
+                <div class="node tool-node" style="background-color: #f39c12; top: 30%; left: 20%;">pip</div>
+                <div class="node tool-node" style="background-color: #f39c12; top: 32%; left: 75%;">Poetry</div>
+                <div class="node tool-node" style="background-color: #1abc9c; top: 80%; left: 80%;">black</div>
+                <div class="node tool-node" style="background-color: #1abc9c; top: 85%; left: 35%;">asyncio</div>
+                <div class="node tool-node" style="background-color: #f39c12; top: 20%; left: 80%;">requests</div>
+                
+                <!-- Connections -->
+                <div class="connection" style="width: 2px; height: 100px; transform: rotate(45deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 130px; transform: rotate(-60deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 120px; transform: rotate(30deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 135px; transform: rotate(120deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 120px; transform: rotate(-30deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 120px; transform: rotate(210deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 100px; transform: rotate(-150deg); top: 50%; left: 50%;"></div>
+                <div class="connection" style="width: 2px; height: 100px; transform: rotate(160deg); top: 50%; left: 50%;"></div>
+            </div>
+        </div>
+
+        <div class="infographic">
+            <div class="category">
+                <div class="category-header web">Webフレームワーク</div>
+                <div class="content">
+                    <div class="framework">
+                        <div class="framework-name">Django</div>
+                        <div class="framework-desc">大規模サイト構築、管理画面自動生成、ORM機能で複雑なデータベース操作を簡略化する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">Flask</div>
+                        <div class="framework-desc">最小限の機能でAPIや小規模Webアプリを素早く開発し、必要な機能だけを追加する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">FastAPI</div>
+                        <div class="framework-desc">REST APIを非常に高速に構築し、OpenAPI仕様に基づくドキュメントを自動生成する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">Pyramid</div>
+                        <div class="framework-desc">小さなアプリから企業向け大規模システムまでスケールし、柔軟な構成オプションを提供する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">Tornado</div>
+                        <div class="framework-desc">Webソケット対応の非同期Webサーバーを実装し、数万の同時接続を処理する</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header data">データ分析/機械学習</div>
+                <div class="content">
+                    <div class="framework">
+                        <div class="framework-name">NumPy</div>
+                        <div class="framework-desc">高速な数値計算を行い、多次元配列の操作や線形代数計算を効率化する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">pandas</div>
+                        <div class="framework-desc">表形式データの操作、クリーニング、分析、可視化を統合的に行う</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">scikit-learn</div>
+                        <div class="framework-desc">分類、回帰、クラスタリングなど多様な機械学習アルゴリズムを簡単に実装する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">TensorFlow/Keras</div>
+                        <div class="framework-desc">複雑なニューラルネットワークモデルを構築し、画像認識や自然言語処理を実現する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">PyTorch</div>
+                        <div class="framework-desc">動的計算グラフでディープラーニングの研究を加速し、柔軟なモデル開発を支援する</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header gui">GUI開発</div>
+                <div class="content">
+                    <div class="framework">
+                        <div class="framework-name">Tkinter</div>
+                        <div class="framework-desc">シンプルなデスクトップアプリケーションを標準ライブラリのみで素早く作成する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">PyQt/PySide</div>
+                        <div class="framework-desc">高機能なクロスプラットフォームGUIアプリケーションを開発し、複雑なUIを実現する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">Kivy</div>
+                        <div class="framework-desc">マルチタッチ対応のモバイルアプリやゲームを開発し、異なるプラットフォームに展開する</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header testing">テスト</div>
+                <div class="content">
+                    <div class="framework">
+                        <div class="framework-name">pytest</div>
+                        <div class="framework-desc">モダンな構文でテストコードを簡潔に書き、テスト固有の前処理・後処理を柔軟に定義する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">unittest</div>
+                        <div class="framework-desc">標準ライブラリで基本的な単体テストを記述し、テストスイートを構造化する</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header tools">パッケージ管理と実用ツール</div>
+                <div class="content">
+                    <div class="subcategory">
+                        <div class="subcategory-title">パッケージ管理</div>
+                        <div class="framework">
+                            <div class="framework-name">pip</div>
+                            <div class="framework-desc">PyPIからパッケージをインストールし、依存関係を管理する</div>
+                        </div>
+                        <div class="framework">
+                            <div class="framework-name">conda</div>
+                            <div class="framework-desc">科学計算用パッケージをバイナリで提供し、複雑な依存関係を解決する</div>
+                        </div>
+                        <div class="framework">
+                            <div class="framework-name">Poetry</div>
+                            <div class="framework-desc">依存関係管理と環境分離を統合し、再現可能な開発環境を構築する</div>
+                        </div>
+                        <div class="framework">
+                            <div class="framework-name">pipenv</div>
+                            <div class="framework-desc">依存関係と仮想環境を一元管理し、ロックファイルで一貫性を保証する</div>
+                        </div>
+                    </div>
+                    
+                    <div class="subcategory">
+                        <div class="subcategory-title">実用ライブラリ</div>
+                        <div class="framework">
+                            <div class="framework-name">requests</div>
+                            <div class="framework-desc">人間が理解しやすい構文でHTTPリクエストを送信し、APIと連携する</div>
+                        </div>
+                        <div class="framework">
+                            <div class="framework-name">beautifulsoup4</div>
+                            <div class="framework-desc">HTMLやXMLを解析し、Webスクレイピングでデータを抽出する</div>
+                        </div>
+                        <div class="framework">
+                            <div class="framework-name">click</div>
+                            <div class="framework-desc">コマンドラインインターフェイスを簡単に作成し、オプションやサブコマンドを実装する</div>
+                        </div>
+                        <div class="framework">
+                            <div class="framework-name">tqdm</div>
+                            <div class="framework-desc">長時間実行処理の進捗状況を視覚的に表示し、ユーザー体験を向上させる</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category">
+                <div class="category-header practices">開発プラクティス</div>
+                <div class="content">
+                    <div class="framework">
+                        <div class="framework-name">型ヒント(typing)</div>
+                        <div class="framework-desc">コードの意図を明確にし、静的解析ツールによるバグ検出を支援する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">非同期プログラミング(asyncio)</div>
+                        <div class="framework-desc">I/O待ち時間を最小化し、高パフォーマンスなアプリケーションを構築する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">コンテキストマネージャー(with文)</div>
+                        <div class="framework-desc">リソースの確実な解放を保証し、メモリリークを防止する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">f文字列</div>
+                        <div class="framework-desc">コード内の文字列操作を簡略化し、可読性の高い文字列フォーマットを実現する</div>
+                    </div>
+                    <div class="framework">
+                        <div class="framework-name">リスト内包表記</div>
+                        <div class="framework-desc">繰り返し処理を一行で簡潔に記述し、コード量を削減する</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            Python フレームワークと便利なツールの包括的ガイド - 2025年版
+        </footer>
+    </div>
+</body>
+</html>
