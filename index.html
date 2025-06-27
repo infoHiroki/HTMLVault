@@ -541,8 +541,8 @@
           </div>
           <div class="card-footer">
             <div class="tag-list">
-              ${file.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
-              ${file.tags.length > 3 ? `<span class="tag">+${file.tags.length - 3}</span>` : ''}
+              ${(file.tags || []).slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
+              ${(file.tags || []).length > 3 ? `<span class="tag">+${(file.tags || []).length - 3}</span>` : ''}
             </div>
           </div>
         </div>
@@ -588,7 +588,7 @@
             file.title,
             file.description,
             file.category,
-            ...file.tags
+            ...(file.tags || [])
           ].join(' ').toLowerCase();
           return searchFields.includes(searchQuery);
         });
