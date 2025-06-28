@@ -28,7 +28,6 @@
         .search-section {
             background-color: var(--color-background);
             padding: var(--spacing-xl) 0;
-            border-bottom: 1px solid var(--color-border);
         }
         
         .search-container {
@@ -55,44 +54,12 @@
             box-shadow: 0 0 0 3px rgba(231, 62, 143, 0.1);
         }
         
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-sm);
-            justify-content: center;
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .filter-button {
-            padding: var(--spacing-sm) var(--spacing-md);
-            background-color: transparent;
-            color: var(--color-text);
-            border: 2px solid var(--color-border);
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-family);
-        }
-        
-        .filter-button:hover {
-            background-color: var(--color-text);
-            color: var(--color-background);
-            border-color: var(--color-text);
-        }
-        
-        .filter-button.active {
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            border-color: var(--color-accent);
-        }
         
         .controls-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: var(--spacing-lg);
-            flex-wrap: wrap;
             gap: var(--spacing-md);
         }
         
@@ -152,15 +119,6 @@
             margin-bottom: var(--spacing-sm);
         }
         
-        .article-category {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            background-color: var(--color-accent);
-            color: var(--color-background);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
         
         .article-date {
             font-size: 0.875rem;
@@ -356,16 +314,6 @@
                             <input type="text" id="searchInput" class="search-input" placeholder="記事を検索... (タイトル、説明、タグから検索)" aria-label="記事検索">
                             
                             <div class="controls-row">
-                                <div class="filters">
-                                    <button class="filter-button active" data-category="all">すべて</button>
-                                    <button class="filter-button" data-category="技術・開発">技術・開発</button>
-                                    <button class="filter-button" data-category="教育・AI">教育・AI</button>
-                                    <button class="filter-button" data-category="デザイン">デザイン</button>
-                                    <button class="filter-button" data-category="制度・補助金">制度・補助金</button>
-                                    <button class="filter-button" data-category="ビジネス">ビジネス</button>
-                                    <button class="filter-button" data-category="その他">その他</button>
-                                </div>
-                                
                                 <div class="sort-controls">
                                     <button class="sort-button active" data-sort="date">📅 新着順</button>
                                     <button class="sort-button" data-sort="title">🔤 名前順</button>
@@ -377,12 +325,7 @@
 
                 <div class="page-content">
                     <div class="container">
-                        <section class="section">
-                            <div class="page-header">
-                                <p class="page-description">ITエンジニアリング、AI、ツール活用に関する技術記事をご覧いただけます。</p>
-                            </div>
-                            
-                            <div id="articlesContainer" class="article-grid">
+                        <div id="articlesContainer" class="article-grid">
                                 <!-- 記事カードがここに動的に生成されます -->
                             </div>
                             
@@ -390,7 +333,6 @@
                                 <p>検索条件に一致する記事が見つかりませんでした。</p>
                                 <p><small>別のキーワードで検索してみてください</small></p>
                             </div>
-                        </section>
                     </div>
                 </div>
             </main>
@@ -462,7 +404,6 @@
             return `
                 <article class="article-card" onclick="openFile('${file.path}')">
                     <div class="article-header">
-                        <span class="article-category">${file.category}</span>
                         <time class="article-date">${file.created}</time>
                     </div>
                     <div class="card-body">
@@ -513,18 +454,12 @@
                     const searchFields = [
                         file.title,
                         file.description,
-                        file.category,
                         ...(file.tags || [])
                     ].join(' ').toLowerCase();
                     return searchFields.includes(searchQuery);
                 });
             }
             
-            // カテゴリーフィルター
-            const activeCategory = document.querySelector('.filter-button.active')?.dataset.category;
-            if (activeCategory && activeCategory !== 'all') {
-                result = result.filter(file => file.category === activeCategory);
-            }
             
             // ソート
             result.sort((a, b) => {
@@ -562,14 +497,6 @@
                 });
             }
             
-            // カテゴリフィルター
-            document.querySelectorAll('.filter-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    document.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    applyFilters();
-                });
-            });
             
             // ソート機能
             document.querySelectorAll('.sort-button[data-sort]').forEach(button => {

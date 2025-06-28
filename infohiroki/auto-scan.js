@@ -42,8 +42,6 @@ class HTMLFileScanner {
       const titleTags = this.extractTagsFromTitle(title);
       tags = [...new Set([...tags, ...titleTags])];
       
-      // カテゴリー推測
-      const category = this.categorizeFile(title, description, tags);
       
       // ファイル情報の修正日時取得（代替としてDate.now()使用）
       const created = new Date().toISOString().split('T')[0];
@@ -54,8 +52,7 @@ class HTMLFileScanner {
         title: title.trim(),
         description: description.trim(),
         tags: tags.slice(0, 8), // 最大8個まで
-        created: created,
-        category: category
+        created: created
       };
     } catch (error) {
       console.warn(`Failed to extract metadata from ${filePath}:`, error);
@@ -96,33 +93,6 @@ class HTMLFileScanner {
     return tags;
   }
 
-  // カテゴリー分類
-  categorizeFile(title, description, tags) {
-    // null/undefined対応
-    if (!title) title = '';
-    if (!description) description = '';
-    if (!tags) tags = [];
-    
-    const text = `${title} ${description} ${tags.join(' ')}`.toLowerCase();
-    
-    if (/(給付|補助|支援|制度|厚生労働省)/.test(text)) {
-      return '制度・補助金';
-    }
-    if (/(デザイン|ui|ux|色|レイアウト)/.test(text)) {
-      return 'デザイン';
-    }
-    if (/(ai|人工知能|教育|学習)/.test(text)) {
-      return '教育・AI';
-    }
-    if (/(プログラミング|開発|技術|web|html|css|javascript)/.test(text)) {
-      return '技術・開発';
-    }
-    if (/(ビジネス|経営|マーケティング|戦略)/.test(text)) {
-      return 'ビジネス';
-    }
-    
-    return 'その他';
-  }
 
   // IDの生成
   generateId(filePath) {

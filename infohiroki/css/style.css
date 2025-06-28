@@ -11,21 +11,29 @@
   --color-border: #CCCCCC;        /* ライトグレー - ボーダー */
   --color-accent: #E73E8F;        /* ピンク - アクセントカラー */
   
-  /* タイポグラフィ */
+  /* フルードタイポグラフィ */
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
-  --font-size-base: 18px;
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);    /* 12px~14px */
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);      /* 14px~16px */
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);      /* 16px~18px */
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);     /* 18px~20px */
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);      /* 20px~24px */
+  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);           /* 24px~32px */
+  --font-size-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);           /* 32px~48px */
   --line-height-base: 1.8;
   
-  /* スペーシング */
+  /* レスポンシブスペーシング */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-xxl: 4rem;
+  --spacing-lg: clamp(1rem, 2vw, 2rem);                          /* 16px~32px */
+  --spacing-xl: clamp(2rem, 4vw, 3rem);                          /* 32px~48px */
+  --spacing-xxl: clamp(3rem, 6vw, 4rem);                         /* 48px~64px */
   
-  /* コンテナ幅 */
+  /* コンテナとコンテンツ幅 */
   --container-width: 1200px;
+  --content-width: clamp(45ch, 65vw, 75ch);                      /* 文字ベース幅 */
+  --text-width: clamp(30ch, 55vw, 65ch);                         /* 読みやすい文章幅 */
   
   /* トランジション */
   --transition: all 0.3s ease;
@@ -41,12 +49,13 @@
 }
 
 html {
-  font-size: var(--font-size-base);
+  font-size: 16px; /* ベースサイズ設定 */
   scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-family);
+  font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--color-text);
   background-color: var(--color-background);
@@ -78,11 +87,16 @@ img {
   padding: var(--spacing-lg);
   transition: var(--transition);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  min-height: 44px;
+  transform: translateZ(0); /* GPU加速有効化 */
+  will-change: transform; /* 最適化ヒント */
+  contain: layout style; /* レイアウト最適化 */
 }
 
 .card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
 }
 
 .card-header {
@@ -109,28 +123,40 @@ img {
   border-top: 1px solid var(--color-border);
 }
 
-/* デフォルトカードグリッドレイアウト - 2列 */
+/* デフォルトカードグリッドレイアウト - 自動調整 */
 .card-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  contain: layout style; /* レイアウト最適化 */
+}
+
+/* 2列固定レイアウト（必要に応じて使用） */
+.card-grid-2 {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
+  contain: layout style;
 }
 
-/* ブログ専用グリッドレイアウト - 3列 */
+/* ブログ専用グリッドレイアウト - 自動調整 */
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
+  contain: layout style; /* レイアウト最適化 */
 }
 
-/* サービス専用グリッドレイアウト - 2列 */
+/* サービス専用グリッドレイアウト - 自動調整 */
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
+  contain: layout style; /* レイアウト最適化 */
 }
 
 /* プラン専用レイアウト - フレックス中央寄せ */
@@ -142,20 +168,8 @@ img {
   flex-wrap: wrap;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 1024px) {
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
+/* レスポンシブ対応 - プラングリッドのみ調整 */
 @media (max-width: 768px) {
-  .card-grid,
-  .blog-grid,
-  .service-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .plans-grid {
     flex-direction: column;
     align-items: center;
@@ -358,6 +372,24 @@ p {
   line-height: 1.8;
 }
 
+/* 読みやすいテキストコンテナ */
+.text-content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.readable-text {
+  max-width: var(--text-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 記事やブログ用の読みやすい段落 */
+.article-content p,
+.blog-content p {
+  max-width: var(--text-width);
+}
+
 /* 見出しスタイル */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family);
@@ -368,9 +400,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--font-size-3xl);
+  font-weight: 900;
+  margin-bottom: var(--spacing-lg);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.03em;
 }
 
 h1::first-letter {
@@ -378,18 +413,18 @@ h1::first-letter {
 }
 
 h2 {
-  font-size: 2rem;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
+  font-size: var(--font-size-2xl);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
   padding-bottom: 0.5rem;
   display: inline-block;
   border-bottom: 2px solid var(--color-accent);
 }
 
 h3 {
-  font-size: 1.5rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.2rem;
+  font-size: var(--font-size-xl);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 h3::first-letter {
@@ -397,24 +432,25 @@ h3::first-letter {
 }
 
 h4 {
-  font-size: 1.25rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   padding-bottom: 0.25rem;
   display: inline-block;
   border-bottom: 1px dotted var(--color-accent);
 }
 
 h5 {
-  font-size: 1.125rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  font-size: var(--font-size-base);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
 }
 
 h6 {
-  font-size: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   font-weight: 600;
 }
 
@@ -468,8 +504,10 @@ li {
 }
 
 .mobile-title {
-  font-weight: bold;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
   font-size: 1.1rem;
+  letter-spacing: -0.01em;
 }
 
 .hamburger-button {
@@ -531,20 +569,21 @@ li {
   left: 0;
   height: 100vh;
   width: 280px;
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-md);
   overflow-y: auto;
 }
 
 .sidebar-header {
-  margin-bottom: var(--spacing-xl);
-  padding-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--color-border);
+  text-align: center;
 }
 
 .site-title {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 6px;
   color: var(--color-text);
   text-decoration: none;
 }
@@ -556,6 +595,8 @@ li {
 .logo img {
   display: block;
   transition: var(--transition);
+  width: 36px;
+  height: 36px;
 }
 
 .logo img:hover {
@@ -569,14 +610,11 @@ li {
 
 .company-name {
   display: block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: var(--spacing-xs);
-}
-
-.tagline {
-  font-size: 0.875rem;
-  color: var(--color-text-light);
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
 }
 
 /* サイドバーナビゲーション */
@@ -589,12 +627,15 @@ li {
 }
 
 .nav-link {
-  display: block;
+  display: flex;
+  align-items: center;
   color: var(--color-text);
   font-weight: 500;
   padding: var(--spacing-md);
   border-radius: 4px;
   transition: var(--transition);
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .nav-link:hover {
@@ -722,10 +763,11 @@ li {
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
-  min-height: 400px;
-  height: 60vh;
+  min-height: clamp(350px, 45vh, 400px);
+  height: clamp(45vh, 60vh, 60vh);
   display: flex;
   align-items: center;
+  padding: var(--spacing-lg) 0;
 }
 
 /* スマホ用ヒーロー画像 */
@@ -733,8 +775,8 @@ li {
   .hero-with-bg {
     background-image: url('../images/circles.svg');
     background-position: center 20%;
-    min-height: 350px;
-    height: 45vh;
+    min-height: clamp(300px, 35vh, 350px);
+    height: clamp(35vh, 45vh, 45vh);
   }
 }
 
@@ -779,6 +821,18 @@ li {
 .home-vision,
 .home-services,
 .home-results {
+  padding: var(--spacing-xxl) 0;
+}
+
+/* セクション内のマージン調整 */
+.home-intro h2,
+.home-vision h2,
+.home-services h2,
+.home-results h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.home-about {
   padding: var(--spacing-xxl) 0;
 }
 
@@ -930,13 +984,18 @@ li {
 }
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color-accent);
   color: var(--color-background);
   padding: var(--spacing-md) var(--spacing-xl);
   border-radius: 8px;
   font-weight: bold;
   transition: var(--transition);
+  min-height: 44px;
+  min-width: 44px;
+  text-decoration: none;
 }
 
 .button:hover {
@@ -1026,10 +1085,11 @@ li {
   border: 2px solid var(--color-border);
   border-radius: 4px;
   font-family: var(--font-family);
-  font-size: 1rem;
+  font-size: max(16px, 1rem); /* iOS Safari ズーム防止 */
   background-color: var(--color-background);
   color: var(--color-text);
   transition: var(--transition);
+  min-height: 44px;
 }
 
 .form-group input:focus,
