@@ -1,0 +1,85 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- アニメーション用のグラデーション -->
+    <radialGradient id="pulseGradient">
+      <stop offset="0%" style="stop-color:#E73E8F;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#E73E8F;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- 美しいループ - ロゴ版 -->
+  <g id="logo">
+    <!-- メインループ -->
+    <circle cx="100" cy="100" r="80" 
+            stroke="#E73E8F" 
+            stroke-width="3" 
+            fill="none" 
+            opacity="0.8"
+            stroke-dasharray="5,10">
+      <animateTransform
+        attributeName="transform"
+        attributeType="XML"
+        type="rotate"
+        from="0 100 100"
+        to="360 100 100"
+        dur="20s"
+        repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- 内側のループ -->
+    <circle cx="100" cy="100" r="55" 
+            stroke="#E73E8F" 
+            stroke-width="2" 
+            fill="none" 
+            opacity="0.5">
+      <animateTransform
+        attributeName="transform"
+        attributeType="XML"
+        type="rotate"
+        from="0 100 100"
+        to="-360 100 100"
+        dur="15s"
+        repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- 軌道上の要素 -->
+    <g>
+      <circle cx="180" cy="100" r="8" fill="#E73E8F" opacity="0.8">
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="10s"
+          repeatCount="indefinite"/>
+      </circle>
+      <circle cx="155" cy="100" r="6" fill="#E73E8F" opacity="0.6">
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="8s"
+          repeatCount="indefinite"/>
+      </circle>
+      <circle cx="130" cy="100" r="4" fill="#E73E8F" opacity="0.4">
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="6s"
+          repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- パルスエフェクト -->
+    <circle cx="100" cy="100" r="30" fill="url(#pulseGradient)">
+      <animate attributeName="r" from="30" to="120" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="0.5" to="0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

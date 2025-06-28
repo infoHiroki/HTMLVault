@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="infohirokiのブログ - 技術記事とアーカイブ">
+    <title>ブログ | infohiroki</title>
+    
+    <!-- OGPタグ -->
+    <meta property="og:title" content="ブログ | infohiroki">
+    <meta property="og:description" content="infohirokiのブログ - 技術記事とアーカイブ">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="infohiroki">
+    <meta property="og:locale" content="ja_JP">
+    
+    <!-- Twitterカード -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ブログ | infohiroki">
+    <meta name="twitter:description" content="infohirokiのブログ - 技術記事とアーカイブ">
+    
+    <!-- ファビコン -->
+    <link rel="icon" type="image/svg+xml" href="images/HirokiLOGO.svg">
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* ブログ固有のスタイル - infohirokiデザインシステムに統一 */
+        .search-section {
+            background-color: var(--color-background);
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg) auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            transition: var(--transition);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(231, 62, 143, 0.1);
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .filter-button {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-family);
+        }
+        
+        .filter-button:hover {
+            background-color: var(--color-text);
+            color: var(--color-background);
+            border-color: var(--color-text);
+        }
+        
+        .filter-button.active {
+            background-color: var(--color-accent);
+            color: var(--color-background);
+            border-color: var(--color-accent);
+        }
+        
+        .sort-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .sort-button {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: transparent;
+            color: var(--color-text-light);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .sort-button:hover,
+        .sort-button.active {
+            background-color: var(--color-accent);
+            color: var(--color-background);
+            border-color: var(--color-accent);
+        }
+        
+        .stats {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+        }
+        
+        .stats span {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        /* infohirokiの.blog-gridを使用 */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        /* infohirokiの.cardスタイルベース */
+        .article-card {
+            background-color: var(--color-background);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+        
+        .article-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--color-accent);
+        }
+        
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .article-category {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: var(--color-accent);
+            color: var(--color-background);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .article-date {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+        }
+        
+        .article-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text);
+            line-height: 1.4;
+        }
+        
+        .article-title a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .article-title a:hover {
+            color: var(--color-accent);
+        }
+        
+        .article-description {
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+        
+        .article-tags .tag {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: #f5f5f5;
+            color: var(--color-text);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+        
+        .article-tags .tag:hover {
+            background-color: var(--color-accent);
+            color: var(--color-background);
+            border-color: var(--color-accent);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: var(--spacing-xxl);
+            color: var(--color-text-light);
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 1024px) {
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                justify-content: flex-start;
+            }
+            
+            .filter-button {
+                font-size: 0.875rem;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+            
+            .search-input {
+                font-size: 16px; /* iOS対応 */
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-xs);
+            }
+        }
+    </style>
+    
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "infohiroki Blog",
+      "description": "infohirokiのブログ - 技術記事とアーカイブ",
+      "url": "blog.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "infohiroki",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "images/HirokiLOGO.svg"
+        }
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="site-layout">
+        <!-- モバイル用ヘッダー -->
+        <header class="mobile-header">
+            <div class="mobile-header-content">
+                <a href="/" class="mobile-logo">
+                    <img src="images/HirokiLOGO.svg" alt="infohiroki Logo" width="40" height="40">
+                    <span class="mobile-title">infohiroki</span>
+                </a>
+                <button class="hamburger-button" aria-label="メニューを開く">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- デスクトップ用サイドバー / モバイル用オーバーレイメニュー -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="/" class="site-title">
+                    <div class="logo">
+                        <img src="images/HirokiLOGO.svg" alt="infohiroki Logo" width="50" height="50">
+                    </div>
+                    <div class="title-text">
+                        <span class="company-name">infohiroki</span>
+                        <span class="tagline">習慣 × エンジニア</span>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">ホーム</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="blog.html" class="nav-link">ブログ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="services.html" class="nav-link">サービス</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="products.html" class="nav-link">開発製品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="results.html" class="nav-link">実績</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">事業者情報</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="faq.html" class="nav-link">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">お問い合わせ</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- モバイル用オーバーレイ -->
+        <div class="mobile-overlay"></div>
+
+        <div class="main-wrapper">
+            <main class="site-main">
+                <div class="hero-sub">
+                    <div class="container">
+                        <h1 class="page-title">ブログ</h1>
+                    </div>
+                </div>
+
+                <!-- 検索セクション -->
+                <section class="search-section">
+                    <div class="container">
+                        <div class="search-container">
+                            <input type="text" id="searchInput" class="search-input" placeholder="記事を検索... (タイトル、説明、タグから検索)" aria-label="記事検索">
+                            
+                            <div class="filters">
+                                <button class="filter-button active" data-category="all">すべて</button>
+                                <button class="filter-button" data-category="技術・開発">技術・開発</button>
+                                <button class="filter-button" data-category="教育・AI">教育・AI</button>
+                                <button class="filter-button" data-category="デザイン">デザイン</button>
+                                <button class="filter-button" data-category="制度・補助金">制度・補助金</button>
+                                <button class="filter-button" data-category="ビジネス">ビジネス</button>
+                                <button class="filter-button" data-category="その他">その他</button>
+                            </div>
+                            
+                            <div class="sort-controls">
+                                <button class="sort-button active" data-sort="date">📅 新着順</button>
+                                <button class="sort-button" data-sort="title">🔤 名前順</button>
+                                <button class="sort-button" id="refreshFiles">🔄 更新</button>
+                            </div>
+                            
+                            <div class="stats">
+                                <span id="totalFiles">記事数: 0</span>
+                                <span id="filteredCount">表示中: 0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="page-content">
+                    <div class="container">
+                        <section class="section">
+                            <div class="page-header">
+                                <p class="page-description">ITエンジニアリング、AI、ツール活用に関する技術記事をご覧いただけます。</p>
+                            </div>
+                            
+                            <div id="articlesContainer" class="article-grid">
+                                <!-- 記事カードがここに動的に生成されます -->
+                            </div>
+                            
+                            <div id="noResults" class="no-results" style="display: none;">
+                                <p>検索条件に一致する記事が見つかりませんでした。</p>
+                                <p><small>別のキーワードで検索してみてください</small></p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="minimal-footer">
+                <div class="container">
+                    <p>© 2025 infohiroki. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script src="auto-scan.js"></script>
+    <script>
+        // HTMLVault機能を統合 - infohirokiデザイン対応
+        let allFiles = [];
+        let filteredFiles = [];
+        let currentSort = 'date';
+        let searchQuery = '';
+        let autoManager = null;
+        
+        // auto-scan.jsを使用したファイル読み込み
+        async function loadFiles() {
+            try {
+                // まず auto-scan.js の AutoFileManager を試行
+                if (!autoManager) {
+                    autoManager = new AutoFileManager();
+                }
+                
+                allFiles = await autoManager.refreshFileList();
+                console.log('自動検出されたファイル:', allFiles);
+                
+                // フォールバック: 直接files.jsonを読み込み
+                if (allFiles.length === 0) {
+                    const response = await fetch('files.json');
+                    const data = await response.json();
+                    allFiles = data.files || [];
+                }
+                
+                filteredFiles = [...allFiles];
+                applyFilters();
+                updateStats();
+                renderArticles();
+                
+            } catch (error) {
+                console.error('ファイルの読み込みに失敗しました:', error);
+                // 最終フォールバック
+                try {
+                    const response = await fetch('files.json');
+                    const data = await response.json();
+                    allFiles = data.files || [];
+                    filteredFiles = [...allFiles];
+                    updateStats();
+                    renderArticles();
+                } catch (fallbackError) {
+                    console.error('フォールバック読み込みも失敗しました:', fallbackError);
+                }
+            }
+        }
+        
+        // 記事カードを生成（infohirokiスタイル）
+        function createArticleCard(file) {
+            const tagsHtml = (file.tags || []).slice(0, 4).map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).join('');
+            
+            const moreTagsCount = (file.tags || []).length > 4 ? (file.tags || []).length - 4 : 0;
+            const moreTagsHtml = moreTagsCount > 0 ? `<span class="tag">+${moreTagsCount}</span>` : '';
+            
+            return `
+                <article class="article-card" onclick="openFile('${file.path}')">
+                    <div class="article-header">
+                        <span class="article-category">${file.category}</span>
+                        <time class="article-date">${file.created}</time>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="article-title">
+                            <a href="#" onclick="event.preventDefault(); openFile('${file.path}');">${file.title}</a>
+                        </h3>
+                        <p class="article-description">${file.description}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="article-tags">
+                            ${tagsHtml}
+                            ${moreTagsHtml}
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+        
+        // ファイルを開く関数
+        function openFile(path) {
+            // pathが既にhtml-files/で始まっている場合はそのまま、そうでなければ追加
+            const fullPath = path.startsWith('html-files/') ? path : `html-files/${path}`;
+            window.open(fullPath, '_blank');
+        }
+        
+        // 記事を表示
+        function renderArticles() {
+            const container = document.getElementById('articlesContainer');
+            const noResults = document.getElementById('noResults');
+            
+            if (filteredFiles.length === 0) {
+                container.innerHTML = '';
+                noResults.style.display = 'block';
+            } else {
+                container.innerHTML = filteredFiles.map(createArticleCard).join('');
+                noResults.style.display = 'none';
+            }
+        }
+        
+        // 統計情報を更新
+        function updateStats() {
+            document.getElementById('totalFiles').textContent = `記事数: ${allFiles.length}`;
+            document.getElementById('filteredCount').textContent = `表示中: ${filteredFiles.length}`;
+        }
+        
+        // フィルター適用（検索とソート）
+        function applyFilters() {
+            let result = [...allFiles];
+            
+            // 検索フィルター
+            if (searchQuery) {
+                result = result.filter(file => {
+                    const searchFields = [
+                        file.title,
+                        file.description,
+                        file.category,
+                        ...(file.tags || [])
+                    ].join(' ').toLowerCase();
+                    return searchFields.includes(searchQuery);
+                });
+            }
+            
+            // カテゴリーフィルター
+            const activeCategory = document.querySelector('.filter-button.active')?.dataset.category;
+            if (activeCategory && activeCategory !== 'all') {
+                result = result.filter(file => file.category === activeCategory);
+            }
+            
+            // ソート
+            result.sort((a, b) => {
+                if (currentSort === 'date') {
+                    return new Date(b.created) - new Date(a.created);
+                } else if (currentSort === 'title') {
+                    return a.title.localeCompare(b.title, 'ja');
+                }
+                return 0;
+            });
+            
+            filteredFiles = result;
+            updateStats();
+            renderArticles();
+        }
+        
+        // 検索機能
+        function search(query) {
+            searchQuery = query.toLowerCase().trim();
+            applyFilters();
+        }
+        
+        // イベントリスナー
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFiles();
+            
+            // 検索入力（デバウンス機能付き）
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        search(e.target.value);
+                    }, 300);
+                });
+            }
+            
+            // カテゴリフィルター
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFilters();
+                });
+            });
+            
+            // ソート機能
+            document.querySelectorAll('.sort-button[data-sort]').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.sort-button[data-sort]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSort = this.dataset.sort;
+                    applyFilters();
+                });
+            });
+            
+            // 更新ボタン
+            const refreshButton = document.getElementById('refreshFiles');
+            if (refreshButton) {
+                refreshButton.addEventListener('click', async () => {
+                    refreshButton.textContent = '🔄 読み込み中...';
+                    refreshButton.disabled = true;
+                    
+                    try {
+                        await loadFiles();
+                        
+                        // ソート状態をリセット
+                        document.querySelectorAll('.sort-button[data-sort]').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        document.querySelector('[data-sort="date"]')?.classList.add('active');
+                        
+                        // 成功メッセージ
+                        const notification = document.createElement('div');
+                        notification.textContent = `${allFiles.length}個の記事を読み込みました！`;
+                        notification.className = 'copy-notification';
+                        document.body.appendChild(notification);
+                        setTimeout(() => notification.remove(), 2000);
+                        
+                    } catch (error) {
+                        const notification = document.createElement('div');
+                        notification.textContent = '更新に失敗しました';
+                        notification.className = 'copy-notification';
+                        document.body.appendChild(notification);
+                        setTimeout(() => notification.remove(), 2000);
+                    } finally {
+                        refreshButton.textContent = '🔄 更新';
+                        refreshButton.disabled = false;
+                    }
+                });
+            }
+            
+            // キーボードショートカット
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchInput?.blur();
+                }
+                if (e.key === '/' && !e.target.matches('input')) {
+                    e.preventDefault();
+                    searchInput?.focus();
+                }
+                if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+                    e.preventDefault();
+                    refreshButton?.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

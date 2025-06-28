@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go言語入門チュートリアル</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.2"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.2"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.2"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .source {
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .header .source a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8fffe;
+            border-radius: 15px;
+            border-left: 5px solid #00d4aa;
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section h2 {
+            color: #00d4aa;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2::before {
+            content: '▶';
+            margin-right: 10px;
+            color: #00b894;
+        }
+        
+        .points {
+            margin-left: 20px;
+        }
+        
+        .point {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .sub-point {
+            margin-left: 20px;
+            margin-top: 10px;
+            padding: 10px;
+            background: #e6fffe;
+            border-radius: 8px;
+            border-left: 3px solid #00d4aa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #00d4aa;
+        }
+        
+        .feature-card h3 {
+            color: #00d4aa;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+        
+        .learning-path {
+            background: #f8fffe;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .learning-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #00d4aa;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #00d4aa;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .code-example {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .data-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .type-card {
+            background: #e6fffe;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #00d4aa;
+            text-align: center;
+        }
+        
+        .type-card h4 {
+            color: #00d4aa;
+            margin-bottom: 10px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #00d4aa 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 15px 35px rgba(0, 212, 170, 0.3);
+        }
+        
+        .summary h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .summary-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .learning-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Go言語入門チュートリアル</h1>
+            <p>Googleが開発したシンプルで高速なプログラミング言語</p>
+            <div class="source">
+                ソース：<a href="https://www.youtube.com/watch?v=kPXfMFJ0oIE" target="_blank">プログラミング学習チャンネル</a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Go言語の概要</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>基本情報</strong>
+                        <div class="sub-point">2009年にGoogleが開発</div>
+                        <div class="sub-point">正式名称は「Go」だが、検索性を考慮し「Go lang」や「Go言語」と呼ばれる</div>
+                        <div class="sub-point">2012年のバージョン1.0からWindows対応</div>
+                        <div class="sub-point">2014年：Androidアプリ開発対応</div>
+                        <div class="sub-point">2015年：iOSアプリ開発対応</div>
+                    </div>
+                    <div class="point">
+                        <strong>開発者</strong>
+                        <div class="sub-point">ロブ・パイク氏（UNIX開発に携わった）</div>
+                        <div class="sub-point">ケン・トンプソン氏（C言語開発者）</div>
+                        <div class="sub-point">C言語を意識しながら設計された言語</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Go言語の特徴</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>高速処理</h3>
+                        <p>コンパイラ言語で機械語に一括変換。JavaやC#と違い仮想マシンを介さず直接実行されるため、より高速に処理可能。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>シンプルな構文</h3>
+                        <p>while文がない、誰が書いても似たようなコードになる設計。学習難易度が低く、開発効率が向上。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>適用分野</h3>
+                        <p>Webサーバー構築、大規模データ解析ツール開発、クラウドネイティブアプリケーション開発に最適。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>学習推奨</h3>
+                        <p>プログラミング初心者はPythonやPHPなどのスクリプト言語から学習することを推奨。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                時代に合わせてより便利に使えるようにした新しいC言語 = Go言語
+            </div>
+            
+            <div class="section">
+                <h2>環境構築</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>必要なツール</strong>
+                        <div class="sub-point">Go本体：プログラムの実行を可能にする</div>
+                        <div class="sub-point">Visual Studio Code：Microsoftが開発したエディター</div>
+                        <div class="sub-point">Go拡張機能：VS Code用のGo開発サポート</div>
+                    </div>
+                    <div class="point">
+                        <strong>VS Codeの特徴</strong>
+                        <div class="sub-point">Windows、macOS、Linuxで利用可能</div>
+                        <div class="sub-point">Java、C言語、Pythonなど多言語対応</div>
+                        <div class="sub-point">開発環境人気ランキング1位</div>
+                        <div class="sub-point">設定に迷うことなく言語学習に集中可能</div>
+                    </div>
+                </div>
+                <div class="code-example">
+# macOSでのインストール例（Homebrewを使用）
+brew update
+brew install go
+go version  # インストール確認
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>プログラムの基本構造</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>3つの基本動作</strong>
+                        <div class="sub-point">順次進行：上から順に処理を実行</div>
+                        <div class="sub-point">条件分岐：特定の条件でA処理、そうでなければB処理</div>
+                        <div class="sub-point">繰り返し：決まった回数や条件まで同じ処理を反復</div>
+                    </div>
+                </div>
+                <div class="code-example">
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Good morning")
+    fmt.Println("Good afternoon") 
+    fmt.Println("Good evening")
+}
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>データ型</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>静的型付け言語</strong>
+                        <div class="sub-point">変数にデータを入れる時にデータ型を指定する必要</div>
+                        <div class="sub-point">Go、Java、C++、C言語などが該当</div>
+                        <div class="sub-point">動的型付け言語：Ruby、Python、JavaScript、PHPなど</div>
+                    </div>
+                </div>
+                <div class="data-types-grid">
+                    <div class="type-card">
+                        <h4>数値型</h4>
+                        <p>整数型：int, int8, int16, int32, int64<br>
+                        小数型：float32, float64</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>文字列型</h4>
+                        <p>string型<br>
+                        ダブルクォーテーションで囲む</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>ブール型</h4>
+                        <p>bool型<br>
+                        true または false</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>配列</h4>
+                        <p>複数のデータを格納<br>
+                        インデックスは0から開始</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>重要な言語要素</h2>
+                <div class="points">
+                    <div class="point">
+                        <strong>変数</strong>
+                        <div class="sub-point">宣言方法：var 変数名 データ型</div>
+                        <div class="sub-point">省略記法：変数名 := 値</div>
+                        <div class="sub-point">命名規則：アルファベット、数字、アンダースコア使用可能</div>
+                        <div class="sub-point">大文字小文字は区別される</div>
+                    </div>
+                    <div class="point">
+                        <strong>演算子</strong>
+                        <div class="sub-point">算術演算子：+、-、*、/、%（剰余）</div>
+                        <div class="sub-point">関係演算子：>、<、>=、<=、==、!=</div>
+                        <div class="sub-point">論理演算子：&&（かつ）、||（または）</div>
+                        <div class="sub-point">代入演算子：=、+=、-=など</div>
+                    </div>
+                    <div class="point">
+                        <strong>制御構文</strong>
+                        <div class="sub-point">条件分岐：if、else if、else文</div>
+                        <div class="sub-point">繰り返し：for文のみ（while文は存在しない）</div>
+                        <div class="sub-point">break文、continue文でループ制御</div>
+                    </div>
+                    <div class="point">
+                        <strong>関数</strong>
+                        <div class="sub-point">定義方法：func 関数名(引数) 戻り値型</div>
+                        <div class="sub-point">複数の戻り値を返すことが可能</div>
+                        <div class="sub-point">無名関数や変数への関数代入も可能</div>
+                    </div>
+                    <div class="point">
+                        <strong>構造体とメソッド</strong>
+                        <div class="sub-point">構造体：異なるデータ型の変数をまとめる</div>
+                        <div class="sub-point">メソッド：構造体に関連付けられた関数</div>
+                        <div class="sub-point">レシーバーを通じて構造体のフィールドにアクセス</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="learning-path">
+                <h2 style="color: #00d4aa; margin-bottom: 20px;">学習ステップ</h2>
+                <div class="learning-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>環境構築</h4>
+                        <p>Go本体、VS Code、Go拡張機能のインストール</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>基本構文</h4>
+                        <p>変数、データ型、演算子の理解</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>制御構文</h4>
+                        <p>条件分岐、繰り返し処理の習得</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>関数</h4>
+                        <p>関数の定義、引数、戻り値の理解</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">5</div>
+                        <h4>構造体</h4>
+                        <p>構造体とメソッドによるオブジェクト指向的な設計</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">6</div>
+                        <h4>実践演習</h4>
+                        <p>テスト結果判定プログラムなどの総合演習</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary">
+                <h2>まとめ</h2>
+                <div class="summary-text">
+                    Go言語は2009年にGoogleが開発したプログラミング言語で、C言語をベースにしながら現代的な機能を追加した高速でシンプルな言語です。コンパイラ言語でありながら仮想マシンを介さない直接実行により、優れたパフォーマンスを実現しています。構文がシンプルで学習難易度が低く、誰が書いても似たようなコードになるため、チーム開発における可読性と保守性が高いのが特徴です。環境構築では Go本体、Visual Studio Code、Go拡張機能の3つをインストールし、基本構造として順次進行、条件分岐、繰り返しの3つの制御フローを習得します。静的型付け言語として数値型、文字列型、ブール型、配列などのデータ型を理解し、変数、演算子、関数、構造体とメソッドといった言語要素を段階的に学習することで、Webサーバー構築や大規模データ解析などの実用的なアプリケーション開発が可能になります。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asepriteで下絵に画像を使う方法</title>
+    <style>
+        @font-face {
+            font-family: 'PixelFont';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/silkscreen/1.0/slkscr-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            font-family: 'PixelFont', monospace;
+            line-height: 1.5;
+            background-color: #181425;
+            color: #c0cbdc;
+            margin: 0;
+            padding: 20px;
+            image-rendering: pixelated;
+        }
+        
+        .pixel-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 4px solid #3a4466;
+            padding: 20px;
+            background-color: #262b44;
+            box-shadow: 0 0 0 4px #181425;
+        }
+        
+        h1 {
+            color: #ef7d57;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-shadow: 3px 3px 0 #181425;
+        }
+        
+        h2 {
+            color: #ffcd75;
+            border-left: 8px solid #ffcd75;
+            padding-left: 10px;
+            margin-top: 30px;
+            text-shadow: 2px 2px 0 #181425;
+        }
+        
+        .pixel-section {
+            background-color: #262b44;
+            border: 4px solid #3a4466;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .pixel-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 15%);
+            pointer-events: none;
+        }
+        
+        ol {
+            padding-left: 30px;
+            counter-reset: pixel-counter;
+        }
+        
+        ol li {
+            margin-bottom: 10px;
+            position: relative;
+            counter-increment: pixel-counter;
+        }
+        
+        ol li::before {
+            content: counter(pixel-counter) ".";
+            color: #8b6d9c;
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+            margin-left: -20px;
+        }
+        
+        .pixel-tip {
+            background-color: #181425;
+            border: 4px solid #8b6d9c;
+            padding: 12px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .pixel-tip::before {
+            content: "TIP!";
+            background-color: #8b6d9c;
+            color: #181425;
+            font-weight: bold;
+            padding: 0 8px;
+            position: absolute;
+            top: -14px;
+            left: 10px;
+        }
+        
+        .aseprite-logo {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .pixel-title {
+            display: inline-block; 
+            background-color: #ef7d57; 
+            color: #181425; 
+            padding: 10px 20px; 
+            font-size: 20px; 
+            font-weight: bold; 
+            border: 4px solid #ffcd75; 
+            box-shadow: 4px 4px 0 #181425;
+        }
+    </style>
+</head>
+<body>
+    <div class="pixel-container">
+        <h1>Asepriteで下絵に画像を使う方法</h1>
+        
+        <div class="aseprite-logo">
+            <div style="display: inline-block; background-color: #ef7d57; color: #181425; padding: 10px 20px; font-size: 20px; font-weight: bold; border: 4px solid #ffcd75; box-shadow: 4px 4px 0 #181425;">
+                参照画像の使い方ガイド
+            </div>
+        </div>
+        
+        <div class="pixel-section">
+            <h2>下絵に画像を使う方法</h2>
+            <p>既存の画像を下絵として使ってトレースしたり、ピクセルアートに変換したりできるよ！</p>
+            
+            <ol>
+                <li><strong>画像をインポート:</strong> ファイル > 開く... で画像ファイルを選ぶか、ファイル > インポート > 画像からスプライトシート...</li>
+                <li><strong>新しいレイヤーに配置:</strong> 開いた画像を新規レイヤーとして配置</li>
+                <li><strong>透明度を調整:</strong> レイヤーパネルで不透明度を下げて（例：50%）下絵として使えるようにする</li>
+                <li><strong>レイヤー順序の変更:</strong> 下絵レイヤーを一番下に移動し、新しい空のレイヤーを上に作成して線画を描く</li>
+                <li><strong>自動ピクセル化:</strong> フィルタ > ピクセル化 で自動的にピクセルアート風に変換することもできる</li>
+            </ol>
+            
+            <div class="pixel-tip">
+                写真を下絵にするときは、コントラストを上げると輪郭がはっきりして描きやすくなるよ！フィルタ > 明るさ/コントラスト... で調整してみよう。
+            </div>
+            
+            <div class="pixel-tip">
+                解像度の高い写真を使うときは、キャンバスサイズにあわせて画像をリサイズしよう。編集 > リサイズ... から調整できるよ。
+            </div>
+            
+            <div class="pixel-tip">
+                トレースが終わったら、下絵レイヤーを非表示にして（目のアイコンをクリック）最終的な作品を確認してみよう！
+            </div>
+        </div>
+    </div>
+</body>
+</html>
