@@ -23,6 +23,30 @@
     
     <link rel="stylesheet" href="css/style.css">
     
+    <style>
+        .card-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .link-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #E73E8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .link-button:hover {
+            background: #d12975;
+            color: white;
+        }
+    </style>
+    
     <!-- 構造化データ -->
     <script type="application/ld+json">
     {
@@ -127,49 +151,82 @@
                             <div class="card-grid">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Koemoji（声文字）</h3>
-                                        <p class="card-subtitle">AI音声文字起こしシステム</p>
+                                        <h3 class="card-title">Koemoji-Go（声文字）</h3>
+                                        <p class="card-subtitle">オールインワン音声処理システム</p>
                                     </div>
                                     <div class="card-body">
-                                        <p><strong>機能：</strong> リアルタイム音声文字起こし、議事録自動生成</p>
-                                        <p><strong>特徴：</strong> 医療現場での導入実績、高精度な日本語認識</p>
-                                        <p><strong>対応：</strong> Windows、Mac、Web ブラウザ</p>
+                                        <p><strong>機能：</strong> 録音→文字起こし→AI要約の完全自動化</p>
+                                        <p><strong>特徴：</strong> GUI/TUI対応、フォルダ監視、シングルバイナリ配布</p>
+                                        <p><strong>技術：</strong> Go、Fyne、FasterWhisper、OpenAI API</p>
+                                        <p><strong>対応：</strong> Windows、macOS（Apple Silicon対応）</p>
+                                        <div class="card-links">
+                                            <a href="https://github.com/infoHiroki/KoeMoji-Go" target="_blank" class="link-button">GitHub (Go版)</a>
+                                            <a href="https://github.com/infoHiroki/KoeMojiAuto-cli" target="_blank" class="link-button">GitHub (Python版)</a>
+                                            <a href="https://koemoji.hmtc.jp/index.html" target="_blank" class="link-button">紹介ページ</a>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">NotionDB管理ツール</h3>
-                                        <p class="card-subtitle">Notion データベース最適化</p>
+                                        <h3 class="card-title">YouTube MojiCopy</h3>
+                                        <p class="card-subtitle">Chrome拡張機能</p>
                                     </div>
                                     <div class="card-body">
-                                        <p><strong>機能：</strong> データベース構造設計、自動化フロー構築</p>
-                                        <p><strong>特徴：</strong> チーム連携効率化、タスク管理最適化</p>
-                                        <p><strong>対応：</strong> Notion API連携、カスタマイズ対応</p>
+                                        <p><strong>機能：</strong> プロンプト保存機能付きYouTube文字起こしコピー</p>
+                                        <p><strong>特徴：</strong> 「要約して」等のプロンプト＋文字起こしでLLMに直接ペースト可能</p>
+                                        <p><strong>技術：</strong> JavaScript、Chrome Extension API</p>
+                                        <p><strong>対応：</strong> ChatGPT、Claude等のLLMとの連携</p>
+                                        <div class="card-links">
+                                            <a href="https://chromewebstore.google.com/detail/youtubemojicopy/ejeafnfdgeipigfackgkhcgfbjiijbgf" target="_blank" class="link-button">Chrome Store</a>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">業務自動化ツール</h3>
-                                        <p class="card-subtitle">Python ベース業務効率化</p>
+                                        <h3 class="card-title">NotionTasker</h3>
+                                        <p class="card-subtitle">Notion連携Chrome拡張</p>
                                     </div>
                                     <div class="card-body">
-                                        <p><strong>機能：</strong> データ処理自動化、レポート生成、API連携</p>
-                                        <p><strong>特徴：</strong> 個別カスタマイズ対応、導入サポート付き</p>
-                                        <p><strong>対応：</strong> Windows、Mac、Linux</p>
+                                        <p><strong>機能：</strong> WebページからNotionへ直接タスク・メモ追加</p>
+                                        <p><strong>技術：</strong> JavaScript、Notion API、Chrome Extension</p>
+                                        <p><strong>対応：</strong> Notion データベースと連携</p>
+                                        <div class="card-links">
+                                            <a href="https://chromewebstore.google.com/detail/notiontasker/pkbibgfhgicoahenebmkhbklkffjdfea" target="_blank" class="link-button">Chrome Store</a>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Web アプリケーション</h3>
-                                        <p class="card-subtitle">カスタム業務システム</p>
+                                        <h3 class="card-title">Webサイト制作</h3>
+                                        <p class="card-subtitle">コーポレートサイト・LP制作</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>機能：</strong> 企業サイト、ランディングページ、ブログサイト</p>
+                                        <p><strong>特徴：</strong> レスポンシブ対応、SEO最適化、高速表示</p>
+                                        <p><strong>技術：</strong> HTML/CSS、JavaScript、静的サイトジェネレーター</p>
+                                        <p><strong>対応：</strong> お問い合わせフォーム、アナリティクス連携</p>
+                                        <div class="card-links">
+                                            <a href="contact.html" class="link-button">お問い合わせ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Webアプリケーション</h3>
+                                        <p class="card-subtitle">カスタム業務システム開発</p>
                                     </div>
                                     <div class="card-body">
                                         <p><strong>機能：</strong> 顧客管理、在庫管理、予約システム等</p>
-                                        <p><strong>特徴：</strong> 完全カスタマイズ、クラウド対応</p>
-                                        <p><strong>対応：</strong> レスポンシブデザイン、モバイル対応</p>
+                                        <p><strong>特徴：</strong> 完全カスタマイズ、データベース連携</p>
+                                        <p><strong>技術：</strong> JavaScript、React、Node.js、PostgreSQL</p>
+                                        <p><strong>対応：</strong> Vercel、Firebase等のクラウドデプロイ</p>
+                                        <div class="card-links">
+                                            <a href="contact.html" class="link-button">お問い合わせ</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

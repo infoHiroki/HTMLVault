@@ -679,6 +679,42 @@ li {
   border-bottom: 1px solid var(--color-border);
 }
 
+/* 自己紹介セクション */
+.home-about {
+  background-color: var(--color-background);
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.home-about h2 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xl);
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.about-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+.about-tagline {
+  margin-top: var(--spacing-lg);
+  font-size: 1.125rem;
+  color: var(--color-accent);
+}
+
 /* ヒーロー背景画像用 */
 .hero-with-bg {
   background-image: url('../images/hero.svg');
