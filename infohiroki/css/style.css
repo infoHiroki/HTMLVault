@@ -681,7 +681,7 @@ li {
 
 /* ヒーロー背景画像用 */
 .hero-with-bg {
-  background-image: url('/images/hero-sample.svg');
+  background-image: url('../images/hero.svg');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -690,6 +690,16 @@ li {
   height: 60vh;
   display: flex;
   align-items: center;
+}
+
+/* スマホ用ヒーロー画像 */
+@media (max-width: 768px) {
+  .hero-with-bg {
+    background-image: url('../images/circles.svg');
+    background-position: center 20%;
+    min-height: 350px;
+    height: 45vh;
+  }
 }
 
 
@@ -716,33 +726,76 @@ li {
   color: var(--color-text);
 }
 
-/* 新しいセクション用 */
-.home-vision {
-  background-color: var(--color-background);
-  padding: var(--spacing-xxl) 0;
-}
-
 /* ホームセクション共通 */
 .home-intro,
 .home-vision,
 .home-services,
 .home-results {
-  padding: var(--spacing-xxl) 0;
+  background-color: var(--color-background);
+  text-align: center;
 }
 
 .home-intro {
-  background-color: var(--color-background);
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-xxl);
 }
 
-.home-services {
-  background-color: var(--color-background);
-}
-
-.home-intro,
 .home-vision,
 .home-services,
 .home-results {
+  padding: var(--spacing-xxl) 0;
+}
+
+/* ヒーローコンテンツ */
+.hero-content {
+  margin-bottom: var(--spacing-xxl);
+  padding-bottom: var(--spacing-xxl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-light);
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+/* 哲学セクション */
+.philosophy-content {
+  max-width: 800px;
+  margin: 0 auto;
   text-align: center;
+}
+
+.call-to-action {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-accent);
+  font-weight: bold;
+  text-align: center;
+}
+
+.philosophy-text {
+  text-align: center;
+}
+
+.philosophy-text p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+}
+
+.final-statement {
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 1.25rem;
+  margin-top: var(--spacing-xl);
 }
 
 .home-intro h2,
@@ -1117,5 +1170,14 @@ li {
   .home-services,
   .home-results {
     padding: var(--spacing-xl) 0;
+  }
+  
+  /* ヒーローコンテンツのモバイル調整 */
+  .call-to-action {
+    font-size: 2rem;
+  }
+  
+  .philosophy-text p {
+    font-size: 1rem;
   }
 }
