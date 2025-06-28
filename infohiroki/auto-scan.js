@@ -186,9 +186,9 @@ class AutoFileManager {
     }
   }
 
-  // カテゴリー一覧の更新
+  // カテゴリー一覧の更新（非推奨）
   updateCategories() {
-    this.categories = new Set(this.files.map(file => file.category));
+    this.categories = new Set();
   }
 
   // カテゴリー一覧の取得

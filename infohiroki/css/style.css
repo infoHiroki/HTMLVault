@@ -717,7 +717,6 @@ li {
   background-color: var(--color-background);
   padding: var(--spacing-xxl) 0;
   text-align: center;
-  border-bottom: 1px solid var(--color-border);
 }
 
 /* 自己紹介セクション */
@@ -814,7 +813,7 @@ li {
 }
 
 .home-intro {
-  padding-top: var(--spacing-lg);
+  padding-top: var(--spacing-xxl);
   padding-bottom: var(--spacing-xxl);
 }
 
