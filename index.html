@@ -467,14 +467,12 @@
     © 2022 infoHiroki. All rights reserved.
   </footer>
 
-  <script src="auto-scan.js"></script>
   <script>
     // アプリケーション状態
     let files = [];
     let filteredFiles = [];
     let currentSort = 'date';
     let searchQuery = '';
-    let autoManager = null;
 
     // DOM要素
     const searchInput = document.getElementById('searchInput');
@@ -484,36 +482,21 @@
     const tabNav = document.getElementById('tabNav');
     const refreshButton = document.getElementById('refreshFiles');
 
-    // 自動ファイル検出によるデータ読み込み
+    // files.jsonからデータ読み込み
     async function loadFiles() {
       try {
-        if (!autoManager) {
-          autoManager = new AutoFileManager();
-        }
-        
-        files = await autoManager.refreshFileList();
+        const response = await fetch('files.json');
+        const data = await response.json();
+        files = data.files;
         filteredFiles = [...files];
         
-        console.log('自動検出されたファイル:', files);
+        console.log('読み込まれたファイル:', files);
         
         renderFiles();
         updateSearchResults();
         
-        // デバッグ: 生成されたfiles.jsonを表示
-        console.log('Generated files.json:', autoManager.generateFilesJSON());
-        
       } catch (error) {
         console.error('ファイルの読み込みに失敗しました:', error);
-        // フォールバック: 元のfiles.jsonを試行
-        try {
-          const response = await fetch('files.json');
-          files = (await response.json()).files;
-          filteredFiles = [...files];
-          renderFiles();
-          updateSearchResults();
-        } catch (fallbackError) {
-          console.error('フォールバック読み込みも失敗しました:', fallbackError);
-        }
       }
     }
 

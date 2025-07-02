@@ -2,7 +2,7 @@
   "files": [
     {
       "id": "hospital-review-system",
-      "path": "病院口コミ対応システム 導入説明資料.html",
+      "path": "html-files/hospital-review-system-guide.html",
       "title": "病院口コミ対応システム 導入説明資料",
       "description": "病院向け口コミ管理・対応システムの導入説明資料",
       "tags": [
@@ -17,7 +17,7 @@
     },
     {
       "id": "vscode-github-copilot",
-      "path": "2025-06-27-tech-vscode-github-copilot.html",
+      "path": "html-files/2025-06-27-tech-vscode-github-copilot.html",
       "title": "VSコード講座まとめ",
       "description": "GitHubコパイロットと連携したVSコードの基本機能",
       "tags": [
@@ -32,7 +32,7 @@
     },
     {
       "id": "genspark-ai",
-      "path": "2025-06-27-edu-genspark-ai.html",
+      "path": "html-files/2025-06-27-edu-genspark-ai.html",
       "title": "GenSpark AIスライド資料作成ワークフロー",
       "description": "GenSparkは全AIスライドサービス中で最高クラスのビジュアル品質を提供する...",
       "tags": [
@@ -47,7 +47,7 @@
     },
     {
       "id": "go-tutorial",
-      "path": "2025-06-26-tech-go-tutorial.html",
+      "path": "html-files/2025-06-26-tech-go-tutorial.html",
       "title": "Go言語入門チュートリアル",
       "description": "Go言語の基礎から実践までを学ぶ総合的なチュートリアル",
       "tags": [
@@ -62,7 +62,7 @@
     },
     {
       "id": "education-ai-summary",
-      "path": "2025-06-26-edu-ai-summary.html",
+      "path": "html-files/2025-06-26-edu-ai-summary.html",
       "title": "教育AI要約",
       "description": "教育分野におけるAI活用の要約情報",
       "tags": [
@@ -76,7 +76,7 @@
     },
     {
       "id": "education-training",
-      "path": "2025-06-26-system-education-training.html",
+      "path": "html-files/2025-06-26-system-education-training.html",
       "title": "専門実践教育訓練給付制度",
       "description": "プログラミング学習で最大80％の費用が戻ってくる国の制度",
       "tags": [
@@ -91,7 +91,7 @@
     },
     {
       "id": "llmo-checklist",
-      "path": "2025-06-26-tech-llmo-checklist.html",
+      "path": "html-files/2025-06-26-tech-llmo-checklist.html",
       "title": "LLMOの対策チェックリスト",
       "description": "LLMOアプリケーション開発における重要な対策事項のチェックリスト",
       "tags": [
@@ -106,7 +106,7 @@
     },
     {
       "id": "claude-code",
-      "path": "2025-06-26-tech-claude-code.html",
+      "path": "html-files/2025-06-26-tech-claude-code.html",
       "title": "Claude Codeがエンジニアの働き方を変える",
       "description": "AIペアプログラミングツールClaude Codeによる開発効率化の解説",
       "tags": [
@@ -121,7 +121,7 @@
     },
     {
       "id": "claude-code-features-summary",
-      "path": "2025-06-22-tech-claude-code-features-summary.html",
+      "path": "html-files/2025-06-22-tech-claude-code-features-summary.html",
       "title": "Claude Code 機能まとめ",
       "description": "Claude Codeの機能をまとめたインフォグラフィック",
       "tags": [
@@ -136,7 +136,7 @@
     },
     {
       "id": "github-actions-cicd-guide",
-      "path": "2025-06-21-tech-github-actions-cicd-guide.html",
+      "path": "html-files/2025-06-21-tech-github-actions-cicd-guide.html",
       "title": "GitHub Actions CI/CD ガイド",
       "description": "GitHub Actions CI/CDの完全解説",
       "tags": [
@@ -151,7 +151,7 @@
     },
     {
       "id": "software-design-patterns-guide",
-      "path": "2025-06-21-tech-software-design-patterns-guide.html",
+      "path": "html-files/2025-06-21-tech-software-design-patterns-guide.html",
       "title": "ソフトウェアデザインパターンガイド",
       "description": "ソフトウェアデザインパターン解説（初心者向け・10パターン）",
       "tags": [
@@ -166,7 +166,7 @@
     },
     {
       "id": "ai-practical7",
-      "path": "2025-06-18-edu-ai-practical7.html",
+      "path": "html-files/2025-06-18-edu-ai-practical7.html",
       "title": "AIツール活用術 - 実践で学んだ7つのコツ",
       "description": "実践で学んだ7つのコツ",
       "tags": [
@@ -181,7 +181,7 @@
     },
     {
       "id": "devops-mastering-roadmap-2025",
-      "path": "2025-06-10-tech-devops-mastering-roadmap-2025.html",
+      "path": "html-files/2025-06-10-tech-devops-mastering-roadmap-2025.html",
       "title": "DevOps マスタリングロードマップ 2025",
       "description": "DevOps学習のための4段階ロードマップ",
       "tags": [
@@ -196,7 +196,7 @@
     },
     {
       "id": "uv-python-package-manager-completeguide",
-      "path": "2025-06-09-tech-uv-python-package-manager-comp.html",
+      "path": "html-files/2025-06-09-tech-uv-python-package-manager-comp.html",
       "title": "UV - 超高速Python Package Manager 完全ガイド",
       "description": "Rust製超高速Python Package Manager",
       "tags": [
@@ -211,7 +211,7 @@
     },
     {
       "id": "docker-virtualization-complete-guide",
-      "path": "2025-06-09-tech-docker-virtualization-complete-guide.html",
+      "path": "html-files/2025-06-09-tech-docker-virtualization-complete-guide.html",
       "title": "Docker 仮想化完全ガイド",
       "description": "Docker・仮想化技術の包括的解説",
       "tags": [
@@ -226,7 +226,7 @@
     },
     {
       "id": "claude-code-comprehensive-guide",
-      "path": "2025-06-05-tech-claude-code-comprehensive-guide.html",
+      "path": "html-files/2025-06-05-tech-claude-code-comprehensive-guide.html",
       "title": "Claude Code 包括ガイド",
       "description": "Claude Code解説インフォグラフィック",
       "tags": [
@@ -241,7 +241,7 @@
     },
     {
       "id": "claude-code-30min-masterclass",
-      "path": "2025-05-24-tech-claude-code-30min-masterclass.html",
+      "path": "html-files/2025-05-24-tech-claude-code-30min-masterclass.html",
       "title": "Claude Code 30分マスタークラス",
       "description": "Claude Codeプレゼンテーション概要（Boris Cherny講演）",
       "tags": [
@@ -256,7 +256,7 @@
     },
     {
       "id": "firebase-explanation-summary",
-      "path": "2025-05-24-tech-firebase-explanation.html",
+      "path": "html-files/2025-05-24-tech-firebase-explanation.html",
       "title": "Firebase 解説動画 要約",
       "description": "アプリ開発とインフラ管理のための包括的プラットフォーム",
       "tags": [
@@ -271,7 +271,7 @@
     },
     {
       "id": "serverside-programming-languages-guide",
-      "path": "2025-05-24-tech-serverside-programming-languages-guide.html",
+      "path": "html-files/2025-05-24-tech-serverside-programming-languages-guide.html",
       "title": "サーバーサイドプログラミング言語ガイド",
       "description": "サーバーサイドプログラミング言語12言語の完全ガイド",
       "tags": [
@@ -286,7 +286,7 @@
     },
     {
       "id": "ai",
-      "path": "2025-05-19-edu-ai.html",
+      "path": "html-files/2025-05-19-edu-ai.html",
       "title": "生成AI基礎用語集",
       "description": "本資料では、生成AIに関する基本的な用語を50パターン紹介します。これか...",
       "tags": [
@@ -301,7 +301,7 @@
     },
     {
       "id": "apscheduler",
-      "path": "2025-05-16-tech-apscheduler.html",
+      "path": "html-files/2025-05-16-tech-apscheduler.html",
       "title": "APScheduler概要",
       "description": "APSchedulerはPythonで定期的にジョブを実行できるライブラリで、PCの電源が入...",
       "tags": [
@@ -316,7 +316,7 @@
     },
     {
       "id": "figma-responsive-web-guide",
-      "path": "2025-05-16-design-figma-to-responsive-web-guide.html",
+      "path": "html-files/2025-05-16-design-figma-to-responsive-web-guide.html",
       "title": "Figma レスポンシブウェブガイド",
       "description": "Figmaからレスポンシブウェブサイトを作成する最簡単方法",
       "tags": [
@@ -331,7 +331,7 @@
     },
     {
       "id": "aseprite-reference-image-guide",
-      "path": "2025-05-15-design-aseprite-reference-image-guide.html",
+      "path": "html-files/2025-05-15-design-aseprite-reference-image-guide.html",
       "title": "Aseprite 参照画像ガイド",
       "description": "Asepriteで下絵・参照画像を使用する方法",
       "tags": [
@@ -346,7 +346,7 @@
     },
     {
       "id": "lazygit-cheatsheet",
-      "path": "2025-05-15-tech-lazygit-cheatsheet.html",
+      "path": "html-files/2025-05-15-tech-lazygit-cheatsheet.html",
       "title": "LazyGit チートシート",
       "description": "LazyGitの基本操作とショートカット集",
       "tags": [
@@ -361,7 +361,7 @@
     },
     {
       "id": "aseprite-pixel-art-guide",
-      "path": "2025-05-15-design-aseprite-pixel-art-guide.html",
+      "path": "html-files/2025-05-15-design-aseprite-pixel-art-guide.html",
       "title": "Aseprite ピクセルアートガイド",
       "description": "Asepriteでのピクセルアート作成特化ガイド",
       "tags": [
@@ -376,7 +376,7 @@
     },
     {
       "id": "aseprite-basic-manual",
-      "path": "2025-05-15-design-aseprite-basic-manual.html",
+      "path": "html-files/2025-05-15-design-aseprite-basic-manual.html",
       "title": "Aseprite 基本マニュアル",
       "description": "Asepriteを使ったピクセルアート作成の基本マニュアル",
       "tags": [
@@ -391,7 +391,7 @@
     },
     {
       "id": "framer-figma-guide",
-      "path": "2025-05-14-design-figma-to-framer-guide.html",
+      "path": "html-files/2025-05-14-design-figma-to-framer-guide.html",
       "title": "Figma to Framer ガイド",
       "description": "FigmaデザインをFramerにインポートするための実践ガイド",
       "tags": [
@@ -406,7 +406,7 @@
     },
     {
       "id": "framer-html-extension-guide",
-      "path": "2025-05-14-design-framer-html-extension-guide.html",
+      "path": "html-files/2025-05-14-design-framer-html-extension-guide.html",
       "title": "Framer HTML拡張ガイド",
       "description": "FramerのHTML取り込み拡張機能の使い方",
       "tags": [
@@ -421,7 +421,7 @@
     },
     {
       "id": "framer-practical-manual",
-      "path": "2025-05-14-design-framer-practical-manual.html",
+      "path": "html-files/2025-05-14-design-framer-practical-manual.html",
       "title": "Framer 実践マニュアル",
       "description": "Framerの実践的な操作方法とショートカット集",
       "tags": [
@@ -436,7 +436,7 @@
     },
     {
       "id": "whisper-ai-guide",
-      "path": "2025-05-13-tech-whisper-ai-guide.html",
+      "path": "html-files/2025-05-13-tech-whisper-ai-guide.html",
       "title": "Whisper AI 実装ガイド",
       "description": "Pythonを使った音声認識AIの導入と活用方法",
       "tags": [
@@ -451,7 +451,7 @@
     },
     {
       "id": "obsidian",
-      "path": "2025-05-06-tech-obsidian.html",
+      "path": "html-files/2025-05-06-tech-obsidian.html",
       "title": "Obsidian ディレクトリ構造の例",
       "description": "動画内で紹介されていた考え方（数字プレフィックス、階層化、indexフォ��...",
       "tags": [
@@ -465,7 +465,7 @@
     },
     {
       "id": "python",
-      "path": "2025-04-23-tech-python.html",
+      "path": "html-files/2025-04-23-tech-python.html",
       "title": "Python フレームワークと便利なツール",
       "description": "Python フレームワークと便利なツール\n            \n        \n\n        Python エコシス...",
       "tags": [
@@ -480,7 +480,7 @@
     },
     {
       "id": "fastapibasicexplanation",
-      "path": "2025-04-22-tech-fastapibasicexplanation.html",
+      "path": "html-files/2025-04-22-tech-fastapibasicexplanation.html",
       "title": "FastAPI基本解説",
       "description": "URLのパスの一部を変数として使用",
       "tags": [
@@ -495,7 +495,7 @@
     },
     {
       "id": "react",
-      "path": "2025-04-19-tech-react.html",
+      "path": "html-files/2025-04-19-tech-react.html",
       "title": "React ライブラリ・ツール インフォグラフィック",
       "description": "ウェブサイトのナビゲーションを制御し、URLをカスタマイズするライブラ�...",
       "tags": [
