@@ -1,6 +1,21 @@
 {
   "files": [
     {
+      "id": "hospital-review-system",
+      "path": "病院口コミ対応システム 導入説明資料.html",
+      "title": "病院口コミ対応システム 導入説明資料",
+      "description": "病院向け口コミ管理・対応システムの導入説明資料",
+      "tags": [
+        "病院",
+        "口コミ",
+        "システム",
+        "導入",
+        "管理"
+      ],
+      "created": "2025-07-02",
+      "category": "システム・導入"
+    },
+    {
       "id": "vscode-github-copilot",
       "path": "2025-06-27-tech-vscode-github-copilot.html",
       "title": "VSコード講座まとめ",
