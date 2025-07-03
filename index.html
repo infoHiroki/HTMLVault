@@ -285,6 +285,14 @@
       background-color: var(--category-other);
     }
     
+    .category-badge.health {
+      background-color: #e91e63;
+    }
+    
+    .category-badge.implementation {
+      background-color: #00bcd4;
+    }
+    
     .card-date {
       font-size: var(--font-size-xs);
       color: var(--text-tertiary);
@@ -542,6 +550,8 @@
         '技術・開発': 'tech',
         'ビジネス': 'business',
         'デザイン': 'design',
+        '医療・健康': 'health',
+        'システム・導入': 'implementation',
         'その他': 'other'
       }[category] || 'other';
       return enCategory;
