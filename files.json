@@ -525,6 +525,22 @@
       "category": "技術・開発"
     },
     {
+      "id": "team-development-infographic",
+      "path": "html-files/team_development_infographic.html",
+      "title": "チーム開発の実践ガイド",
+      "description": "6ステップで学ぶチーム開発の体系的方法論と実践ポイント",
+      "tags": [
+        "チーム開発",
+        "プロジェクト管理",
+        "Git",
+        "コードレビュー",
+        "KPT",
+        "アジャイル"
+      ],
+      "created": "2025-07-03",
+      "category": "技術・開発"
+    },
+    {
       "id": "react",
       "path": "html-files/2025-04-19-tech-react.html",
       "title": "React ライブラリ・ツール インフォグラフィック",

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チーム開発の実践ガイド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .source {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .header .source a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .header .source a:hover {
+            color: #2980b9;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-header {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .subsection {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .subsection h4 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .role-card {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+        
+        .role-card:hover {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+        
+        .role-title {
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        
+        .step-flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0;
+        }
+        
+        .step {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            min-width: 120px;
+            text-align: center;
+            font-weight: bold;
+            margin: 5px;
+            position: relative;
+        }
+        
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            color: #3498db;
+            font-size: 1.5em;
+        }
+        
+        .step:last-child::after {
+            display: none;
+        }
+        
+        .warning-box {
+            background: #ffe6e6;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h4 {
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #27ae60;
+        }
+        
+        .benefit-item h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .summary h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .summary p {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .step-flow {
+                flex-direction: column;
+            }
+            
+            .step::after {
+                display: none;
+            }
+            
+            .role-grid, .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>チーム開発の実践ガイド</h1>
+            <div class="source">
+                ソース: <a href="https://www.youtube.com/watch?v=Sc-fJ6qUp8Y" target="_blank">ランテックエンジニア転職チャンネル</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                ステップ1: メンバー集めと役割分担
+            </div>
+            <div class="section-content">
+                <p><strong>重要:</strong> 役割を明確にしないと最初でつまずきます</p>
+                
+                <div class="role-grid">
+                    <div class="role-card">
+                        <div class="role-title">プロダクトマネージャー</div>
+                        <p>プロダクトの意思決定者<br>最終決定権を持つ</p>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-title">プロジェクトマネージャー</div>
+                        <p>プロジェクトの進捗管理<br>スケジュール調整</p>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-title">テックリード</div>
+                        <p>技術的な意思決定<br>設計・アーキテクチャ</p>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-title">エンジニアメンバー</div>
+                        <p>実装担当<br>コード開発</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4>人数別の役割配分</h4>
+                    <ul>
+                        <li><strong>3人:</strong> 全員エンジニア + PDM/PJM/テックリード兼任</li>
+                        <li><strong>4人:</strong> PDM/PJM兼任 + テックリード + エンジニア2名</li>
+                        <li><strong>5人:</strong> 各役割専任 + エンジニア2名</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                ステップ2: キックオフと初期設計
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h4>キックオフで決めるべき項目</h4>
+                    <ul>
+                        <li>プロダクトの目的とゴール</li>
+                        <li>MVP（最小機能）の範囲</li>
+                        <li>役割と責任範囲</li>
+                        <li>大枠スケジュールとマイルストーン</li>
+                        <li>定例ミーティング頻度</li>
+                        <li>技術スタックと開発環境</li>
+                        <li>コーディング規約（Lint、フォーマッター）</li>
+                        <li>開発フロー（GitHubフロー等）</li>
+                        <li>テストコードの方針</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h4>タスク管理ルール</h4>
+                    <ul>
+                        <li>期限までに完了見込みが立たない場合は相談</li>
+                        <li>1日以上停滞したタスクは朝会で進捗確認</li>
+                        <li>状況に応じてタスク分割・移譲・アサイン解除</li>
+                        <li>わからないことは15分考えてから質問</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                ステップ3: 要件定義とタスク分解
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h4>ユーザー中心設計</h4>
+                    <ul>
+                        <li><strong>ペルソナ定義:</strong> どういう人が使うか</li>
+                        <li><strong>ユースケース:</strong> どんな流れでアプリを使うか</li>
+                        <li><strong>ユーザーストーリー:</strong> 私は○○として○○したい、なぜなら○○だから</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h4>設計フロー</h4>
+                    <div class="step-flow">
+                        <div class="step">画面設計</div>
+                        <div class="step">データ設計</div>
+                        <div class="step">タスク切り出し</div>
+                        <div class="step">優先順位付け</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                ステップ4: 実装フェーズ
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h4>Gitルール</h4>
+                    <ul>
+                        <li><strong>ブランチ命名規則:</strong> feature/機能名、fix/修正内容</li>
+                        <li><strong>コミットメッセージ:</strong> 日本語で1行で変更内容を表現</li>
+                        <li><strong>プルリクエスト:</strong> テンプレート化、テスト必須</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h4>レビュー観点</h4>
+                    <ul>
+                        <li>処理が重複していないか</li>
+                        <li>コントローラーが肥大化していないか</li>
+                        <li>テストがあり、目的をカバーしているか</li>
+                        <li>UXに不自然さがないか</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                ステップ5: 動作確認・テスト
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h4>確認項目</h4>
+                    <ul>
+                        <li><strong>仕様確認:</strong> 仕様通り動作しているか</li>
+                        <li><strong>ユーザー視点:</strong> 導線が分かりやすいか</li>
+                        <li><strong>影響範囲:</strong> 他の機能に問題がないか</li>
+                        <li><strong>結合テスト:</strong> 全体として問題ないか</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>重要な考え方</h4>
+                    <p>バグが発生しても個人を責めてはいけません。これはテストや確認ができていないチーム全体の責任です。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                ステップ6: 振り返り（KPT）
+            </div>
+            <div class="section-content">
+                <div class="subsection">
+                    <h4>週次振り返りの進め方</h4>
+                    <ul>
+                        <li><strong>Keep（継続）:</strong> うまくいったこと</li>
+                        <li><strong>Problem（問題）:</strong> 困ったこと・課題</li>
+                        <li><strong>Try（挑戦）:</strong> 改善施策</li>
+                    </ul>
+                    <p>初回はProblemから始めて、Tryで改善施策を決定。次回以降、うまくいったTryをKeepに移していく。</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <h4>⚠️ よくある失敗パターン</h4>
+            <ul>
+                <li>Git操作ミス・コンフリクト対応ができない</li>
+                <li>レビュー指摘に感情的になる</li>
+                <li>コミュニケーション不足</li>
+                <li>スケジュール・優先順位が不明確</li>
+                <li>役割が曖昧で意思決定できない</li>
+                <li>責任の所在が不明確</li>
+                <li>モチベーションの違い</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                チーム開発で得られる力
+            </div>
+            <div class="section-content">
+                <div class="benefit-grid">
+                    <div class="benefit-item">
+                        <h4>実装力向上</h4>
+                        <p>1人では気づけない観点での実装力とコード設計力の向上</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>コミュニケーション力</h4>
+                        <p>チームでの合意形成・調整力の習得</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>推進力</h4>
+                        <p>プロジェクト全体を俯瞰し推進する力</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>改善力</h4>
+                        <p>継続的な改善とビジネス観点の獲得</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <h4>💡 成功のための注意点</h4>
+            <ul>
+                <li><strong>人数制限:</strong> 最大5人、理想は3人</li>
+                <li><strong>責任明確化:</strong> 各役割の責任を明文化</li>
+                <li><strong>ルール決め:</strong> 事前にトラブル対応ルールを策定</li>
+                <li><strong>定期振り返り:</strong> 週次でのKPT実施</li>
+            </ul>
+        </div>
+        
+        <div class="summary">
+            <h2>要約</h2>
+            <p>
+                チーム開発は単に複数人で開発することではなく、体系的な方法論が必要です。成功には6つのステップが重要：①役割分担の明確化、②キックオフでの詳細ルール決め、③ユーザー中心の要件定義、④Git・レビュールールに基づく実装、⑤多角的な動作確認、⑥継続的な振り返り。特に事前のルール策定が核心で、タスク管理・コミュニケーション・技術ルールを詳細に決めることで、よくある失敗（進捗停滞・責任曖昧・感情的対立）を回避できます。適正人数は3-5人で、やり切れば実装力・コミュニケーション力・推進力・改善力が大幅に向上しますが、軽い気持ちで始めると火傷するため、現場レベルの本格的な準備が必須です。
+            </p>
+        </div>
+    </div>
+</body>
+</html>
