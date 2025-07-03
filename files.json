@@ -1,6 +1,22 @@
 {
   "files": [
     {
+      "id": "openai-podcast-infographic",
+      "path": "html-files/2025-07-03-edu-openai-podcast-infographic.html",
+      "title": "OpenAIポッドキャスト - ChatGPTの初期バイラル時代とAIの未来",
+      "description": "OpenAIの中核メンバーが語るChatGPTの誕生秘話から最新AI技術まで包括的インサイト",
+      "tags": [
+        "OpenAI",
+        "ChatGPT",
+        "AI",
+        "ポッドキャスト",
+        "技術解説",
+        "インフォグラフィック"
+      ],
+      "created": "2025-07-03",
+      "category": "教育・AI"
+    },
+    {
       "id": "asd-opinion-difficulty",
       "path": "html-files/asd_opinion_difficulty_guide.html",
       "title": "自分の意見がない発達障害（ASD）- 理解と支援ガイド",
