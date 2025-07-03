@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自分の意見がない発達障害（ASD）- 理解と支援ガイド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3f51b5 0%, #2c387e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .source-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3f51b5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: "●";
+            color: #3f51b5;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .misconception-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #ff9800;
+            margin: 25px 0;
+        }
+        
+        .misconception-box h3 {
+            color: #e65100;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3f51b5;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: #3f51b5;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .card ul {
+            list-style: none;
+        }
+        
+        .card li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .card li::before {
+            content: "▸";
+            color: #3f51b5;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .mechanism-section {
+            background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .mechanism-section h3 {
+            color: #3f51b5;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .mechanism-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .flow-item {
+            background: linear-gradient(135deg, #3f51b5 0%, #2c387e 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flow-item::after {
+            content: "↓";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: #3f51b5;
+        }
+        
+        .flow-item:last-child::after {
+            display: none;
+        }
+        
+        .treatment-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .phase-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #2196f3;
+            text-align: center;
+        }
+        
+        .phase-card h4 {
+            color: #0d47a1;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .phase-number {
+            background: #2196f3;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+        
+        .important-note {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #9c27b0;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .important-note h4 {
+            color: #6a1b9a;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #ff9800;
+            margin-top: 40px;
+        }
+        
+        .summary-box h3 {
+            color: #e65100;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .highlight {
+            background: #3f51b5;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .characteristics-grid,
+            .treatment-phases {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>自分の意見がない発達障害（ASD）</h1>
+            <p>朝メンタルクリニック 院長 松介先生による解説</p>
+            <a href="https://www.youtube.com/watch?v=nMYoWsH6FcM" target="_blank" class="source-link">
+                📺 元動画を見る (YouTube)
+            </a>
+        </div>
+        
+        <div class="content">
+            <div class="misconception-box">
+                <h3>よくある誤解</h3>
+                <p>発達障害の特性は<strong>甘えやわがまま、育て方の問題ではなく、脳の特性</strong>です。こだわりが強いASDの人でも、意外と自分の意見や感想がないことが多いのです。</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">ASDの特徴的な矛盾</h2>
+                <div class="characteristics-grid">
+                    <div class="card">
+                        <h3>一般的なASDの特徴</h3>
+                        <ul>
+                            <li>強いこだわりがある</li>
+                            <li>マイルールを持っている</li>
+                            <li>好き嫌いがはっきりしている</li>
+                            <li>日常生活が細かく決まっている</li>
+                            <li>嫌いなものは絶対に嫌</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>実際によくある問題</h3>
+                        <ul>
+                            <li>意見や感想がない</li>
+                            <li>意見を求められてもコロコロ変わる</li>
+                            <li>黙り込んでしまう</li>
+                            <li>会話のテンポを無視してしまう</li>
+                            <li>共感性に欠ける</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>周囲からの評価</h3>
+                        <ul>
+                            <li>つまらない人だと思われる</li>
+                            <li>薄っぺらい人と評価される</li>
+                            <li>人間関係が発展しない</li>
+                            <li>会話が盛り上がらない</li>
+                            <li>本人も苦しんでいる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">なぜ意見がないのか？メカニズム</h2>
+                <div class="mechanism-section">
+                    <h3>中枢結合能力の乏しさ</h3>
+                    <div class="mechanism-flow">
+                        <div class="flow-item">
+                            <strong>体験の断片化</strong><br>
+                            経験や気持ちを言語化する能力が弱い
+                        </div>
+                        <div class="flow-item">
+                            <strong>統合能力の不足</strong><br>
+                            過去の体験と新しい体験を結びつけられない
+                        </div>
+                        <div class="flow-item">
+                            <strong>応用力の欠如</strong><br>
+                            「美味しかった」で終わり、応用に発展しない
+                        </div>
+                        <div class="flow-item">
+                            <strong>興味の偏り</strong><br>
+                            結びつけるための材料（体験）が少ない
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <h3>具体例</h3>
+                        <ul>
+                            <li>「ご飯美味しかった」→ 終了</li>
+                            <li>「同じものを家でも作ってみよう」にならない</li>
+                            <li>体験が自分の一部として取り込まれない</li>
+                            <li>知識がバラバラで統合されない</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">治療・支援の3段階</h2>
+                <div class="treatment-phases">
+                    <div class="phase-card">
+                        <div class="phase-number">1</div>
+                        <h4>特性理解</h4>
+                        <p>本人と周囲の人が、この特性を理解することから始める。疾病理解が全ての治療の基盤。</p>
+                    </div>
+                    
+                    <div class="phase-card">
+                        <div class="phase-number">2</div>
+                        <h4>体験の幅を広げる</h4>
+                        <p>いろんな体験をする。多様な人との会話を増やす。体験を言語化し、自分の一部にしていく作業。</p>
+                    </div>
+                    
+                    <div class="phase-card">
+                        <div class="phase-number">3</div>
+                        <h4>長期的な成長</h4>
+                        <p>自己理解を深め、自分の軸や考えを持てるようになることを目指す。本人のペースを最重視。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">具体的な治療方法</h2>
+                <div class="characteristics-grid">
+                    <div class="card">
+                        <h3>薬物治療</h3>
+                        <ul>
+                            <li>この特性に対する薬物療法はない</li>
+                            <li>基本的に心理社会的治療が中心</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>心理社会的治療</h3>
+                        <ul>
+                            <li>座談会・カウンセリング</li>
+                            <li>デイケア</li>
+                            <li>訪問看護</li>
+                            <li>人との交流を増やす</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>治療の注意点</h3>
+                        <ul>
+                            <li>本人にとっては苦手なことで苦痛</li>
+                            <li>楽しそうに見えても本人は辛い</li>
+                            <li>無理強いは逆効果</li>
+                            <li>長期的な視点が必要</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-note">
+                <h4>治療期間と心構え</h4>
+                <p>治療は<strong>年単位</strong>で時間がかかります。1〜3ヶ月の集中的な治療では改善しません。本人のペースを守り、焦らずゆっくりと見守ることが重要です。</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">周囲の理解と対応</h2>
+                <div class="characteristics-grid">
+                    <div class="card">
+                        <h3>避けるべき対応</h3>
+                        <ul>
+                            <li>「意見を持て」と怒る</li>
+                            <li>特性を甘えと決めつける</li>
+                            <li>急かして成果を求める</li>
+                            <li>育て方の問題と考える</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>適切な対応</h3>
+                        <ul>
+                            <li>「こういう人なんだな」と理解</li>
+                            <li>脳の特性として受け入れる</li>
+                            <li>本人のペースを尊重</li>
+                            <li>長期的な視点で見守る</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>期待の調整</h3>
+                        <ul>
+                            <li>その人なりの成長を期待</li>
+                            <li>画一的な成果を求めない</li>
+                            <li>小さな変化を認める</li>
+                            <li>継続的なサポート</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="summary-box">
+                <h3>300字要約</h3>
+                <div class="summary-text">
+                    ASD（自閉スペクトラム症）の人は<span class="highlight">こだわりが強い一方で、意外と自分の意見や感想がない</span>という特徴があります。これは<span class="highlight">中枢結合能力の乏しさ</span>が原因で、体験を言語化し統合することが困難なためです。治療は3段階で進められ、まず特性理解から始まり、体験の幅を広げ、最終的に自己理解を深めます。薬物療法はなく、カウンセリングやデイケアなどの心理社会的治療が中心となりますが、本人にとっては苦痛を伴います。<span class="highlight">治療は年単位の長期間</span>を要し、本人のペースを守ることが重要です。周囲は「意見を持て」と怒るのではなく、脳の特性として理解し、長期的な視点で見守ることが大切です。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,6 +1,21 @@
 {
   "files": [
     {
+      "id": "asd-opinion-difficulty",
+      "path": "html-files/asd_opinion_difficulty_guide.html",
+      "title": "自分の意見がない発達障害（ASD）- 理解と支援ガイド",
+      "description": "ASDの人が意見を持てない理由と対応方法についての医療解説",
+      "tags": [
+        "ASD",
+        "発達障害",
+        "自閉スペクトラム症",
+        "医療",
+        "メンタルヘルス"
+      ],
+      "created": "2025-07-03",
+      "category": "医療・健康"
+    },
+    {
       "id": "hospital-review-system",
       "path": "html-files/hospital-review-system-guide.html",
       "title": "病院口コミ対応システム 導入説明資料",
