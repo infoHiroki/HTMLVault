@@ -419,7 +419,6 @@
         <nav class="tab-nav" id="tabNav">
           <button class="tab-item" data-sort="date">📅 新着順</button>
           <button class="tab-item" data-sort="title">🔤 名前順</button>
-          <button class="tab-item" id="refreshFiles">🔄 更新</button>
         </nav>
       </div>
     </div>
@@ -480,7 +479,6 @@
     const searchResults = document.getElementById('searchResults');
     const noResults = document.getElementById('noResults');
     const tabNav = document.getElementById('tabNav');
-    const refreshButton = document.getElementById('refreshFiles');
 
     // files.jsonからデータ読み込み
     async function loadFiles() {
@@ -632,28 +630,6 @@
     });
 
 
-    // ファイル再読み込み
-    refreshButton.addEventListener('click', async () => {
-      refreshButton.textContent = '🔄 読み込み中...';
-      refreshButton.disabled = true;
-      
-      try {
-        await loadFiles();
-        
-        // ソート状態をリセット
-        document.querySelectorAll('[data-sort]').forEach(item => {
-          item.classList.remove('active');
-        });
-        document.querySelector('[data-sort="date"]').classList.add('active');
-        
-        alert(`${files.length}個のHTMLファイルを検出しました！`);
-      } catch (error) {
-        alert('ファイルの再読み込みに失敗しました');
-      } finally {
-        refreshButton.textContent = '🔄 ファイル再読み込み';
-        refreshButton.disabled = false;
-      }
-    });
 
     // キーボードショートカット
     document.addEventListener('keydown', (e) => {
@@ -663,10 +639,6 @@
       if (e.key === '/' && !e.target.matches('input')) {
         e.preventDefault();
         searchInput.focus();
-      }
-      if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
-        e.preventDefault();
-        refreshButton.click();
       }
     });
 
