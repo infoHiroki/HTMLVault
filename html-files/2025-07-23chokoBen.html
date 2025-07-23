@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM時代のプログラミング観変革</title>
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #111;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .mode-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .toggle-btn {
+            background: #3498db;
+            border: 2px solid #2980b9;
+            color: white;
+            padding: 15px 25px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .toggle-btn.active {
+            background: #e74c3c;
+            border-color: #c0392b;
+        }
+        
+        /* スライドモード用スタイル */
+        .slide-mode .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 60px 80px;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .slide-mode .slide.active {
+            display: flex;
+        }
+        
+        .slide h1 {
+            font-size: 4rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            color: #2c3e50;
+        }
+        
+        .slide h2 {
+            font-size: 3.2rem;
+            margin-bottom: 60px;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .number {
+            font-size: 9rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .keyword {
+            font-size: 2.4rem;
+            margin: 20px 0;
+            opacity: 1;
+            color: #111;
+        }
+        
+        .sub-keyword {
+            font-size: 1.8rem;
+            margin: 15px 0;
+            opacity: 1;
+            color: #111;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+        }
+        
+        .nav-btn {
+            background: #3498db;
+            border: 2px solid #2980b9;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 1.4rem;
+            opacity: 1;
+            color: #111;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        /* 記事モード用スタイル */
+        .article-mode .slide-navigation {
+            display: none;
+        }
+        
+        .article-mode .slide {
+            display: block !important;
+            min-height: auto;
+            padding: 40px;
+            text-align: left;
+            background: white;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .article {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 100px;
+        }
+        
+        .article-mode .article {
+            display: block;
+        }
+        
+        .article-mode .slide {
+            display: none !important;
+        }
+        
+        .article h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .article h2 {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        
+        .article h3 {
+            font-size: 2rem;
+            color: #3498db;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .article p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .article ul {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .article li {
+            margin-bottom: 10px;
+        }
+        
+        .article strong {
+            color: #e74c3c;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mode-toggle">
+            <button class="toggle-btn active" onclick="showSlides()">🎯 スライド</button>
+            <button class="toggle-btn" onclick="showArticle()">📝 記事</button>
+        </div>
+
+        <!-- スライドコンテンツ -->
+        <div class="slides-container">
+            <!-- Slide 1: Title -->
+            <div class="slide active">
+                <h1>🤖 LLM時代の<br>プログラミング観変革</h1>
+                <div class="keyword">💻 コードを書く ≠ 🎯 問題を解決する</div>
+                <div class="sub-keyword">📅 シフト管理VBAの実例で説明する</div>
+            </div>
+            
+            <!-- Slide 2: Before LLM -->
+            <div class="slide">
+                <div class="number">⛔ Before</div>
+                <div class="keyword">⚙️ 技術習得が<span class="highlight">必須条件</span>だった</div>
+                <div class="sub-keyword">📚 プログラミング言語を覚える</div>
+                <div class="sub-keyword">🧠 アルゴリズムを理解する</div>
+                <div class="sub-keyword">🐛 デバッグ技術を身につける</div>
+                <div class="sub-keyword">→ 👥 現場の人には高いハードルが存在した</div>
+            </div>
+            
+            <!-- Slide 3: After LLM -->
+            <div class="slide">
+                <div class="number">✅ After</div>
+                <div class="keyword">💬 <span class="highlight">言語化能力</span>があれば実現できる</div>
+                <div class="sub-keyword">🎯 何をしたいかを明確に表現する</div>
+                <div class="sub-keyword">📋 業務フローを整理する</div>
+                <div class="sub-keyword">⚖️ 制約条件を洗い出す</div>
+                <div class="sub-keyword">→ 🤖 AIが実装を担当する</div>
+            </div>
+            
+            <!-- Slide 4: Key Skills -->
+            <div class="slide">
+                <h2>🚀 新時代に必要な4つの力</h2>
+                <div class="number">1️⃣</div>
+                <div class="keyword">🔍 問題を<span class="highlight">具体化</span>する</div>
+                <div class="sub-keyword">📊 現状の課題を数値化して表現する</div>
+            </div>
+            
+            <!-- Slide 5: Key Skills 2 -->
+            <div class="slide">
+                <div class="number">2️⃣</div>
+                <div class="keyword">🌟 理想状態を<span class="highlight">明確化</span>する</div>
+                <div class="sub-keyword">🎨 ゴールを具体的にイメージする</div>
+            </div>
+            
+            <!-- Slide 6: Key Skills 3 -->
+            <div class="slide">
+                <div class="number">3️⃣</div>
+                <div class="keyword">📋 制約条件を<span class="highlight">整理</span>する</div>
+                <div class="sub-keyword">📏 ルール・例外ケースを網羅する</div>
+            </div>
+            
+            <!-- Slide 7: Key Skills 4 -->
+            <div class="slide">
+                <div class="number">4️⃣</div>
+                <div class="keyword">🎯 成功基準を<span class="highlight">設定</span>する</div>
+                <div class="sub-keyword">📈 完成度を判断する指標を決める</div>
+            </div>
+            
+            <!-- Slide 8: Case Study -->
+            <div class="slide">
+                <h2>📝 実践例：シフト管理VBA化</h2>
+                <div class="keyword">😰 <span class="highlight">現状</span>：月末3日間 + ミス2-3件/月</div>
+                <div class="keyword">😊 <span class="highlight">理想</span>：自動生成 + 制約チェック</div>
+                <div class="sub-keyword">👥 スタッフ10名 × 週5日勤務</div>
+                <div class="sub-keyword">📅 土日どちらか1日出勤を必須とする</div>
+                <div class="sub-keyword">⏰ 連続勤務最大6日で制限する</div>
+            </div>
+            
+            <!-- Slide 9: Implementation Process -->
+            <div class="slide">
+                <h2>🤝 AI協働の実装プロセス</h2>
+                <div class="number">📈 段階的</div>
+                <div class="keyword">🔧 基本機能 → ✅ 制約チェック → ⚠️ 警告 → ⚡ 最適化</div>
+                <div class="sub-keyword">🐣 小さく始めて、徐々に機能を拡張する</div>
+            </div>
+            
+            <!-- Slide 10: Minimum Knowledge -->
+            <div class="slide">
+                <h2>🎓 最低限のVBA知識</h2>
+                <div class="keyword">✨ <span class="highlight">4つ</span>だけ理解すれば実装できる</div>
+                <div class="sub-keyword">🏗️ オブジェクト（階層構造）</div>
+                <div class="sub-keyword">🔄 変数とループ</div>
+                <div class="sub-keyword">🚦 条件分岐</div>
+                <div class="sub-keyword">🛡️ エラーハンドリング</div>
+            </div>
+            
+            <!-- Slide 11: Future -->
+            <div class="slide">
+                <h2>🌟 これからの働き方</h2>
+                <div class="number">👨‍💻 全員</div>
+                <div class="keyword">🚀 <span class="highlight">プログラマー</span>時代が到来する</div>
+                <div class="sub-keyword">💡 現場知識 × 💻 IT活用能力</div>
+                <div class="sub-keyword">= 💪 最強の組み合わせを作る</div>
+            </div>
+            
+            <!-- Slide 12: Conclusion -->
+            <div class="slide">
+                <h2>🎯 まとめ</h2>
+                <div class="keyword">⚙️ 技術習得 → 💬 <span class="highlight">問題設定能力</span>へシフトする</div>
+                <div class="sub-keyword">🎯 現場の課題解決を直接実現する</div>
+                <div class="sub-keyword">🌐 プログラミングを民主化する</div>
+                <div class="sub-keyword">🎭 誰もが改善の主導権を握れる時代を創る</div>
+            </div>
+        </div>
+
+        <!-- 記事コンテンツ -->
+        <article class="article">
+            <h1>🤖 LLM時代におけるプログラミング観の変革</h1>
+            <p class="subtitle">～シフト管理VBA実装を通して見る「言語化力」の重要性～</p>
+
+            <h2>1. LLMがもたらしたプログラミング観の変化</h2>
+            
+            <h3>💻「コードを書く」と「問題を解決する」の分離</h3>
+            <p>これまでプログラミングといえば、コードの文法を覚え、アルゴリズムを理解し、デバッグ技術を身につける、といった技術的な習得が前提でした。しかし、**LLM（大規模言語モデル）の登場により、この常識が根本的に変わりつつあります**。</p>
+            
+            <p>現在では、「何を実現したいか」を自然言語で明確に表現できれば、AIがコードの実装部分を担当してくれます。つまり、プログラミングにおける「問題設定」と「技術実装」が分離され、前者に集中できる時代が到来したのです。</p>
+
+            <h3>👥 現場知識を持つ人材に開かれた可能性</h3>
+            <p>この変化が最も恩恵をもたらすのは、**業務の実情を熟知している現場の人材**です。従来は「プログラミングは難しい」という先入観により、IT部門に依頼するか外部委託するしかありませんでした。しかし今では、現場の課題を正確に言語化できる能力さえあれば、AIと協働して直接解決策を実装できるようになったのです。</p>
+            
+            <p>これは単なる作業効率化を超えて、**業務改善の主導権が現場に戻ること**を意味します。ITリテラシーの壁に阻まれていた多くの改善アイデアが、ついに実現可能になったのです。</p>
+
+            <h2>2. 新時代に必要な能力：業務フローの言語化</h2>
+            
+            <h3>🎯「何をしたいか」を明確に表現する力</h3>
+            <p>LLM時代のプログラミングで最も重要なのは、**解決したい問題を正確に言語化する能力**です。これは従来のプログラミング教育では重視されてこなかった分野ですが、今後は最も価値の高いスキルの一つとなるでしょう。</p>
+
+            <p>優れた言語化には以下の要素が含まれます：</p>
+            <ul>
+                <li><strong>現状の問題点の具体的な特定</strong>：何が非効率で、どの程度の時間やコストがかかっているか</li>
+                <li><strong>理想的な状態の明確化</strong>：自動化後にどうなっていたいか、どんな結果を期待するか</li>
+                <li><strong>制約条件の整理</strong>：守らなければならないルール、考慮すべき例外ケース</li>
+                <li><strong>成功の判断基準</strong>：完成した仕組みが正しく動作しているかをどう判断するか</li>
+            </ul>
+
+            <h3>💡 現場の業務知識こそが競争優位の源泉</h3>
+            <p>多くの企業で見落とされがちですが、**実際の業務フローを深く理解している現場担当者の知識は、極めて貴重な資産**です。外部のシステム開発会社では決して持ち得ない、その組織特有の細かなノウハウや例外処理の知見が蓄積されています。</p>
+            
+            <p>LLMとの協働により、この現場知識を直接システムに反映させることが可能になりました。従来のような要件定義書や仕様書を介した伝言ゲームではなく、**知識の持ち主が直接AIに指示を出せる**のです。</p>
+
+            <h2>3. 実践：Excelシフト管理のVBA化</h2>
+            
+            <h3>📋 業務フローの言語化プロセス</h3>
+            <p>具体例として、手動で行っているシフト管理をVBAで自動化する場面を考えてみましょう。</p>
+            
+            <p><strong>まず現状を言語化します：</strong><br>
+            「毎月末に翌月のシフト表を作成している。スタッフ10名の希望をヒアリングし、Excelで手作業により調整している。1人あたり週5日、土日どちらか1日は必ず出勤、連続勤務は最大6日まで、という制約がある。現在この作業に月末3日間を要しており、調整ミスも月に2-3件発生している」</p>
+            
+            <p><strong>次に理想状態を定義します：</strong><br>
+            「スタッフの希望をExcelに入力すれば、制約条件を満たすシフト表が自動生成される。制約違反があれば警告表示し、手動調整箇所を最小限に抑えたい。最終的に印刷可能な形式で出力される」</p>
+
+            <h3>🛠️ 実際のVBA実装プロセス</h3>
+            <p>AIと協働して段階的に実装していく具体的な流れを説明します。**各ステップで前のコードを拡張していく統合型のアプローチ**を採用します：</p>
+
+            <h4>💼 Step 1: 基本的なシート構成の作成</h4>
+            <p><strong>AIへの指示：</strong></p>
+            <p>「Excelで以下の機能を持つVBAコードを作成してください：</p>
+            <ul>
+                <li>「スタッフ一覧」シートに10名分の氏名欄</li>
+                <li>「シフト希望」シートに1ヶ月分の希望入力欄（○×で入力）</li>
+                <li>「シフト表」シートに自動生成される最終シフト表</li>
+                <li>ボタンを押すと基本的な枠組みが作成される」</li>
+            </ul>
+
+            <div style="position: relative;">
+                <button onclick="copyCode('code1')" style="position: absolute; top: 10px; right: 10px; background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">📋 コピー</button>
+                <pre id="code1" style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-size: 0.9rem; border: 1px solid #dee2e6; overflow-x: auto;">Sub CreateShiftFramework()
+    ' Step 1: 基本フレームワーク作成
+    Application.ScreenUpdating = False
+    
+    ' 既存シートがあれば削除
+    On Error Resume Next
+    Application.DisplayAlerts = False
+    Sheets("スタッフ一覧").Delete
+    Sheets("シフト希望").Delete
+    Sheets("シフト表").Delete
+    Application.DisplayAlerts = True
+    On Error GoTo 0
+    
+    ' シート作成
+    Dim wsStaff As Worksheet
+    Dim wsRequest As Worksheet
+    Dim wsShift As Worksheet
+    
+    Set wsStaff = Sheets.Add(After:=Sheets(Sheets.Count))
+    wsStaff.Name = "スタッフ一覧"
+    
+    Set wsRequest = Sheets.Add(After:=Sheets(Sheets.Count))
+    wsRequest.Name = "シフト希望"
+    
+    Set wsShift = Sheets.Add(After:=Sheets(Sheets.Count))
+    wsShift.Name = "シフト表"
+    
+    ' スタッフ一覧の作成
+    wsStaff.Range("A1").Value = "ID"
+    wsStaff.Range("B1").Value = "氏名"
+    wsStaff.Range("C1").Value = "役職"
+    For i = 2 To 11
+        wsStaff.Cells(i, 1).Value = i - 1
+        wsStaff.Cells(i, 2).Value = "スタッフ" & Format(i - 1, "00")
+        wsStaff.Cells(i, 3).Value = "一般"
+    Next i
+    
+    ' シフト希望シートの作成
+    wsRequest.Range("A1").Value = "ID"
+    wsRequest.Range("B1").Value = "氏名"
+    
+    ' 1ヶ月分の日付を作成（来月）
+    Dim startDate As Date
+    startDate = DateSerial(Year(Date), Month(Date) + 1, 1)
+    
+    For dayCol = 3 To 33
+        Dim currentDate As Date
+        currentDate = startDate + (dayCol - 3)
+        If Day(currentDate) = 1 And dayCol > 3 Then Exit For
+        wsRequest.Cells(1, dayCol).Value = Format(currentDate, "m/d")
+        wsRequest.Cells(1, dayCol).NumberFormat = "m/d"
+    Next dayCol
+    
+    ' スタッフ情報をコピー
+    For i = 2 To 11
+        wsRequest.Cells(i, 1).Value = wsStaff.Cells(i, 1).Value
+        wsRequest.Cells(i, 2).Value = wsStaff.Cells(i, 2).Value
+    Next i
+    
+    Application.ScreenUpdating = True
+    MsgBox "基本フレームワークを作成しました！" & vbNewLine & "シフト希望シートに○×で入力してください。"
+End Sub</pre>
+            </div>
+
+            <h4>📅 Step 2: 制約チェック機能の追加</h4>
+            <p><strong>AIへの指示：</strong></p>
+            <p>「Step1のコードに以下の制約をチェックする機能を統合してください：</p>
+            <ul>
+                <li>1人あたり週5日勤務（月20-22日程度）</li>
+                <li>土日のうち必ず1日は出勤</li>
+                <li>連続勤務は最大6日まで</li>
+                <li>制約違反があればセルを赤色にして警告表示」</li>
+            </ul>
+
+            <div style="position: relative;">
+                <button onclick="copyCode('code2')" style="position: absolute; top: 10px; right: 10px; background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">📋 コピー</button>
+                <pre id="code2" style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-size: 0.9rem; border: 1px solid #dee2e6; overflow-x: auto;">' Step 2で追加: 制約チェック機能
+Function CheckShiftConstraints(staffRow As Integer, Optional showMessages As Boolean = True) As Boolean
+    Dim wsRequest As Worksheet
+    Set wsRequest = Sheets("シフト希望")
+    
+    Dim consecutiveDays As Integer
+    Dim maxConsecutive As Integer
+    Dim weekendCount As Integer
+    Dim totalDays As Integer
+    Dim staffName As String
+    
+    consecutiveDays = 0
+    maxConsecutive = 0
+    weekendCount = 0
+    totalDays = 0
+    staffName = wsRequest.Cells(staffRow, 2).Value
+    
+    ' 1ヶ月分をチェック（最大31日）
+    For dayCol = 3 To 33
+        If wsRequest.Cells(1, dayCol).Value = "" Then Exit For
+        
+        Dim currentDate As Date
+        currentDate = wsRequest.Cells(1, dayCol).Value
+        
+        If wsRequest.Cells(staffRow, dayCol).Value = "○" Then
+            totalDays = totalDays + 1
+            consecutiveDays = consecutiveDays + 1
+            
+            ' 土日チェック
+            If Weekday(currentDate) = 1 Or Weekday(currentDate) = 7 Then
+                weekendCount = weekendCount + 1
+            End If
+            
+            ' 最大連続勤務日数を記録
+            If consecutiveDays > maxConsecutive Then
+                maxConsecutive = consecutiveDays
+            End If
+            
+        Else
+            consecutiveDays = 0
+        End If
+    Next dayCol
+    
+    ' 制約チェック結果
+    Dim violations As String
+    violations = ""
+    
+    ' 1. 総勤務日数チェック（20-23日が適正）
+    If totalDays < 20 Then
+        violations = violations & "・勤務日数不足: " & totalDays & "日（20日以上必要）" & vbNewLine
+    ElseIf totalDays > 23 Then
+        violations = violations & "・勤務日数過多: " & totalDays & "日（23日以下推奨）" & vbNewLine
+    End If
+    
+    ' 2. 連続勤務チェック
+    If maxConsecutive > 6 Then
+        violations = violations & "・連続勤務過多: " & maxConsecutive & "日連続（6日以下必要）" & vbNewLine
+    End If
+    
+    ' 3. 週末出勤チェック（月4-5回）
+    If weekendCount < 4 Then
+        violations = violations & "・週末出勤不足: " & weekendCount & "回（4回以上必要）" & vbNewLine
+    ElseIf weekendCount > 6 Then
+        violations = violations & "・週末出勤過多: " & weekendCount & "回（6回以下推奨）" & vbNewLine
+    End If
+    
+    ' 結果判定
+    If violations = "" Then
+        CheckShiftConstraints = True
+    Else
+        CheckShiftConstraints = False
+        If showMessages Then
+            MsgBox staffName & "の制約違反:" & vbNewLine & violations, vbExclamation
+        End If
+    End If
+End Function
+
+Sub CheckAllConstraints()
+    ' Step 2で追加: 全スタッフの制約チェック
+    Dim wsRequest As Worksheet
+    Set wsRequest = Sheets("シフト希望")
+    
+    Dim violationCount As Integer
+    violationCount = 0
+    
+    For staffRow = 2 To 11
+        If wsRequest.Cells(staffRow, 2).Value <> "" Then
+            If Not CheckShiftConstraints(staffRow, True) Then
+                violationCount = violationCount + 1
+            End If
+        End If
+    Next staffRow
+    
+    If violationCount = 0 Then
+        MsgBox "全スタッフの制約チェック完了！問題ありません。", vbInformation
+    Else
+        MsgBox violationCount & "名に制約違反があります。修正してください。", vbExclamation
+    End If
+End Sub</pre>
+            </div>
+
+            <h4>⚡ Step 3: 自動最適化機能の実装</h4>
+            <p><strong>AIへの指示：</strong></p>
+            <p>「前のステップのコードに加えて、スタッフの希望をもとに制約条件を満たす最適なシフトを自動生成する機能を統合してください」</p>
+
+            <div style="position: relative;">
+                <button onclick="copyCode('code3')" style="position: absolute; top: 10px; right: 10px; background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">📋 コピー</button>
+                <pre id="code3" style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-size: 0.9rem; border: 1px solid #dee2e6; overflow-x: auto;">Sub OptimizeShift()
+    ' Step 3で追加: シフト最適化機能
+    Dim wsRequest As Worksheet
+    Dim wsShift As Worksheet
+    Set wsRequest = Sheets("シフト希望")
+    Set wsShift = Sheets("シフト表")
+    
+    Application.ScreenUpdating = False
+    
+    ' シフト表の初期化
+    wsShift.Cells.Clear
+    wsShift.Range("A1").Value = "ID"
+    wsShift.Range("B1").Value = "氏名"
+    
+    ' 日付ヘッダーをコピー
+    For dayCol = 3 To 33
+        If wsRequest.Cells(1, dayCol).Value = "" Then Exit For
+        wsShift.Cells(1, dayCol).Value = wsRequest.Cells(1, dayCol).Value
+        wsShift.Cells(1, dayCol).NumberFormat = "m/d"
+    Next dayCol
+    
+    ' スタッフ情報をコピー
+    For staffRow = 2 To 11
+        wsShift.Cells(staffRow, 1).Value = wsRequest.Cells(staffRow, 1).Value
+        wsShift.Cells(staffRow, 2).Value = wsRequest.Cells(staffRow, 2).Value
+    Next staffRow
+    
+    ' 各日の最適化
+    For dayCol = 3 To 33
+        If wsRequest.Cells(1, dayCol).Value = "" Then Exit For
+        
+        Dim currentDate As Date
+        currentDate = wsRequest.Cells(1, dayCol).Value
+        
+        ' 必要人数の設定
+        Dim requiredStaff As Integer
+        If Weekday(currentDate) = 1 Or Weekday(currentDate) = 7 Then
+            requiredStaff = 3 ' 週末
+        Else
+            requiredStaff = 5 ' 平日
+        End If
+        
+        ' 希望者の優先度付きリスト作成
+        Dim availableStaff As String
+        availableStaff = ""
+        
+        For staffRow = 2 To 11
+            If wsRequest.Cells(staffRow, dayCol).Value = "○" Then
+                ' 制約チェック（簡易版）
+                If CanWorkOnDay(staffRow, dayCol) Then
+                    availableStaff = availableStaff & staffRow & ","
+                End If
+            End If
+        Next staffRow
+        
+        ' スタッフ割り当て
+        Dim assignedCount As Integer
+        assignedCount = 0
+        
+        If availableStaff <> "" Then
+            Dim staffArray() As String
+            staffArray = Split(Left(availableStaff, Len(availableStaff) - 1), ",")
+            
+            For i = 0 To UBound(staffArray)
+                If assignedCount >= requiredStaff Then Exit For
+                
+                Dim staffRow As Integer
+                staffRow = CInt(staffArray(i))
+                
+                wsShift.Cells(staffRow, dayCol).Value = "出勤"
+                wsShift.Cells(staffRow, dayCol).Interior.Color = RGB(144, 238, 144)
+                assignedCount = assignedCount + 1
+            Next i
+        End If
+        
+        ' 人数不足の警告
+        If assignedCount < requiredStaff Then
+            wsShift.Cells(12, dayCol).Value = "不足" & (requiredStaff - assignedCount)
+            wsShift.Cells(12, dayCol).Interior.Color = RGB(255, 200, 200)
+        End If
+    Next dayCol
+    
+    Application.ScreenUpdating = True
+    MsgBox "シフト最適化が完了しました！" & vbNewLine & "シフト表を確認してください。"
+End Sub
+
+Function CanWorkOnDay(staffRow As Integer, dayCol As Integer) As Boolean
+    ' 簡易的な制約チェック（連続勤務のみ）
+    Dim wsRequest As Worksheet
+    Set wsRequest = Sheets("シフト希望")
+    
+    Dim consecutiveDays As Integer
+    consecutiveDays = 0
+    
+    ' 前後3日をチェック
+    For checkCol = dayCol - 3 To dayCol + 3
+        If checkCol >= 3 And checkCol <= 33 Then
+            If wsRequest.Cells(1, checkCol).Value <> "" Then
+                If wsRequest.Cells(staffRow, checkCol).Value = "○" Then
+                    consecutiveDays = consecutiveDays + 1
+                    If consecutiveDays > 6 Then
+                        CanWorkOnDay = False
+                        Exit Function
+                    End If
+                Else
+                    consecutiveDays = 0
+                End If
+            End If
+        End If
+    Next checkCol
+    
+    CanWorkOnDay = True
+End Function</pre>
+            </div>
+
+            <h4>📊 Step 4: 完成版 - 統合されたシステム</h4>
+            <p><strong>最終的な統合版コード：</strong></p>
+
+            <div style="position: relative;">
+                <button onclick="copyCode('code4')" style="position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">📋 完全版コピー</button>
+                <pre id="code4" style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-size: 0.9rem; border: 1px solid #dee2e6; overflow-x: auto; max-height: 400px;">' 【完成版】統合シフト管理システム
+' Alt + F11でVBAエディタを開き、Module1に貼り付けて実行
+
+Sub MainMenu()
+    ' メインメニュー表示
+    Dim choice As String
+    choice = InputBox("シフト管理システム" & vbNewLine & vbNewLine & _
+                     "1: 基本フレームワーク作成" & vbNewLine & _
+                     "2: 制約チェック実行" & vbNewLine & _
+                     "3: シフト最適化実行" & vbNewLine & _
+                     "4: レポート出力" & vbNewLine & vbNewLine & _
+                     "番号を入力してください:", "シフト管理システム")
+    
+    Select Case choice
+        Case "1"
+            CreateShiftFramework
+        Case "2"
+            CheckAllConstraints
+        Case "3"
+            OptimizeShift
+        Case "4"
+            GenerateReport
+        Case Else
+            MsgBox "処理をキャンセルしました。"
+    End Select
+End Sub
+
+' === 基本フレームワーク作成 ===
+Sub CreateShiftFramework()
+    Application.ScreenUpdating = False
+    
+    ' 既存シートクリア
+    On Error Resume Next
+    Application.DisplayAlerts = False
+    Sheets("スタッフ一覧").Delete
+    Sheets("シフト希望").Delete
+    Sheets("シフト表").Delete
+    Application.DisplayAlerts = True
+    On Error GoTo 0
+    
+    ' シート作成
+    Dim wsStaff As Worksheet
+    Dim wsRequest As Worksheet
+    Dim wsShift As Worksheet
+    
+    Set wsStaff = Sheets.Add(After:=Sheets(Sheets.Count))
+    wsStaff.Name = "スタッフ一覧"
+    Set wsRequest = Sheets.Add(After:=Sheets(Sheets.Count))
+    wsRequest.Name = "シフト希望"
+    Set wsShift = Sheets.Add(After:=Sheets(Sheets.Count))
+    wsShift.Name = "シフト表"
+    
+    ' スタッフ一覧作成
+    wsStaff.Range("A1:C1").Value = Array("ID", "氏名", "役職")
+    For i = 2 To 11
+        wsStaff.Cells(i, 1).Value = i - 1
+        wsStaff.Cells(i, 2).Value = "スタッフ" & Format(i - 1, "00")
+        wsStaff.Cells(i, 3).Value = "一般"
+    Next i
+    
+    ' シフト希望シート作成
+    wsRequest.Range("A1:B1").Value = Array("ID", "氏名")
+    Dim startDate As Date
+    startDate = DateSerial(Year(Date), Month(Date) + 1, 1)
+    
+    For dayCol = 3 To 33
+        Dim currentDate As Date
+        currentDate = startDate + (dayCol - 3)
+        If Day(currentDate) = 1 And dayCol > 3 Then Exit For
+        wsRequest.Cells(1, dayCol).Value = Format(currentDate, "m/d")
+        wsRequest.Cells(1, dayCol).NumberFormat = "m/d"
+    Next dayCol
+    
+    For i = 2 To 11
+        wsRequest.Cells(i, 1).Value = wsStaff.Cells(i, 1).Value
+        wsRequest.Cells(i, 2).Value = wsStaff.Cells(i, 2).Value
+    Next i
+    
+    Application.ScreenUpdating = True
+    MsgBox "基本フレームワーク作成完了！" & vbNewLine & "シフト希望シートに○×で入力してください。"
+End Sub
+
+' === 制約チェック機能 ===
+Function CheckShiftConstraints(staffRow As Integer, Optional showMessages As Boolean = True) As Boolean
+    Dim wsRequest As Worksheet
+    Set wsRequest = Sheets("シフト希望")
+    
+    Dim consecutiveDays, maxConsecutive, weekendCount, totalDays As Integer
+    Dim staffName As String
+    staffName = wsRequest.Cells(staffRow, 2).Value
+    
+    For dayCol = 3 To 33
+        If wsRequest.Cells(1, dayCol).Value = "" Then Exit For
+        
+        If wsRequest.Cells(staffRow, dayCol).Value = "○" Then
+            totalDays = totalDays + 1
+            consecutiveDays = consecutiveDays + 1
+            maxConsecutive = Application.Max(maxConsecutive, consecutiveDays)
+            
+            If Weekday(wsRequest.Cells(1, dayCol).Value) = 1 Or Weekday(wsRequest.Cells(1, dayCol).Value) = 7 Then
+                weekendCount = weekendCount + 1
+            End If
+        Else
+            consecutiveDays = 0
+        End If
+    Next dayCol
+    
+    Dim violations As String
+    If totalDays < 20 Then violations = violations & "勤務日数不足(" & totalDays & "日) "
+    If totalDays > 23 Then violations = violations & "勤務日数過多(" & totalDays & "日) "
+    If maxConsecutive > 6 Then violations = violations & "連続勤務過多(" & maxConsecutive & "日) "
+    If weekendCount < 4 Then violations = violations & "週末出勤不足(" & weekendCount & "回) "
+    
+    If violations = "" Then
+        CheckShiftConstraints = True
+    Else
+        CheckShiftConstraints = False
+        If showMessages Then MsgBox staffName & ": " & violations, vbExclamation
+    End If
+End Function
+
+Sub CheckAllConstraints()
+    Dim violationCount As Integer
+    For staffRow = 2 To 11
+        If Sheets("シフト希望").Cells(staffRow, 2).Value <> "" Then
+            If Not CheckShiftConstraints(staffRow, True) Then
+                violationCount = violationCount + 1
+            End If
+        End If
+    Next staffRow
+    
+    If violationCount = 0 Then
+        MsgBox "制約チェック完了！全員問題ありません。", vbInformation
+    End If
+End Sub
+
+' === シフト最適化機能 ===
+Sub OptimizeShift()
+    Dim wsRequest As Worksheet, wsShift As Worksheet
+    Set wsRequest = Sheets("シフト希望")
+    Set wsShift = Sheets("シフト表")
+    
+    Application.ScreenUpdating = False
+    wsShift.Cells.Clear
+    
+    ' ヘッダー作成
+    wsShift.Range("A1:B1").Value = Array("ID", "氏名")
+    
+    ' 最大列数を動的に取得
+    Dim lastCol As Integer
+    lastCol = wsRequest.Cells(1, Columns.Count).End(xlToLeft).Column
+    
+    ' 日付ヘッダーをコピー
+    For dayCol = 3 To lastCol
+        If wsRequest.Cells(1, dayCol).Value <> "" Then
+            wsShift.Cells(1, dayCol).Value = wsRequest.Cells(1, dayCol).Value
+            wsShift.Cells(1, dayCol).NumberFormat = "m/d"
+        End If
+    Next dayCol
+    
+    ' スタッフ情報コピー
+    For staffRow = 2 To 11
+        wsShift.Cells(staffRow, 1).Value = wsRequest.Cells(staffRow, 1).Value
+        wsShift.Cells(staffRow, 2).Value = wsRequest.Cells(staffRow, 2).Value
+    Next staffRow
+    
+    ' スタッフごとの勤務日数カウント用配列
+    Dim workDays(2 To 11) As Integer
+    For i = 2 To 11
+        workDays(i) = 0
+    Next i
+    
+    ' 日別最適化（公平性を考慮したアルゴリズム）
+    For dayCol = 3 To lastCol
+        If wsRequest.Cells(1, dayCol).Value = "" Then Exit For
+        
+        Dim requiredStaff As Integer
+        Dim currentDate As Date
+        
+        On Error Resume Next
+        currentDate = wsRequest.Cells(1, dayCol).Value
+        On Error GoTo 0
+        
+        ' 必要人数の設定
+        If Weekday(currentDate) = 1 Or Weekday(currentDate) = 7 Then
+            requiredStaff = 3 ' 週末
+        Else
+            requiredStaff = 5 ' 平日
+        End If
+        
+        ' 希望者リストを作成（勤務日数の少ない順にソート）
+        Dim availableStaff As String
+        Dim staffPriority() As Variant
+        Dim availableCount As Integer
+        availableCount = 0
+        
+        ' 希望者をカウント
+        For staffRow = 2 To 11
+            If wsRequest.Cells(staffRow, dayCol).Value = "○" Then
+                availableCount = availableCount + 1
+            End If
+        Next staffRow
+        
+        If availableCount > 0 Then
+            ReDim staffPriority(1 To availableCount, 1 To 2)
+            Dim index As Integer
+            index = 1
+            
+            ' 希望者リストを作成（スタッフ行、現在の勤務日数）
+            For staffRow = 2 To 11
+                If wsRequest.Cells(staffRow, dayCol).Value = "○" Then
+                    staffPriority(index, 1) = staffRow
+                    staffPriority(index, 2) = workDays(staffRow)
+                    index = index + 1
+                End If
+            Next staffRow
+            
+            ' 勤務日数の少ない順にソート（バブルソート）
+            For i = 1 To availableCount - 1
+                For j = i + 1 To availableCount
+                    If staffPriority(i, 2) > staffPriority(j, 2) Then
+                        ' スワップ
+                        Dim tempRow As Integer, tempDays As Integer
+                        tempRow = staffPriority(i, 1)
+                        tempDays = staffPriority(i, 2)
+                        staffPriority(i, 1) = staffPriority(j, 1)
+                        staffPriority(i, 2) = staffPriority(j, 2)
+                        staffPriority(j, 1) = tempRow
+                        staffPriority(j, 2) = tempDays
+                    End If
+                Next j
+            Next i
+            
+            ' 必要人数まで割り当て（勤務日数の少ない人から優先）
+            Dim assignedCount As Integer
+            assignedCount = 0
+            
+            For i = 1 To availableCount
+                If assignedCount >= requiredStaff Then Exit For
+                
+                Dim staffRow As Integer
+                staffRow = staffPriority(i, 1)
+                
+                ' 連続勤務制限チェック（簡易版）
+                If Not ExceedsConsecutiveLimit(staffRow, dayCol, wsRequest) Then
+                    wsShift.Cells(staffRow, dayCol).Value = "出勤"
+                    wsShift.Cells(staffRow, dayCol).Interior.Color = RGB(144, 238, 144)
+                    workDays(staffRow) = workDays(staffRow) + 1
+                    assignedCount = assignedCount + 1
+                End If
+            Next i
+            
+            ' 人数不足の場合
+            If assignedCount < requiredStaff Then
+                wsShift.Cells(12, dayCol).Value = "不足" & (requiredStaff - assignedCount)
+                wsShift.Cells(12, dayCol).Interior.Color = RGB(255, 200, 200)
+            End If
+        Else
+            ' 希望者がいない場合
+            wsShift.Cells(12, dayCol).Value = "希望者なし"
+            wsShift.Cells(12, dayCol).Interior.Color = RGB(255, 200, 200)
+        End If
+    Next dayCol
+    
+    ' 勤務日数の表示
+    For staffRow = 2 To 11
+        wsShift.Cells(staffRow, lastCol + 1).Value = workDays(staffRow) & "日"
+    Next staffRow
+    wsShift.Cells(1, lastCol + 1).Value = "合計勤務日数"
+    
+    Application.ScreenUpdating = True
+    MsgBox "シフト最適化完了！公平性を考慮して割り当てました。"
+End Sub
+
+Function ExceedsConsecutiveLimit(staffRow As Integer, currentCol As Integer, ws As Worksheet) As Boolean
+    ' 連続勤務制限チェック（前後3日をチェック）
+    Dim consecutiveCount As Integer
+    consecutiveCount = 1 ' 今日を含む
+    
+    ' 前の日をチェック
+    For checkCol = currentCol - 1 To 3 Step -1
+        If ws.Cells(1, checkCol).Value = "" Then Exit For
+        If ws.Cells(staffRow, checkCol).Value = "○" Then
+            consecutiveCount = consecutiveCount + 1
+        Else
+            Exit For
+        End If
+    Next checkCol
+    
+    ' 後の日をチェック
+    Dim lastCol As Integer
+    lastCol = ws.Cells(1, Columns.Count).End(xlToLeft).Column
+    For checkCol = currentCol + 1 To lastCol
+        If ws.Cells(1, checkCol).Value = "" Then Exit For
+        If ws.Cells(staffRow, checkCol).Value = "○" Then
+            consecutiveCount = consecutiveCount + 1
+        Else
+            Exit For
+        End If
+    Next checkCol
+    
+    ' 6日を超える場合はTrue（制限オーバー）
+    ExceedsConsecutiveLimit = (consecutiveCount > 6)
+End Function
+
+' === レポート出力機能 ===
+Sub GenerateReport()
+    Dim wsShift As Worksheet
+    Set wsShift = Sheets("シフト表")
+    
+    Dim report As String
+    report = "=== シフト管理レポート ===" & vbNewLine & vbNewLine
+    
+    For staffRow = 2 To 11
+        If wsShift.Cells(staffRow, 2).Value <> "" Then
+            Dim workDays As Integer
+            workDays = 0
+            
+            For dayCol = 3 To 33
+                If wsShift.Cells(1, dayCol).Value = "" Then Exit For
+                If wsShift.Cells(staffRow, dayCol).Value = "出勤" Then
+                    workDays = workDays + 1
+                End If
+            Next dayCol
+            
+            report = report & wsShift.Cells(staffRow, 2).Value & ": " & workDays & "日勤務" & vbNewLine
+        End If
+    Next staffRow
+    
+    MsgBox report, vbInformation, "シフトレポート"
+End Sub</pre>
+            </div>
+
+            <h3>🚀 使用方法</h3>
+            <p><strong>実行手順：</strong></p>
+            <ol>
+                <li>**Excelを開いて** Alt + F11 でVBAエディタを起動</li>
+                <li>**挿入 → 標準モジュール** で新しいモジュールを作成</li>
+                <li>**上記の完成版コードをコピー&ペースト**</li>
+                <li>**F5キーまたは実行ボタン**で `MainMenu` を実行</li>
+                <li>**1を選択**してフレームワークを作成</li>
+                <li>**シフト希望シートに○×で希望を入力**</li>
+                <li>**3を選択**してシフトを自動生成</li>
+            </ol>
+
+            <p>各ステップは **段階的に統合** されており、最終的に1つの完全なシステムとして動作します。個別の機能テストから始めて、最終的に統合版を使用することを推奨します。</p>
+
+            <h3>🎯 実装時のポイント</h3>
+            <p><strong>AIとの効果的な対話方法：</strong></p>
+            <ul>
+                <li><strong>段階的な要求</strong>：一度に全機能を求めず、1つずつ機能を追加</li>
+                <li><strong>具体的な例の提示</strong>：「10名のスタッフで」「週5日勤務で」など数値を明確に</li>
+                <li><strong>エラーケースの想定</strong>：「人数が足りない場合は」「制約違反の場合は」を事前に指定</li>
+                <li><strong>動作確認と修正</strong>：各段階でテストを行い、不具合があれば具体的に修正を依頼</li>
+            </ul>
+
+            <p><strong>実際の開発の流れ：</strong></p>
+            <ol>
+                <li>**要件を言語化** → AIに伝える</li>
+                <li>**コードを生成** → 実際にExcelで実行</li>
+                <li>**動作確認** → 問題点を特定</li>
+                <li>**修正指示** → AIに具体的な改善を依頼</li>
+                <li>**機能追加** → 次の段階へ進む</li>
+            </ol>
+
+            <p>このプロセスを繰り返すことで、**プログラミング経験がなくても現場のニーズに合った実用的なシステム**を構築できます。</p>
+
+            <h3>🎓 最低限必要なVBA知識とは</h3>
+            <p>AIとの協働でも、全くの無知では効率的な開発ができません。以下の基本概念は理解しておく必要があります：</p>
+            
+            <ul>
+                <li><strong>オブジェクトの概念</strong>：ワークブック、ワークシート、セルといった階層構造</li>
+                <li><strong>変数とループ</strong>：データを格納し、繰り返し処理を行う基本的な仕組み</li>
+                <li><strong>条件分岐</strong>：「もし〜なら〜する」という論理構造</li>
+                <li><strong>エラーハンドリング</strong>：予期しない状況への対処方法</li>
+            </ul>
+            
+            <p>これらは従来の学習方法と異なり、実装したい機能に応じて必要な分だけ学習すればよいのです。**AIが生成したコードを理解し、微調整するために必要最小限の知識を身につける「逆算的学習」が有効**です。</p>
+
+            <h2>4. これからの働き方：誰もがプログラマーになれる時代</h2>
+            
+            <h3>⚡ 技術習得から問題設定能力へのシフト</h3>
+            <p>LLM時代のプログラミングは、従来の「技術者だけの専門分野」から「**問題解決のための汎用ツール**」へと変化しています。重要なのは、プログラミング言語を暗記することではなく、解決すべき問題を正確に特定し、それを実現可能な形で表現する能力です。</p>
+            
+            <p>この変化により、**各分野の専門家が自らの知見を直接システムに反映できる**ようになりました。経理担当者が会計処理を自動化し、営業担当者が顧客管理システムをカスタマイズし、人事担当者が勤怠管理を効率化する、といった光景が当たり前になるでしょう。</p>
+
+            <h3>💪 現場とITの融合による新しい価値創造</h3>
+            <p>最も価値の高い成果物は、**深い業務知識とIT活用能力の両方を併せ持つ人材**から生まれます。従来は別々の部門が担当していた「業務理解」と「技術実装」を一人が担えるようになったことで、より精度の高い改善案を迅速に実現できるのです。</p>
+            
+            <p>企業にとっては、既存の人材がプログラミング能力を身につけることで、外部委託コストの削減だけでなく、**より現場のニーズに合致したシステムを構築できる**という大きなメリットがあります。</p>
+
+            <h2>🎯 まとめ</h2>
+            <p>LLMの登場により、プログラミングは一部の技術者だけの専門領域から、**現場の課題解決のための汎用ツール**へと変わりました。この変化を最大限活用するためには、コードの書き方を覚えることよりも、**解決したい問題を正確に言語化する能力を磨くこと**が重要です。</p>
+            
+            <p>シフト管理のVBA化という身近な例からも分かるように、現場の業務知識を持つ人材がAIと協働することで、従来では考えられなかった効率的な改善を実現できます。**技術の民主化により、誰もが自分の業務領域でプログラマーとして活躍できる時代**が始まっているのです。</p>
+        </article>
+
+        <div class="slide-navigation">
+            <div class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">12</span>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" onclick="prevSlide()">← 前</button>
+                <button class="nav-btn" onclick="nextSlide()">次 →</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        let isSlideMode = true;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function showSlides() {
+            document.body.className = 'slide-mode';
+            document.querySelectorAll('.toggle-btn')[0].classList.add('active');
+            document.querySelectorAll('.toggle-btn')[1].classList.remove('active');
+            isSlideMode = true;
+        }
+        
+        function showArticle() {
+            document.body.className = 'article-mode';
+            document.querySelectorAll('.toggle-btn')[0].classList.remove('active');
+            document.querySelectorAll('.toggle-btn')[1].classList.add('active');
+            isSlideMode = false;
+        }
+        
+        // キーボード操作
+        document.addEventListener('keydown', function(event) {
+            if (isSlideMode) {
+                if (event.key === 'ArrowRight' || event.key === ' ') {
+                    nextSlide();
+                } else if (event.key === 'ArrowLeft') {
+                    prevSlide();
+                }
+            }
+        });
+        
+        // コードコピー機能
+        function copyCode(codeId) {
+            const codeElement = document.getElementById(codeId);
+            const text = codeElement.textContent;
+            
+            // クリップボードにコピー
+            navigator.clipboard.writeText(text).then(function() {
+                // コピー完了のフィードバック
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = '✅ コピー完了';
+                button.style.background = '#27ae60';
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.style.background = '#3498db';
+                }, 2000);
+            }).catch(function(err) {
+                // フォールバック: 選択状態にする
+                const range = document.createRange();
+                range.selectNode(codeElement);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                
+                const button = event.target;
+                button.textContent = '📋 選択済み';
+                button.style.background = '#f39c12';
+                
+                setTimeout(function() {
+                    button.textContent = '📋 コピー';
+                    button.style.background = '#3498db';
+                }, 2000);
+            });
+        }
+        
+        // 初期状態をスライドモードに設定
+        showSlides();
+    </script>
+</body>
+</html>

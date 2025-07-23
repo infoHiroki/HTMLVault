@@ -1,6 +1,23 @@
 {
   "files": [
     {
+      "id": "llm-programming-shift",
+      "path": "html-files/2025-07-23chokoBen.html",
+      "title": "LLM時代のプログラミング観変革",
+      "description": "シフト管理VBA実装を通して見る「言語化力」の重要性",
+      "tags": [
+        "LLM",
+        "プログラミング",
+        "VBA",
+        "シフト管理",
+        "Excel",
+        "AI協働",
+        "問題解決"
+      ],
+      "created": "2025-07-23",
+      "category": "技術・開発"
+    },
+    {
       "id": "openai-podcast-infographic",
       "path": "html-files/2025-07-03-edu-openai-podcast-infographic.html",
       "title": "OpenAIポッドキャスト - ChatGPTの初期バイラル時代とAIの未来",
