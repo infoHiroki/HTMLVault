@@ -2,7 +2,7 @@
   "files": [
     {
       "id": "llm-programming-shift",
-      "path": "html-files/2025-07-23chokoBen.html",
+      "path": "html-files/2025-07-23-tech-llm-shift-management-vba.html",
       "title": "LLM時代のプログラミング観変革",
       "description": "シフト管理VBA実装を通して見る「言語化力」の重要性",
       "tags": [
@@ -35,7 +35,7 @@
     },
     {
       "id": "asd-opinion-difficulty",
-      "path": "html-files/asd_opinion_difficulty_guide.html",
+      "path": "html-files/2025-07-03-medical-asd-opinion-difficulty-guide.html",
       "title": "自分の意見がない発達障害（ASD）- 理解と支援ガイド",
       "description": "ASDの人が意見を持てない理由と対応方法についての医療解説",
       "tags": [
@@ -50,7 +50,7 @@
     },
     {
       "id": "hospital-review-system",
-      "path": "html-files/hospital-review-system-guide.html",
+      "path": "html-files/2025-07-02-system-hospital-review-system-guide.html",
       "title": "病院口コミ対応システム 導入説明資料",
       "description": "病院向け口コミ管理・対応システムの導入説明資料",
       "tags": [
@@ -543,7 +543,7 @@
     },
     {
       "id": "team-development-infographic",
-      "path": "html-files/team_development_infographic.html",
+      "path": "html-files/2025-07-03-tech-team-development-infographic.html",
       "title": "チーム開発の実践ガイド",
       "description": "6ステップで学ぶチーム開発の体系的方法論と実践ポイント",
       "tags": [
